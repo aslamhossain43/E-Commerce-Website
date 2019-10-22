@@ -3,10 +3,11 @@ import { Http } from '@angular/http';
 @Injectable()
 export class UploadFileService {
   constructor(private http: Http) { }
-  pushFileToStorage(piFile: File) {
+  pushFileToStorage(pFile: File) {
     const formdata: FormData = new FormData();
-    formdata.append('piFile', piFile);
-     return this.http.post('/products/addFile', formdata);
+    formdata.append('pFile', pFile);
+    console.log('from upload service')
+     return this.http.post('http://localhost:8080/products/addFile', formdata);
   }
 
 }

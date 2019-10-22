@@ -12,9 +12,9 @@ export class ProductService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
         if (product.id) {
-            return this.http.put('/products/updateProducts/' + product.id, body, options);
+            return this.http.put('http://localhost:8080/products/updateProduct/' + product.id, body, options);
         } else {
-            return this.http.post('/products/addProducts', body, options);
+            return this.http.post('http://localhost:8080/products/addProduct', body, options);
         }
     }
 

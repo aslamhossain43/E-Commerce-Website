@@ -30,53 +30,56 @@
 
           <div class="formDiv">
                 <mat-form-field>
-                  <mat-select matInput placeholder="Select a status" [(ngModel)]="product.category" name="category" required
+                  <mat-select matInput placeholder="Select a category" [(ngModel)]="product.category" name="category" required
                     [formControl]="categoryFormControl">
-                    <mat-option value="category1">Category1</mat-option>
-                    <mat-option value="Category2">Category2</mat-option>
+                    <mat-option *ngFor="let category of categories" [value]="category.category">{{ category.category }}</mat-option>
                   </mat-select>
                   <mat-error *ngIf="categoryFormControl.invalid">{{getRequiredErrorMessageForString('category')}}</mat-error>
       
                 </mat-form-field>
       
-              </div>
-
+             
 
            
-          <div class="formDiv">
             <mat-form-field class="full-width">
                     <input matInput placeholder="Name" required type="text" autocomplete="off"
                       [(ngModel)]="product.name" [formControl]="nameFormControl">
                     <mat-error *ngIf="nameFormControl.invalid">{{getRequiredErrorMessageForString('name')}}</mat-error>
                   </mat-form-field>
-      </div>
-
+     
 
             
             <br>
 
-          <div class="formDiv">
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Color" required type="text" autocomplete="off"
+                  [(ngModel)]="product.color" [formControl]="colorFormControl">
+                <mat-error *ngIf="colorFormControl.invalid">{{getRequiredErrorMessageForString('color')}}</mat-error>
+              </mat-form-field>
+ 
+
+        
+        <br>
+
             <mat-form-field class="full-width">
               <input matInput placeholder="Quantity" required type="text" autocomplete="off"
                 [(ngModel)]="product.quantity" [formControl]="quantityFormControl">
               <mat-error *ngIf="quantityFormControl.invalid">{{getRequiredErrorMessageForString('quantity')}}</mat-error>
             </mat-form-field>
-</div>
 
             <br>
 
-          <div class="formDiv">
             <mat-form-field class="full-width">
               <input matInput placeholder="Price" required type="text" autocomplete="off"
-                [(ngModel)]="product.Price" [formControl]="priceFormControl">
+                [(ngModel)]="product.price" [formControl]="priceFormControl">
               <mat-error *ngIf="priceFormControl.invalid">{{getRequiredErrorMessageForString('price')}}</mat-error>
             </mat-form-field>
             </div>
           <br>
           <button id="submitButton" mat-raised-button color="primary" class="submit-button"
            
-           [disabled]="!(selectedpFiles && product.name
-          && product.category && product.quantity && product.Price)"
+           [disabled]="!(product.selectedPFile && product.name
+          && product.category && product.quantity && product.price)"
             (click)="uploadFile()">submit</button>
         </form>
   

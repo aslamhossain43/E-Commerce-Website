@@ -5,6 +5,7 @@ export class Product {
     category: string;
     quantity: string;
     price: string;
+    color: string;
     createdDate: string;
     lastModifiedDate: string;
     // FOR AUTH UID

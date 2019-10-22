@@ -4,6 +4,8 @@ import { Product } from './product';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { UploadFileService } from './addProduct.upload-service';
 import { ProductService } from './addproducts.products-service';
+import { Category } from '../category/category';
+import { CategoryService } from '../category/category.service';
 
 @Component({
   selector: 'app-addproducts',
@@ -22,6 +24,9 @@ msg = 'offPrpgressBar';
 // FOR CONSUMERS
 products: Product[];
 product = new Product();
+// FOR CATEGORY
+category=new Category();
+categories:Category[];
 // FOR FILE
 selectedpFiles: FileList;
 currentpFileUpload: File;
@@ -33,6 +38,7 @@ currentpFileUpload: File;
 // FOR FORM FIELD
 categoryFormControl = new FormControl('', [Validators.required]);
 nameFormControl = new FormControl('', [Validators.required]);
+colorFormControl = new FormControl('', [Validators.required]);
 quantityFormControl = new FormControl('', [Validators.required]);
 priceFormControl = new FormControl('', [Validators.required]);
 selectedPFileControl = new FormControl('', [Validators.required]);
@@ -40,7 +46,7 @@ selectedPFileControl = new FormControl('', [Validators.required]);
 constructor(private uploadService: UploadFileService,
   private productService: ProductService,
     // FOR NGX BOOTSTRAP  MODAL
-    private modalService: BsModalService) {
+    private modalService: BsModalService,private categoryService:CategoryService) {
   //  this.af.authState.subscribe(authentication => {
   //  this.consumer.uid = authentication.uid;
   //  this.uid = authentication.uid;
@@ -50,6 +56,7 @@ constructor(private uploadService: UploadFileService,
 
 biodataForm: FormGroup = new FormGroup({
   name: this.nameFormControl,
+  color: this.colorFormControl,
   category: this.categoryFormControl,
   quantity: this.quantityFormControl,
   price: this.priceFormControl,
@@ -66,6 +73,7 @@ getRequiredErrorMessageForString(field) {
 
 // NG LIFE CYCLE
 ngOnInit(): void {
+  this.getAllCategories();
 }
 
 // FOR NGX BOOTSTRAP  MODAL
@@ -73,7 +81,7 @@ public openModal(template: TemplateRef<any>) {
 this.modalRef = this.modalService.show(template); // {3}
 }
 // FOR FILE UPLOAD
-selectpiFile(event) {
+selectpFile(event) {
   this.selectedpFiles = event.target.files;
 }
 
@@ -90,6 +98,7 @@ selectpiFile(event) {
 
 uploadFile() {
   this.msg = '';
+  console.log('from uploadFile()')
   this.currentpFileUpload = this.selectedpFiles.item(0);
   this.uploadService.pushFileToStorage(this.currentpFileUpload)
     .subscribe(response => {
@@ -142,5 +151,19 @@ this.product=new Product();
 //   this.consumer = candidateById;
 // });
 // }
+
+
+getAllCategories(): void {
+  this.categoryService.getAllCategories()
+  .subscribe((categories) => {
+    this.categories = categories;
+    console.log(categories);
+  },
+  (error) => {
+    console.log(error);
+  });
+    }
+  
+
 
 }
