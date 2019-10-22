@@ -1,0 +1,112 @@
+<nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a id="home" class="navbar-brand" [routerLink]="['/home']" [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }">ZShopping</a>
+      <div id="navbarToggleRight">
+        <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="collapse navbar-collapse" [collapse]=isCollapsed>
+      <ul class="nav navbar-nav">
+
+
+
+        <li>
+            <a><button mat-button 
+          >About Us</button></a>
+               
+        </li>
+
+
+
+
+
+
+        <li>
+             <a><button mat-button >
+               All Categories</button></a>
+         
+          </li>
+
+
+
+        <li>
+             <a><button mat-button >
+               Contact Us</button></a>
+        </li>
+
+        <li *ngIf="uid === uidDataBase || uid === emailuid0043">
+            <a><button mat-button [matMenuTriggerFor]="manage">
+              Manage<span class="caret"></span></button></a>
+            <mat-menu #manage="matMenu">
+                <button mat-menu-item="manage-category" [routerLink]="['/category']"
+                [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Add Category</button>
+                <button mat-menu-item="manage-product" [routerLink]="['/addProducts']" [routerLinkActive]="['active']"
+                  [routerLinkActiveOptions]="{ exact: true }">Add Products</button>
+               
+                <button mat-menu-item="manage-candidates" [routerLink]="['/manage-candidates']"
+                  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Manage Candidates</button>
+                <button mat-menu-item="manage-donors" [routerLink]="['/manage-donors']" [routerLinkActive]="['active']"
+                  [routerLinkActiveOptions]="{ exact: true }">Manage Donors</button>
+
+                <button mat-menu-item="manage-email" [routerLink]="['/manage-email']" [routerLinkActive]="['active']"
+                  [routerLinkActiveOptions]="{ exact: true }">Manage Email</button>
+
+                <button mat-menu-item="manage-donors" [routerLink]="['/manage-staff']" [routerLinkActive]="['active']"
+                  [routerLinkActiveOptions]="{ exact: true }">Manage Developers</button>
+
+            </mat-menu>
+        </li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li id="login" *ngIf="!authenticatedName"><a [routerLink]="['/login']" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }">Login</a></li>
+
+
+
+
+
+        <li >
+            <a><button mat-button [matMenuTriggerFor]="authName">
+              <img [src]="photoUrl" class="img-circle"></button></a>
+            <mat-menu #authName="matMenu">
+                <button (click)="logout()" class="btn btn-warning">Logout</button>
+
+
+            </mat-menu>
+        </li>
+
+
+
+
+
+
+        <li >
+            <a><button mat-button [matMenuTriggerFor]="authName">user name<span class="caret"></span></button></a>
+            <mat-menu #authName="matMenu">
+                <button (click)="logout()" class="btn btn-warning">Logout</button>
+
+         </mat-menu>
+         </li>
+
+
+
+
+
+
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
