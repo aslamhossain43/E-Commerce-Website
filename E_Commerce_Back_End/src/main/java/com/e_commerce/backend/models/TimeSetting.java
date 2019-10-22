@@ -1,4 +1,4 @@
-package com.e_commerce.backend.model;
+package com.e_commerce.backend.models;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

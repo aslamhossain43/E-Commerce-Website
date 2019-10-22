@@ -1,4 +1,4 @@
-package com.e_commerce.backend.model;
+package com.e_commerce.backend.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
