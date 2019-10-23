@@ -1,104 +1,98 @@
-<nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a id="home" class="navbar-brand" [routerLink]="['/home']" [routerLinkActive]="['active']"
-        [routerLinkActiveOptions]="{ exact: true }">ZShopping</a>
-      <div id="navbarToggleRight">
-        <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed"
-          aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-    </div>
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+  <div class="container">
 
-    <div class="collapse navbar-collapse" [collapse]=isCollapsed>
-      <ul class="nav navbar-nav">
+    <!-- Brand -->
+    <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+      <strong class="blue-text">ZubiShopping</strong>
+    </a>
+
+    <!-- Collapse -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Left -->
+      <ul class="navbar-nav mr-auto">
+        <li id="paddingListId" class="nav-item">
+          <a class="nav-link waves-effect" href="" target="_blank">About Us</a>
+        </li>
+        <li id="paddingListId" class="nav-item">
+          <a class="nav-link waves-effect" href="" target="_blank">Our Products</a>
+        </li>
+        <li id="paddingListId" class="nav-item">
+          <a class="nav-link waves-effect" href="" target="_blank">Contact Us</a>
+        </li>
+        <li id="paddingListId" class="btn-group" mdbDropdown>
+          <a class="nav-link waves-effect" mdbDropdownToggle>Admin Section</a>
+          <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
+              <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
+              <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
+              <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
 
 
 
-        <li>
-            <a><button mat-button 
-          >About Us</button></a>
-               
+            </div>
+      
+
+        </li>
+      </ul>
+
+      <!-- Right -->
+      <ul class="navbar-nav nav-flex-icons">
+
+
+
+          <li id="ppId" class="btn-group" mdbDropdown>
+
+              <img src="assets/aslam-1.jpg" mdbDropdownToggle class="rounded-circle img-fluid">
+              <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
+                </div>
+          
+        
+        
+        </li>
+        
+
+
+
+       
+        <li id="paddingListId" class="nav-item">
+          <a href="" class="nav-link waves-effect" target="_blank">
+            <i class="fa fa-facebook-f"></i>
+          </a>
+        </li>
+        <li id="paddingListId" class="nav-item">
+          <a href="" class="nav-link waves-effect" target="_blank">
+            <i class="fa fa-twitter"></i>
+          </a>
+        </li>
+        <li id="paddingListId" class="nav-item">
+          <a href="" class="nav-link waves-effect" target="_blank">
+           <i class="fa fa-envelope" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li id="paddingListId" class="nav-item">
+          <a href="" class="nav-link waves-effect" target="_blank">
+           <i class="fa fa-comment" aria-hidden="true"></i>
+          </a>
         </li>
 
 
-
-
-
-
-        <li>
-             <a><button mat-button >
-               All Categories</button></a>
-         
+        <li id="paddingListId"  class="nav-item">
+            <a class="nav-link waves-effect">
+              <span class="badge red z-depth-1 mr-1"> 1 </span>
+              <i class="fa fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
           </li>
-
-
-
-        <li>
-             <a><button mat-button >
-               Contact Us</button></a>
-        </li>
-
-        <li *ngIf="uid === uidDataBase || uid === emailuid0043">
-            <a><button mat-button [matMenuTriggerFor]="manage">
-              Manage<span class="caret"></span></button></a>
-            <mat-menu #manage="matMenu">
-                <button mat-menu-item="manage-category" [routerLink]="['/category']"
-                [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Add Category</button>
-                <button mat-menu-item="manage-product" [routerLink]="['/addProducts']" [routerLinkActive]="['active']"
-                  [routerLinkActiveOptions]="{ exact: true }">Add Products</button>
-               
-                <button mat-menu-item="manage-candidates" [routerLink]="['/manage-candidates']"
-                  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Manage Candidates</button>
-                <button mat-menu-item="manage-donors" [routerLink]="['/manage-donors']" [routerLinkActive]="['active']"
-                  [routerLinkActiveOptions]="{ exact: true }">Manage Donors</button>
-
-                <button mat-menu-item="manage-email" [routerLink]="['/manage-email']" [routerLinkActive]="['active']"
-                  [routerLinkActiveOptions]="{ exact: true }">Manage Email</button>
-
-                <button mat-menu-item="manage-donors" [routerLink]="['/manage-staff']" [routerLinkActive]="['active']"
-                  [routerLinkActiveOptions]="{ exact: true }">Manage Developers</button>
-
-            </mat-menu>
-        </li>
-
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li id="login" *ngIf="!authenticatedName"><a [routerLink]="['/login']" [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{ exact: true }">Login</a></li>
-
-
-
-
-
-        <li >
-            <a><button mat-button [matMenuTriggerFor]="authName">
-              <img [src]="photoUrl" class="img-circle"></button></a>
-            <mat-menu #authName="matMenu">
-                <button (click)="logout()" class="btn btn-warning">Logout</button>
-
-
-            </mat-menu>
-        </li>
-
-
-
-
-
-
-        <li >
-            <a><button mat-button [matMenuTriggerFor]="authName">user name<span class="caret"></span></button></a>
-            <mat-menu #authName="matMenu">
-                <button (click)="logout()" class="btn btn-warning">Logout</button>
-
-         </mat-menu>
-         </li>
-
+     
 
 
 
@@ -107,6 +101,10 @@
 
 
       </ul>
+
     </div>
+
   </div>
 </nav>
+
+<!-- /Navbar end-->

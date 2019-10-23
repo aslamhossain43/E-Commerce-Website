@@ -1,8 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-// FOR BOOTSTRAP 
-@import '~bootstrap/dist/css/bootstrap.min.css';
 // FONT AWESOME
 $fa-font-path: '~font-awesome/fonts';
 @import '~font-awesome/scss/font-awesome.scss';
+
+
 html, body { height: 100%; }
-body { margin-top: 67px; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin:0; font-family: Roboto, "Helvetica Neue", sans-serif; }

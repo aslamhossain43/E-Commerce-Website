@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RequestOptions, Headers, Response, Http } from '@angular/http';
 import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Product } from './product';
 @Injectable()
 export class ProductService {
@@ -18,7 +19,13 @@ export class ProductService {
         }
     }
 
-
+    getAllProducts(): Observable<Product[]> {
+        return this.http.get('http://localhost:8080/products/getAllProducts')
+        .pipe(map((response: Response) => response.json(),
+        (error) => {
+         catchError(this.handlError);
+        }));
+    }
 
 
 public handlError(error: Response) {
