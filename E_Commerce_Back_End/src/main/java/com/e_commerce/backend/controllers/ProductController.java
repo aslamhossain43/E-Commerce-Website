@@ -58,13 +58,16 @@ public class ProductController {
 		if (!(this.pCode.equals(null))) {
 
 			LOGGER.info("piCode : " + this.pCode);
+			product.setName(product.getName());
+            product.setBrand(product.getBrand());
+			product.setDescription(product.getDescription());
+			product.setPrice(product.getPrice());
+			product.setDiscount(product.getDiscount());
+			product.setColor(product.getColor());
+			product.setQuantity(product.getQuantity());
 			product.setpCode(this.pCode);
 			product.setCategory(product.getCategory());
-
-			product.setColor(product.getColor());
-			product.setName(product.getName());
-			product.setQuantity(product.getQuantity());
-			product.setPrice(product.getPrice());
+			
 
 			productRepository.save(product);
 

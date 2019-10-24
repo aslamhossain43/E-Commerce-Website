@@ -1,6 +1,6 @@
-// FONT AWESOME
-$fa-font-path: '~font-awesome/fonts';
-@import '~font-awesome/scss/font-awesome.scss';
+//for category select in modal
+.cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 9999!important; } 
+
 
 
 html, body { height: 100%; }

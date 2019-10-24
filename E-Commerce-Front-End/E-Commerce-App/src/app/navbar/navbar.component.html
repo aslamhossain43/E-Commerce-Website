@@ -3,8 +3,8 @@
   <div class="container">
 
     <!-- Brand -->
-    <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-      <strong class="blue-text">ZubiShopping</strong>
+    <a class="navbar-brand waves-effect" href="" target="_blank">
+      <strong id="paddingListId" class="blue-text">ZubiShopping</strong>
     </a>
 
     <!-- Collapse -->
@@ -19,19 +19,22 @@
       <!-- Left -->
       <ul class="navbar-nav mr-auto">
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" href="" target="_blank">About Us</a>
+          <a class="nav-link waves-effect" href="aboutUs" target="_blank">About Us</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" href="" target="_blank">Our Products</a>
+          <a class="nav-link waves-effect" href="ourProducts" target="_blank">Our Products</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" href="" target="_blank">Contact Us</a>
+          <a class="nav-link waves-effect" href="sellToUs" target="_blank">Sell On ZubiShopping</a>
+        </li>
+        <li id="paddingListId" class="nav-item">
+          <a class="nav-link waves-effect" href="contactUs" target="_blank">Contact Us</a>
         </li>
         <li id="paddingListId" class="btn-group" mdbDropdown>
           <a class="nav-link waves-effect" mdbDropdownToggle>Admin Section</a>
           <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
-              <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal">Add Product</a>
+              <a class="dropdown-item" href="#">Manage Product</a>
               <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
               <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
 
@@ -65,30 +68,30 @@
        
         <li id="paddingListId" class="nav-item">
           <a href="" class="nav-link waves-effect" target="_blank">
-            <i class="fa fa-facebook-f"></i>
+            <i class="fab fa-facebook-f"></i>
           </a>
         </li>
         <li id="paddingListId" class="nav-item">
           <a href="" class="nav-link waves-effect" target="_blank">
-            <i class="fa fa-twitter"></i>
+            <i class="fab fa-twitter"></i>
           </a>
         </li>
         <li id="paddingListId" class="nav-item">
           <a href="" class="nav-link waves-effect" target="_blank">
-           <i class="fa fa-envelope" aria-hidden="true"></i>
+            <i class="fas fa-envelope"></i>
           </a>
         </li>
         <li id="paddingListId" class="nav-item">
           <a href="" class="nav-link waves-effect" target="_blank">
-           <i class="fa fa-comment" aria-hidden="true"></i>
+            <i class="fas fa-comment"></i>
           </a>
         </li>
 
 
         <li id="paddingListId"  class="nav-item">
-            <a class="nav-link waves-effect">
+            <a href="checkOut" class="nav-link waves-effect">
               <span class="badge red z-depth-1 mr-1"> 1 </span>
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
             </a>
           </li>
@@ -108,3 +111,147 @@
 </nav>
 
 <!-- /Navbar end-->
+
+
+
+
+
+
+
+<!--Add product modal-->
+
+
+<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add a new product here !</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body mx-3">
+
+
+        <div class="md-form mb-5">
+          <input type="text" id="name" class="form-control validate" [(ngModel)]="product.name" required>
+          <label data-error="wrong" data-success="right" for="name">Product name</label>
+        </div>
+
+
+        <div class="md-form mb-5">
+          <input type="text" id="brand" class="form-control validate" [(ngModel)]="product.brand" required>
+          <label data-error="wrong" data-success="right" for="brand">Brand name</label>
+        </div>
+
+
+        <div class="md-form">
+            <textarea type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="product.description" required></textarea>
+            <label data-error="wrong" data-success="right" for="description">Product description</label>
+          </div>
+
+
+
+
+
+
+        <div class="md-form mb-5">
+          <input type="text" id="price" class="form-control validate" [(ngModel)]="product.price" required>
+          <label data-error="wrong" data-success="right" for="price">Price of product</label>
+        </div>
+
+        <div class="md-form mb-5">
+            <input type="text" id="discount" class="form-control validate" [(ngModel)]="product.discount" required>
+            <label data-error="wrong" data-success="right" for="discount">Discount of product</label>
+          </div>
+
+          <div class="md-form mb-5">
+              <input type="text" id="color" class="form-control validate" [(ngModel)]="product.color" required>
+              <label data-error="wrong" data-success="right" for="color">Color of product</label>
+            </div>
+
+
+            <div class="md-form mb-5">
+                <input type="text" id="quantity" class="form-control validate" [(ngModel)]="product.quantity" required>
+                <label data-error="wrong" data-success="right" for="quantity">Quantity of product</label>
+              </div>
+  
+
+
+
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="upload-file">Upload</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="picture" (change)="selectpFile($event)"
+                    [(ngModel)]="product.selectedPFile"
+                      aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="picture">{{product.selectedPFile}}</label>
+                  </div>
+                </div>
+
+
+<br><br>
+<!--Material select-->
+
+    <mat-select matInput placeholder="Select a category" [(ngModel)]="product.category" name="category" required>
+      <mat-option  [value]="category.category" *ngFor="let category of categories" >{{category.category}}</mat-option>
+     
+    </mat-select>
+
+<br><br>
+    <button id="newCategoryBtnId" mat-raised-button data-toggle="modal" data-target="#addCategoryModal">New category ?</button>
+
+
+        
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+          <button mat-raised-button [disabled]="!(product.name && product.brand && product.description &&
+          product.price && product.color && product.quantity && product.selectedPFile &&
+          product.category && product.selectedPFile)" (click)="uploadFile()" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--/Add product modal-->
+
+<!--Add category modal-->
+
+<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add new category</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="productCategory" class="form-control validate" [(ngModel)]="category.category" name="category" required>
+          <label data-error="wrong" data-success="right" for="productCategory">Category name</label>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+          <button [disabled]="!(category.category)" mat-raised-button (click)="addCategory()" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--/Add category modal-->
