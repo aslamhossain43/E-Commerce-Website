@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../manage/product';
 import { ProductService } from '../manage/manage.service';
+import { Carousel } from '../manage/carousel';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,10 +10,20 @@ import { ProductService } from '../manage/manage.service';
 })
 export class HomeComponent implements OnInit {
 products:Product[];
-  constructor(private productService:ProductService) { }
+carousels:Carousel[];
+activeCarouselId='';
+activeCarouselPhoto='';
+
+  constructor(private productService:ProductService,private router:Router) { }
 
   ngOnInit() {
     this.getAllProducts();
+    this.getAllCarousel();
+    //page refresh
+    setTimeout(() => {
+      this.router.navigated = false;
+      this.router.navigate([this.router.url]);
+      }, 5000);
   }
 
   getAllProducts(): void {
@@ -24,7 +36,20 @@ products:Product[];
       console.log(error);
     });
       }
-    
+      getAllCarousel(): void {
+        this.productService.getAllCarousel()
+        .subscribe((carousel) => {
+
+           this.activeCarouselId=carousel[0].id;
+           this.activeCarouselPhoto=carousel[0].cCode;
+
+          this.carousels = carousel.slice(1);
+          console.log(carousel);
+        },
+        (error) => {
+          console.log(error);
+        });
+          }
 
 
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Product } from './product';
 import { Category } from './category';
+import { Carousel } from './carousel';
 @Injectable()
 export class ProductService {
 
@@ -27,6 +28,17 @@ export class ProductService {
          catchError(this.handlError);
         }));
     }
+
+
+
+    getAllCarousel(): Observable<Carousel[]> {
+        return this.http.get('http://localhost:8080/carousel/getAllCarousel')
+        .pipe(map((response: Response) => response.json(),
+        (error) => {
+         catchError(this.handlError);
+        }));
+    }
+
 
     addCategory(category: Category) {
         const body = JSON.stringify(category);

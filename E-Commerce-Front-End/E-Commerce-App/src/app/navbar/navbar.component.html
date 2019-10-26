@@ -1,10 +1,11 @@
+
 <!-- Navbar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
   <div class="container">
 
     <!-- Brand -->
     <a class="navbar-brand waves-effect" href="" target="_blank">
-      <strong id="paddingListId" class="blue-text">ZubiShopping</strong>
+      <strong id="paddingListId" class="blue-text">TizaraMart</strong>
     </a>
 
     <!-- Collapse -->
@@ -33,8 +34,8 @@
         <li id="paddingListId" class="btn-group" mdbDropdown>
           <a class="nav-link waves-effect" mdbDropdownToggle>Admin Section</a>
           <div class="dropdown-menu">
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addProductModal">Add Product</a>
-              <a class="dropdown-item" href="#">Manage Product</a>
+              <a class="dropdown-item" href="JavaScript:Void(0);" (click)="addProductModal.show()">Add new product</a>
+              <a class="dropdown-item" href="JavaScript:Void(0);" (click)="addCarouselModal.show()">Edit carousel pictures</a>
               <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
               <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
 
@@ -81,15 +82,15 @@
             <i class="fas fa-envelope"></i>
           </a>
         </li>
-        <li id="paddingListId" class="nav-item">
-          <a href="" class="nav-link waves-effect" target="_blank">
+        <li id="paddingListId" class="nav-item" (click)="chattingModal.show()">
+          <a href="JavaScript:Void(0);" class="nav-link waves-effect">
             <i class="fas fa-comment"></i>
           </a>
         </li>
 
 
-        <li id="paddingListId"  class="nav-item">
-            <a href="checkOut" class="nav-link waves-effect">
+        <li id="paddingListId"  class="nav-item" (click)="cartModal.show()">
+            <a href="JavaScript:Void(0);" class="nav-link waves-effect">
               <span class="badge red z-depth-1 mr-1"> 1 </span>
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
@@ -113,6 +114,81 @@
 <!-- /Navbar end-->
 
 
+<!--add carousel modal-->
+
+<div mdbModal #addCarouselModal="mdbModal" class="modal fade top modal-scrolling" id="frameModalTop" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Body-->
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center align-items-center">
+
+          <strong class="pt-3 pr-2">Edit your website's carousel pictures !</strong>
+          <br><br>
+
+          
+          <div *ngIf="!selectedCFiles" class="input-group">
+            
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="first-picture" (change)="selectCFile($event)"
+                  name="selectedCFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                <label class="custom-file-label" for="first-picture">Choose carousel pictures !</label>
+              </div>
+            </div>
+
+            <div *ngFor="let c of selectedCFiles" class="input-group">
+            
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="picture" (change)="selectCFile($event)"     
+                  name="selectedCFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                <label class="custom-file-label" for="picture">{{c.name}}</label>
+              </div>
+            </div>
+
+
+           
+
+
+          <div class="modal-footer d-flex justify-content-center">
+              <button mdbBtn color="primary" [disabled]="!selectedCFiles"
+              (click)="addCarouselPictures()" aria-label="Close" (click)="addCarouselModal.hide()"
+               mdbWavesEffect>Save</button>
+          </div>
+
+          <div class="modal-footer d-flex justify-content-center">
+              <button mdbBtn color="primary" (click)="resetCarousel()" aria-label="Close" (click)="addCarouselModal.hide()"
+               mdbWavesEffect>Close</button>
+          </div>
+
+
+         
+
+        </div>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+<!--/add carousel modal-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -121,124 +197,119 @@
 <!--Add product modal-->
 
 
-<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
+
+<div id="addProductM" mdbModal #addProductModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Add a new product here !</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="addProductModal.hide()">
+          <span aria-hidden="true">×</span>
         </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Add a new product here !</h4>
       </div>
-
-      <div class="modal-body mx-3">
-
-
-        <div class="md-form mb-5">
-          <input type="text" id="name" class="form-control validate" [(ngModel)]="product.name" required>
-          <label data-error="wrong" data-success="right" for="name">Product name</label>
-        </div>
-
-
-        <div class="md-form mb-5">
-          <input type="text" id="brand" class="form-control validate" [(ngModel)]="product.brand" required>
-          <label data-error="wrong" data-success="right" for="brand">Brand name</label>
-        </div>
-
-
-        <div class="md-form">
-            <textarea type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="product.description" required></textarea>
-            <label data-error="wrong" data-success="right" for="description">Product description</label>
-          </div>
-
-
-
-
-
-
-        <div class="md-form mb-5">
-          <input type="text" id="price" class="form-control validate" [(ngModel)]="product.price" required>
-          <label data-error="wrong" data-success="right" for="price">Price of product</label>
-        </div>
-
-        <div class="md-form mb-5">
-            <input type="text" id="discount" class="form-control validate" [(ngModel)]="product.discount" required>
-            <label data-error="wrong" data-success="right" for="discount">Discount of product</label>
-          </div>
-
-          <div class="md-form mb-5">
-              <input type="text" id="color" class="form-control validate" [(ngModel)]="product.color" required>
-              <label data-error="wrong" data-success="right" for="color">Color of product</label>
-            </div>
-
-
-            <div class="md-form mb-5">
-                <input type="text" id="quantity" class="form-control validate" [(ngModel)]="product.quantity" required>
-                <label data-error="wrong" data-success="right" for="quantity">Quantity of product</label>
-              </div>
-  
-
-
-
-              <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="upload-file">Upload</span>
-                  </div>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="picture" (change)="selectpFile($event)"
-                    [(ngModel)]="product.selectedPFile"
-                      aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="picture">{{product.selectedPFile}}</label>
-                  </div>
-                </div>
-
-
-<br><br>
-<!--Material select-->
-
-    <mat-select matInput placeholder="Select a category" [(ngModel)]="product.category" name="category" required>
-      <mat-option  [value]="category.category" *ngFor="let category of categories" >{{category.category}}</mat-option>
-     
-    </mat-select>
-
-<br><br>
-    <button id="newCategoryBtnId" mat-raised-button data-toggle="modal" data-target="#addCategoryModal">New category ?</button>
-
-
+      <div class="modal-body">
         
 
+
+
+          <div class="md-form mb-5">
+              <input type="text" id="name" class="form-control validate" [(ngModel)]="product.name" required>
+              <label data-error="wrong" data-success="right" for="name">Product name</label>
+            </div>
+    
+    
+            <div class="md-form mb-5">
+              <input type="text" id="brand" class="form-control validate" [(ngModel)]="product.brand" required>
+              <label data-error="wrong" data-success="right" for="brand">Brand name</label>
+            </div>
+    
+    
+            <div class="md-form">
+                <textarea type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="product.description" required></textarea>
+                <label data-error="wrong" data-success="right" for="description">Product description</label>
+              </div>
+    
+    
+    
+    
+    
+    
+            <div class="md-form mb-5">
+              <input type="text" id="price" class="form-control validate" [(ngModel)]="product.price" required>
+              <label data-error="wrong" data-success="right" for="price">Price of product</label>
+            </div>
+    
+            <div class="md-form mb-5">
+                <input type="text" id="discount" class="form-control validate" [(ngModel)]="product.discount" required>
+                <label data-error="wrong" data-success="right" for="discount">Discount of product</label>
+              </div>
+    
+              <div class="md-form mb-5">
+                  <input type="text" id="color" class="form-control validate" [(ngModel)]="product.color" required>
+                  <label data-error="wrong" data-success="right" for="color">Color of product</label>
+                </div>
+    
+    
+                <div class="md-form mb-5">
+                    <input type="text" id="quantity" class="form-control validate" [(ngModel)]="product.quantity" required>
+                    <label data-error="wrong" data-success="right" for="quantity">Quantity of product</label>
+                  </div>
+      
+    
+    
+    
+                  <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="picture" (change)="selectpFile($event)"
+                        [(ngModel)]="product.selectedPFile"
+                          aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="picture">{{product.selectedPFile}}</label>
+                      </div>
+                    </div>
+    
+    
+    <br><br>
+    <!--Material select-->
+    
+        <mat-select matInput placeholder="Select a category" [(ngModel)]="product.category" name="category" required>
+          <mat-option  [value]="category.category" *ngFor="let category of categories" >{{category.category}}</mat-option>
+         
+        </mat-select>
+    
+    <br><br>
+        <button id="newCategoryBtnId" mat-raised-button (click)="addCategoryModal.show()">New category ?</button>
+    
       </div>
       <div class="modal-footer d-flex justify-content-center">
-          <button mat-raised-button [disabled]="!(product.name && product.brand && product.description &&
-          product.price && product.color && product.quantity && product.selectedPFile &&
-          product.category && product.selectedPFile)" (click)="uploadFile()" data-dismiss="modal">Save</button>
+        <button type="button" mdbBtn color="primary" class="waves-light" [disabled]="!(product.name && product.brand && product.description &&
+        product.price && product.color && product.quantity && product.selectedPFile &&
+        product.category)" (click)="uploadFile()" aria-label="Close" (click)="addProductModal.hide()" mdbWavesEffect>Save</button>
       </div>
     </div>
   </div>
 </div>
 
 
+
+
+
 <!--/Add product modal-->
 
 <!--Add category modal-->
 
-<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
 
+      <div id="addProductM" mdbModal #addCategoryModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="addCategoryModal.hide()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">Add a new category here !</h4>
+              </div>
+              <div class="modal-body">
+                
 
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Add new category</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-
-      <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="productCategory" class="form-control validate" [(ngModel)]="category.category" name="category" required>
           <label data-error="wrong" data-success="right" for="productCategory">Category name</label>
@@ -246,7 +317,7 @@
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-          <button [disabled]="!(category.category)" mat-raised-button (click)="addCategory()" data-dismiss="modal">Save</button>
+          <button mdbBtn color="primary" [disabled]="!(category.category)" (click)="addCategory()" aria-label="Close" (click)="addCategoryModal.hide()" mdbWavesEffect>Save</button>
       </div>
     </div>
   </div>
@@ -255,3 +326,107 @@
 
 
 <!--/Add category modal-->
+
+
+
+
+<!-- Modal: modalCart -->
+
+
+
+<div mdbModal #cartModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-side modal-top-right " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="cartModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Your cart</h4>
+      </div>
+      <div class="modal-body">
+      
+        
+
+
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Product name</th>
+                  <th>Price</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Product 1</td>
+                  <td>100$</td>
+                  <td><a><i class="fas fa-times"></i></a></td>
+                </tr>
+    
+              </tbody>
+            </table>
+    
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+        
+            <strong id="totalTkPosition">Total = 200 Tk.</strong>
+        
+          </div>
+    
+         
+
+
+
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="cartModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" routerLink="/checkOut" aria-label="Close" (click)="cartModal.hide()" mdbWavesEffect >Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- /Modal: modalCart -->
+
+
+
+<!--modal chatting-->
+<div mdbModal #chattingModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-side modal-bottom-right " role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="chattingModal.hide()">
+        <span aria-hidden="true">×</span>
+      </button>
+      <h4 class="modal-title w-100" id="myModalLabel">Question ? chat with us </h4>
+    </div>
+    <div class="modal-body">
+      <p>hellogfgggggggggggggggggggggggggggggggggggggggggggggggggggggg
+        gggggggggggggdfffffffffffffffffffffffffffffffffff
+      dfffffffffffffffffffffffffffasasaaaaaaaaaaaaaaaaaaaa
+      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+      asssssssssssssssssssssssssssssssssssssssssssssssssssss
+      ssssssssssssssssssssssssssellogfgggggggggggggggggggggggggggggggg
+      gggggggggggggggggggggggggggggggggggdfffffffffffffffffffffffffffffffffff
+      dfffffffffffffffffffffffffffasasaaaaaaaaaaaaaaa
+      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+      assssssssssssssssssssssssssssssssssssssssssss
+      ssssssssssssssssssssssssssssssssssss</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="chattingModal.hide()" mdbWavesEffect>Close</button>
+      <button type="button" mdbBtn color="primary" class="relative waves-light" aria-label="Close" (click)="chattingModal.hide()" mdbWavesEffect>Save!</button>
+    </div>
+  </div>
+</div>
+</div>

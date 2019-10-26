@@ -4,6 +4,8 @@ import { Product } from '../manage/product';
 import { ProductService } from '../manage/manage.service';
 import { UploadFileService } from '../manage/manage.file-service';
 import { Category } from '../manage/category';
+import { Route } from '@angular/router';
+import { Carousel } from '../manage/carousel';
 declare var jquery:any;
 declare var $ :any;
 
@@ -15,8 +17,10 @@ declare var $ :any;
 export class NavbarComponent implements OnInit {
  
  product=new Product();
+ products:Product[];
  category=new Category();
  categories:Category[];
+ carousels:Carousel[];
  // AUTH ID
 uid: string;
 // FOR MESSGAE
@@ -24,8 +28,14 @@ msg = 'offPrpgressBar';
  // FOR FILE
 selectedpFiles: FileList;
 currentpFileUpload: File;
+//for carousel files
+selectedCFiles: FileList;
+carousel=new Carousel();
+
+
   constructor(private ngWowService:NgwWowService,private productService:ProductService,
     private uploadFileService:UploadFileService){
+      this.getAllCarousel();
     
   }
  
@@ -34,6 +44,10 @@ currentpFileUpload: File;
 
 //get all categories
 this.getAllCategories();
+//reload carousel images
+this.getAllCarousel();
+this.getAllProducts();
+
 
 //for form
     $('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea').each(function (element, i) {
@@ -53,6 +67,31 @@ this.getAllCategories();
 // FOR FILE UPLOAD
 selectpFile(event) {
   this.selectedpFiles = event.target.files;
+}
+// CAROUSEL FILES UPLOAD
+selectCFile(event) {
+  this.selectedCFiles = event.target.files;
+  console.log(this.selectedCFiles);
+}
+
+addCarouselPictures(){
+this.uploadFileService.pushCarouselFileToStorage(this.selectedCFiles)
+.subscribe(response =>{
+  if(response.statusText==='OK'){
+    alert('Pictures upload success !')
+    this.resetCarousel();
+this.getAllCarousel();
+  }
+},
+(error)=>{
+  alert('Your picture is not uploaded accurately !')
+  this.resetCarousel();
+  this.getAllCarousel();
+});
+}
+resetCarousel():void{
+  this.carousel=new Carousel();
+  this.selectedCFiles=null;
 }
 
 
@@ -82,7 +121,7 @@ selectpFile(event) {
     this.productService.addProduct(this.product)
       .subscribe(response => {
         if (response.statusText === 'OK') {
-        //  this.getConsumers();
+        this.getAllProducts();
           alert('Operation success !');
           this.productReset();
           this.msg = 'offProgressBar';
@@ -92,9 +131,29 @@ selectpFile(event) {
         });
   }
   
+  getAllProducts(): void {
+    this.productService.getAllProducts()
+    .subscribe((allproducts) => {
+      this.products = allproducts;
+      console.log('from home getAllproducts() '+allproducts);
+    },
+    (error) => {
+      console.log(error);
+    });
+      }
+
+ getAllCarousel(): void {
+        this.productService.getAllCarousel()
+        .subscribe((carousel) => {
 
 
-
+          this.carousels = carousel.slice(1);
+          console.log(carousel);
+        },
+        (error) => {
+          console.log(error);
+        });
+          }
 
   getAllCategories(): void {
     this.productService.getAllCategories()
@@ -132,9 +191,6 @@ productReset():void{
   this.product=new Product();
 
 }
-
-
-
 
 
 

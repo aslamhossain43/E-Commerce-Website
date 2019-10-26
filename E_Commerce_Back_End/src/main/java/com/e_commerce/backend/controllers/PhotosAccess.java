@@ -31,7 +31,7 @@ public class PhotosAccess {
 	public Resource loadAllPhotos(String photoCode) {
 		LOGGER.info("FROM class PhotosAccess,method : loadAllPhotos()---photoCode : " + photoCode);
 		try {
-			Path file = PHOTO_URL.resolve(photoCode + ".jpg");
+			Path file = PHOTO_URL.resolve(photoCode + ".jpeg");
 			Resource resource = new UrlResource(file.toUri());
 			if (resource.exists() || resource.isReadable()) {
 				return resource;

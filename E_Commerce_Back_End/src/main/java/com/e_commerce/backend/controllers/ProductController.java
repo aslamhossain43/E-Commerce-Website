@@ -1,5 +1,6 @@
 package com.e_commerce.backend.controllers;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,7 +30,6 @@ public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
 	public String pCode = null;
-	private static final String ABS_PATH = "/home/atif/SImages";
 
 	@PostMapping(value = "/addFile")
 	public ResponseEntity<?> addProductFile(@RequestParam("pFile") MultipartFile pFile) {
@@ -39,7 +39,11 @@ public class ProductController {
 
 			this.pCode = "P" + UUID.randomUUID().toString().substring(26).toUpperCase();
 
-			FileUpload.fileUpload(pFile, pCode);
+			try {
+				FileUpload.productFileUpload(pFile, pCode);
+			} catch (IOException e) {
+				return ResponseEntity.badRequest().body(null);
+			}
 			LOGGER.info(this.pCode);
 			LOGGER.info("From class ProductController ,method : addProductFile(),Image uploaded");
 			return ResponseEntity.ok().body(" success file upload ");

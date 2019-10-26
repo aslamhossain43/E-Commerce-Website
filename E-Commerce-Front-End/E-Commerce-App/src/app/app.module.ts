@@ -23,6 +23,7 @@ import { NgwWowModule } from 'ngx-wow';
 import { ProductService } from './manage/manage.service';
 import { UploadFileService } from './manage/manage.file-service';
 import { NgMaterialModule } from './app.materials';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { NgMaterialModule } from './app.materials';
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     NgwWowModule,
+    RouterModule,
   //MATERIAL
   NgMaterialModule,
   
@@ -57,7 +59,6 @@ import { NgMaterialModule } from './app.materials';
    
 
   ],
-  
     schemas: [ NO_ERRORS_SCHEMA ],
   providers: [ProductService,UploadFileService],
   bootstrap: [AppComponent]
