@@ -30,29 +30,60 @@ public class ProductController {
 	FileUpload fileUpload;
 	@Autowired
 	ProductRepository productRepository;
-	public String pCode = null;
+	public String[] pCodes = new String[6];
+	int index = 0;
 
-	@PostMapping(value = "/addFile")
-	public ResponseEntity<?> addProductFile(@RequestParam("pFile") MultipartFile pFile) {
+	@PostMapping(value = "/addFiles")
+	public ResponseEntity<?> addProductFile(@RequestParam("pFiles") MultipartFile[] pFiles) {
 		LOGGER.info("From class ProductController ,method : addProductFile()");
-		if ((pFile.getContentType().equals("image/jpeg") || pFile.getContentType().equals("image/jpg")
-				|| pFile.getContentType().equals("image/png") || pFile.getContentType().equals("image/gif"))) {
+		ResponseEntity<?> rt = null;
 
-			this.pCode = "P" + UUID.randomUUID().toString().substring(26).toUpperCase();
+		for (MultipartFile multipartFile : pFiles) {
 
-			try {
-				FileUpload.productFileUpload(pFile, pCode);
-			} catch (IOException e) {
-				return ResponseEntity.badRequest().body(null);
+			if (!(multipartFile.getContentType().equals("image/jpeg")
+					|| multipartFile.getContentType().equals("image/jpg")
+					|| multipartFile.getContentType().equals("image/png")
+					|| multipartFile.getContentType().equals("image/gif")
+					|| multipartFile.getContentType().equals("image/jfif")
+					|| multipartFile.getContentType().equals("image/exif")
+					|| multipartFile.getContentType().equals("image/tiff")
+					|| multipartFile.getContentType().equals("image/bmp")
+					|| multipartFile.getContentType().equals("image/ppm")
+					|| multipartFile.getContentType().equals("image/pgm")
+					|| multipartFile.getContentType().equals("image/pbm")
+					|| multipartFile.getContentType().equals("image/pnm")
+					|| multipartFile.getContentType().equals("image/webp")
+					|| multipartFile.getContentType().equals("image/heif")
+					|| multipartFile.getContentType().equals("image/bat")
+					|| multipartFile.getContentType().equals("image/bpg")
+					|| multipartFile.getContentType().equals("image/cgm")
+					|| multipartFile.getContentType().equals("image/svg")
+
+			)) {
+
+				LOGGER.info("From class ProductController ,method : addProductFile(),Image rejected !");
+				rt = ResponseEntity.badRequest().body(null);
+				continue;
+
+			} else {
+
+				this.pCodes[index] = "P" + UUID.randomUUID().toString().substring(26).toUpperCase();
+
+				try {
+					FileUpload.productFileUpload(multipartFile, this.pCodes[index]);
+					index++;
+				} catch (IOException e) {
+					rt = ResponseEntity.badRequest().body(null);
+
+				}
+				LOGGER.info("From class ProductController ,method : addProductFile(),Image uploaded !");
+				rt = ResponseEntity.ok().body(" success file upload ");
+
 			}
-			LOGGER.info(this.pCode);
-			LOGGER.info("From class ProductController ,method : addProductFile(),Image uploaded");
-			return ResponseEntity.ok().body(" success file upload ");
-		} else {
-			LOGGER.info("From class ProductController ,method : addProductFile(), File not an image that is rejected");
-			return ResponseEntity.badRequest().body(null);
 
 		}
+		index = 0;
+		return rt;
 
 	}
 
@@ -60,24 +91,30 @@ public class ProductController {
 	public ResponseEntity<?> addProduct(@RequestBody Product product) {
 		LOGGER.info("From class ProductController ,method : addProduct()");
 
-		if (!(this.pCode.equals(null))) {
+		if (this.pCodes.length != 0) {
 
-			LOGGER.info("piCode : " + this.pCode);
+			LOGGER.info("pCode : " + this.pCodes);
 			product.setName(product.getName());
-            product.setBrand(product.getBrand());
+			product.setBrand(product.getBrand());
 			product.setDescription(product.getDescription());
 			product.setMarketPrice(product.getMarketPrice());
 			product.setSoldPrice(product.getSoldPrice());
 			product.setColor(product.getColor());
 			product.setQuantity(product.getQuantity());
-			product.setpCode(this.pCode);
+
+			product.setFrontCode(this.pCodes[0]);
+			product.setBackCode(this.pCodes[1]);
+			product.setLeftCode(this.pCodes[2]);
+			product.setRightCode(this.pCodes[3]);
+			product.setHeadCode(this.pCodes[4]);
+			product.setFootCode(this.pCodes[5]);
+
 			product.setCategory(product.getCategory());
-			
 
 			productRepository.save(product);
 
-			LOGGER.info("pCode : " + this.pCode);
-			this.pCode = null;
+			LOGGER.info("pCodes : " + this.pCodes);
+			this.pCodes = null;
 			product.setId(null);
 
 		}
@@ -94,13 +131,28 @@ public class ProductController {
 		return ResponseEntity.ok().body(products);
 
 	}
-	
-	@GetMapping(value="/getProductById/{id}")
-	public ResponseEntity<Product>getProductById(@PathVariable("id")Long id){
+
+	@GetMapping(value = "/getProductById/{id}")
+	public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
 		LOGGER.info("From class ProductController, method : getProductById() ");
-		Product product=productRepository.getById(id);
-		LOGGER.info(""+product);
+		Product product = productRepository.getById(id);
+		LOGGER.info("" + product);
 		return ResponseEntity.ok().body(product);
+	}
+
+	@GetMapping(value = "/getProductsByIdForSameCategory/{id}")
+	public ResponseEntity<List<Product>> getProductsByIdForSameCategory(@PathVariable("id") String id) {
+		LOGGER.info("From class ProductController, method : getProductsByIdForSameCategory() ");
+
+		long longId = Long.valueOf(id);
+		Product product = productRepository.getById(longId);
+		String category = product.getCategory();
+		String brand = product.getBrand();
+		
+		
+		List<Product> products = productRepository.getProductsByIdForSameCategoryAndBrand(category,brand, longId);
+
+		return ResponseEntity.ok().body(products);
 	}
 
 }

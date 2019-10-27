@@ -19,7 +19,19 @@ public class Product extends TimeSetting<Long> {
 	private String soldPrice;
 	private String color;
 	private String quantity;
-	private String pCode;
+	private String frontCode;
+	private String backCode;
+	private String leftCode;
+	private String rightCode;
+	private String headCode;
+	private String footCode;
+	
+	
+	
+	
+	
+	
+	
 	private String category;
 
 	@Override
@@ -87,12 +99,54 @@ public class Product extends TimeSetting<Long> {
 		this.quantity = quantity;
 	}
 
-	public String getpCode() {
-		return pCode;
+	
+
+	public String getFrontCode() {
+		return frontCode;
 	}
 
-	public void setpCode(String pCode) {
-		this.pCode = pCode;
+	public void setFrontCode(String frontCode) {
+		this.frontCode = frontCode;
+	}
+
+	public String getBackCode() {
+		return backCode;
+	}
+
+	public void setBackCode(String backCode) {
+		this.backCode = backCode;
+	}
+
+	public String getLeftCode() {
+		return leftCode;
+	}
+
+	public void setLeftCode(String leftCode) {
+		this.leftCode = leftCode;
+	}
+
+	public String getRightCode() {
+		return rightCode;
+	}
+
+	public void setRightCode(String rightCode) {
+		this.rightCode = rightCode;
+	}
+
+	public String getHeadCode() {
+		return headCode;
+	}
+
+	public void setHeadCode(String headCode) {
+		this.headCode = headCode;
+	}
+
+	public String getFootCode() {
+		return footCode;
+	}
+
+	public void setFootCode(String footCode) {
+		this.footCode = footCode;
 	}
 
 	public String getCategory() {
@@ -111,7 +165,9 @@ public class Product extends TimeSetting<Long> {
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", brand=" + brand + ", description=" + description
 				+ ", marketPrice=" + marketPrice + ", soldPrice=" + soldPrice + ", color=" + color + ", quantity="
-				+ quantity + ", pCode=" + pCode + ", category=" + category + "]";
+				+ quantity + ", frontCode=" + frontCode + ", backCode=" + backCode + ", leftCode=" + leftCode
+				+ ", rightCode=" + rightCode + ", headCode=" + headCode + ", footCode=" + footCode + ", category="
+				+ category + "]";
 	}
 
 	

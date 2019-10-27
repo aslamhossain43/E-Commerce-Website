@@ -259,8 +259,19 @@
       
     
     
+
+
+
+
+
+
+
+
+
+
+
     
-                  <div class="input-group">
+                  <!-- <div class="input-group">
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="picture" (change)="selectpFile($event)"
                         [(ngModel)]="product.selectedPFile"
@@ -268,7 +279,44 @@
                         <label class="custom-file-label" for="picture">{{product.selectedPFile}}</label>
                       </div>
                     </div>
-    
+     -->
+
+
+
+
+
+
+                    <div *ngIf="!selectedpFiles" class="input-group">
+            
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="first-picture" (change)="selectpFile($event)"
+                          name="selectedpFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                        <label class="custom-file-label" for="first-picture">Choose Product's pictures !</label>
+                      </div>
+                    </div>
+        
+                    <div *ngFor="let p of selectedpFiles" class="input-group">
+                    
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="picture" (change)="selectpFile($event)"     
+                          name="selectedpFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                        <label class="custom-file-label" for="picture">{{p.name}}</label>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     <br><br>
     <!--Material select-->
@@ -284,7 +332,7 @@
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button type="button" mdbBtn color="primary" class="waves-light" [disabled]="!(product.name && product.brand && product.description &&
-        product.soldPrice && product.marketPrice && product.color && product.quantity && product.selectedPFile &&
+        product.soldPrice && product.marketPrice && product.color && product.quantity && selectedpFiles[0].name &&
         product.category)" (click)="uploadFile()" aria-label="Close" (click)="addProductModal.hide()" mdbWavesEffect>Save</button>
       </div>
     </div>

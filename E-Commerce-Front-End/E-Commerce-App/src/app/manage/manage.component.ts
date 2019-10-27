@@ -24,45 +24,16 @@ category=new Category();
 categories:Category[];
 // FOR FILE
 selectedpFiles: FileList;
-currentpFileUpload: File;
 // FOR NG MATERIAL
 
 
 
-
-// FOR FORM FIELD
-// categoryFormControl = new FormControl('', [Validators.required]);
-// nameFormControl = new FormControl('', [Validators.required]);
-// colorFormControl = new FormControl('', [Validators.required]);
-// quantityFormControl = new FormControl('', [Validators.required]);
-// priceFormControl = new FormControl('', [Validators.required]);
-// selectedPFileControl = new FormControl('', [Validators.required]);
-// FOR CONSTRUCTOR
 constructor(private uploadService: UploadFileService,
   private productService: ProductService) {
-  //  this.af.authState.subscribe(authentication => {
-  //  this.consumer.uid = authentication.uid;
-  //  this.uid = authentication.uid;
-  //  console.log(this.consumer.uid);
-  //  });
+
   }
 
-// biodataForm: FormGroup = new FormGroup({
-//   name: this.nameFormControl,
-//   color: this.colorFormControl,
-//   category: this.categoryFormControl,
-//   quantity: this.quantityFormControl,
-//   price: this.priceFormControl,
-  // FOR RESET PURPOSE ONLU
-  //selectedPFile: this.selectedPFileControl
-  
-//});
-// FOR STRING VALIDATION
-// getRequiredErrorMessageForString(field) {
-//   if (this.biodataForm.get(field).hasError('required')) {
-//     return this.biodataForm.get(field).hasError('required') ? 'You must enter ' + field : '';
-//   }
-// }
+
 
 // NG LIFE CYCLE
 ngOnInit(): void {
@@ -75,22 +46,11 @@ selectpFile(event) {
   this.selectedpFiles = event.target.files;
 }
 
-// GET CUURENT YEAR CONSUMERS
-// getConsumers(): void {
-// this.consumerService.getCurrentYearAllConsumers()
-// .subscribe((currentYearAllConsumers) => {
-//   this.consumers = currentYearAllConsumers;
-//   console.log(this.consumers);
-// });
-// }
 
 
 
 uploadFile() {
-  this.msg = '';
-  console.log('from uploadFile()')
-  this.currentpFileUpload = this.selectedpFiles.item(0);
-  this.uploadService.pushFileToStorage(this.currentpFileUpload)
+  this.uploadService.pushFileToStorage(this.selectedpFiles)
     .subscribe(response => {
       if (response.statusText === 'OK') {
         this.addProduct();
@@ -106,7 +66,6 @@ uploadFile() {
     );
 }
 
-// FOR CONSUMERS
 // ADD CONSUMERS
 addProduct(): void {
   this.productService.addProduct(this.product)

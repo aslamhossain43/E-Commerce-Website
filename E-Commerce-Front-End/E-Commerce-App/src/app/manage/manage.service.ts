@@ -23,20 +23,20 @@ export class ProductService {
 
     getAllProducts(): Observable<Product[]> {
         return this.http.get('http://localhost:8080/products/getAllProducts')
-        .pipe(map((response: Response) => response.json(),
-        (error) => {
-         catchError(this.handlError);
-        }));
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
     }
 
 
 
     getAllCarousel(): Observable<Carousel[]> {
         return this.http.get('http://localhost:8080/carousel/getAllCarousel')
-        .pipe(map((response: Response) => response.json(),
-        (error) => {
-         catchError(this.handlError);
-        }));
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
     }
 
 
@@ -53,24 +53,38 @@ export class ProductService {
 
     getAllCategories(): Observable<Category[]> {
         return this.http.get('http://localhost:8080/categories/getAllCategories')
-        .pipe(map((response: Response) => response.json(),
-        (error) => {
-         catchError(this.handlError);
-        }));
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
     }
 
 
     getProductById(id: string): Observable<Product> {
         return this.http.get('http://localhost:8080/products/getProductById/' + id)
-        .pipe(map((response: Response) => response.json(),
-        catchError(this.handlError)
-        ));
+            .pipe(map((response: Response) => response.json(),
+                catchError(this.handlError)
+            ));
     }
 
 
-public handlError(error: Response) {
-    return Observable.throw(error);
-}
+
+    getProductsByIdForSameCategoryAndBrand(id: string): Observable<Product[]> {
+        return this.http.get('http://localhost:8080/products/getProductsByIdForSameCategory/' + id)
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+
+
+
+
+
+
+    public handlError(error: Response) {
+        return Observable.throw(error);
+    }
 
 
 

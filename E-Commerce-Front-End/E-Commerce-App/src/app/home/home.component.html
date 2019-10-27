@@ -11,10 +11,10 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="http://localhost:8080/getPhotos/{{activeCarouselPhoto}}" alt="Los Angeles">
+      <img src="http://localhost:8080/getPhotos/{{activeCarouselPhoto}}" alt="">
     </div>
     <div *ngFor="let cimg of carousels" class="carousel-item">
-      <img src="http://localhost:8080/getPhotos/{{cimg.cCode}}" alt="Chicago">
+      <img src="http://localhost:8080/getPhotos/{{cimg.cCode}}" alt="">
     </div>
    
   </div>
@@ -64,21 +64,25 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="#">Shirts</a>
+              <a class="nav-link" href="#">{{categories[0].category}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sport wears</a>
+              <a class="nav-link" href="#">{{categories[1].category}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Outwears</a>
+              <a class="nav-link" href="#">{{categories[2].category}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sport wears</a>
+              <a class="nav-link" href="#">{{categories[3].category}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Outwears</a>
+              <a class="nav-link" href="#">{{categories[4].category}}</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="JavaScript:Void(0)"><b>...</b></a>
+              </li>
             
           </ul>
           <!-- Links -->
@@ -86,7 +90,7 @@
           <form class="form-inline">
             <div class="md-form my-0">
               <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-              <button class="btn btn-light btn-rounded btn-sm my-0 ml-sm-2" type="submit">Search</button>
+              <button type="submit" mat-raised-button>Search</button>
 
             </div>
           </form>
@@ -108,14 +112,20 @@
             <!--Card-->
             <div class="card">
 
+
+
               <!--Card image-->
-              <div class="view overlay">
-                <img src="http://localhost:8080/getPhotos/{{p.pCode}}" class="card-img-top" alt="">
+              <div *ngIf="p.frontCode" class="view overlay">
+                <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
                 <a>
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>
-              <!--Card image-->
+              <!--/Card image-->
+
+
+
+
 
               <!--Card content-->
               <div class="card-body text-center">
@@ -125,7 +135,7 @@
                 </a>
                 <h5>
                   <strong>
-                    <a href="JavaScript:Void(0);" (click)="sendId(p.id)" class="dark-grey-text">{{p.name}}
+                    <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
                       <span class="badge badge-pill danger-color">NEW</span>
                     </a>
                   </strong>

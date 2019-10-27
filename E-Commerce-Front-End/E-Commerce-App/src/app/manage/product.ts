@@ -7,13 +7,21 @@ export class Product {
     soldPrice: string;
     color: string;
     quantity: string;
-    pCode: string;
+    frontCode: string;
+    backCode: string;
+    leftCode: string;
+    rightCode: string;
+    headCode: string;
+    footCode: string;
+
+
+
+
+
     category: string;
    //date time
     createdDate: string;
     lastModifiedDate: string;
     
     
-    // FOR FILE RESET ONLY
-    selectedPFile: File;
    }

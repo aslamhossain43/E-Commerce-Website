@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, Input } from '@angular/core';
-import { HomeComponent } from '../home/home.component';
 import { Product } from '../manage/product';
 import { ProductService } from '../manage/manage.service';
 import { ActivatedRoute } from '@angular/router';
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'app-product-details',
@@ -12,23 +13,20 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductDetailsComponent implements OnInit{
 id:string;
   product=new Product();
+  products:Product[];
   constructor(private productService:ProductService,private route:ActivatedRoute) {
 
 this.id=this.route.snapshot.paramMap.get('id');
-//console.log('product details : '+this.id)
-//this.getProductById();
    }
 
   ngOnInit() {
-    console.log('product details ng oninit: '+this.id)
-
     this.getProductById();
+    this.getProductsByIdForSameCategoryAndBrand();
+
   }
 
 
 getProductById(){
-  console.log('product details getby id: '+this.id)
-
   this.productService.getProductById(this.id)
   .subscribe((productById) => {
     this.product = productById;
@@ -36,7 +34,16 @@ getProductById(){
 }
 
 
-
+getProductsByIdForSameCategoryAndBrand(): void {
+  this.productService.getProductsByIdForSameCategoryAndBrand(this.id)
+  .subscribe((allproducts) => {
+    this.products = allproducts;
+    console.log('from home getAllproducts() '+allproducts[0].name);
+  },
+  (error) => {
+    console.log(error);
+  });
+    }
 
 
 }

@@ -27,7 +27,6 @@ uid: string;
 msg = 'offPrpgressBar';
  // FOR FILE
 selectedpFiles: FileList;
-currentpFileUpload: File;
 //for carousel files
 selectedCFiles: FileList;
 carousel=new Carousel();
@@ -96,10 +95,7 @@ resetCarousel():void{
 
 
   uploadFile() {
-    this.msg = '';
-    console.log('from uploadFile()')
-    this.currentpFileUpload = this.selectedpFiles.item(0);
-    this.uploadFileService.pushFileToStorage(this.currentpFileUpload)
+    this.uploadFileService.pushFileToStorage(this.selectedpFiles)
       .subscribe(response => {
         if (response.statusText === 'OK') {
           this.addProduct();
@@ -135,7 +131,6 @@ resetCarousel():void{
     this.productService.getAllProducts()
     .subscribe((allproducts) => {
       this.products = allproducts;
-      console.log('from home getAllproducts() '+allproducts);
     },
     (error) => {
       console.log(error);

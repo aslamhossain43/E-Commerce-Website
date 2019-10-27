@@ -3,11 +3,13 @@ import { Http } from '@angular/http';
 @Injectable()
 export class UploadFileService {
   constructor(private http: Http) { }
-  pushFileToStorage(pFile: File) {
+  pushFileToStorage(photos: FileList) {
     const formdata: FormData = new FormData();
-    formdata.append('pFile', pFile);
-    console.log('from upload service')
-     return this.http.post('http://localhost:8080/products/addFile', formdata);
+    for (let x = 0; x < photos.length; x++) {
+      formdata.append("pFiles", photos[x]);
+    }
+
+    return this.http.post('http://localhost:8080/products/addFiles', formdata);
   }
 
   pushCarouselFileToStorage(pictures:FileList) {

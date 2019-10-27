@@ -3,6 +3,7 @@ import { Product } from '../manage/product';
 import { ProductService } from '../manage/manage.service';
 import { Carousel } from '../manage/carousel';
 import { Router } from '@angular/router';
+import { Category } from '../manage/category';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 products:Product[];
 carousels:Carousel[];
+categories:Category[];
 activeCarouselId='';
 activeCarouselPhoto='';
 id:string;
@@ -20,11 +22,7 @@ id:string;
   ngOnInit() {
     this.getAllProducts();
     this.getAllCarousel();
-    //page refresh
-    setTimeout(() => {
-      this.router.navigated = false;
-      this.router.navigate([this.router.url]);
-      }, 5000);
+   this.getAllCategories();
   }
 
   getAllProducts(): void {
@@ -51,10 +49,17 @@ id:string;
           console.log(error);
         });
           }
-          sendId(id:string){
-           this.id=id;
-           console.log('id : '+id);
-           this.router.navigate(['productDetails',id]);
-          }
+         
+
+          getAllCategories(): void {
+            this.productService.getAllCategories()
+            .subscribe((categories) => {
+              this.categories = categories;
+              console.log(categories);
+            },
+            (error) => {
+              console.log(error);
+            });
+              }
 
 }
