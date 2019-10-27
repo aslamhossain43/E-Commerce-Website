@@ -9,7 +9,7 @@
         <!--Grid column-->
         <div class="col-md-6 mb-4">
 
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+          <img src="http://localhost:8080/getPhotos/{{product.pCode}}" class="img-fluid" alt="">
 
         </div>
         <!--Grid column-->
@@ -34,16 +34,14 @@
 
             <p class="lead">
               <span class="mr-1">
-                <del>200 Tk</del>
+                <del>{{product.marketPrice}} Tk.</del>
               </span>
-              <span>100 Tk</span>
+              <span>{{product.soldPrice}} Tk.</span>
             </p>
 
             <p class="lead font-weight-bold">Description</p>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa
-              sint voluptatibus!
-              Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+            <p>{{product.description}}</p>
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->

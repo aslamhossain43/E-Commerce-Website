@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,8 +66,8 @@ public class ProductController {
 			product.setName(product.getName());
             product.setBrand(product.getBrand());
 			product.setDescription(product.getDescription());
-			product.setPrice(product.getPrice());
-			product.setDiscount(product.getDiscount());
+			product.setMarketPrice(product.getMarketPrice());
+			product.setSoldPrice(product.getSoldPrice());
 			product.setColor(product.getColor());
 			product.setQuantity(product.getQuantity());
 			product.setpCode(this.pCode);
@@ -92,6 +93,14 @@ public class ProductController {
 		List<Product> products = productRepository.findAll();
 		return ResponseEntity.ok().body(products);
 
+	}
+	
+	@GetMapping(value="/getProductById/{id}")
+	public ResponseEntity<Product>getProductById(@PathVariable("id")Long id){
+		LOGGER.info("From class ProductController, method : getProductById() ");
+		Product product=productRepository.getById(id);
+		LOGGER.info(""+product);
+		return ResponseEntity.ok().body(product);
 	}
 
 }

@@ -45,7 +45,7 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     NgwWowModule,
-    RouterModule,
+    
   //MATERIAL
   NgMaterialModule,
   

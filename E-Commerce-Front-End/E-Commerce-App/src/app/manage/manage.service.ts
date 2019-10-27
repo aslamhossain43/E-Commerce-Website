@@ -60,6 +60,14 @@ export class ProductService {
     }
 
 
+    getProductById(id: string): Observable<Product> {
+        return this.http.get('http://localhost:8080/products/getProductById/' + id)
+        .pipe(map((response: Response) => response.json(),
+        catchError(this.handlError)
+        ));
+    }
+
+
 public handlError(error: Response) {
     return Observable.throw(error);
 }

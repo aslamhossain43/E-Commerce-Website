@@ -3,8 +3,8 @@ export class Product {
     name: string;
     brand: string;
     description: string;
-    price: string;
-    discount: string;
+    marketPrice: string;
+    soldPrice: string;
     color: string;
     quantity: string;
     pCode: string;

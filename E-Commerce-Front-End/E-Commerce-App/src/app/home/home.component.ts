@@ -13,6 +13,7 @@ products:Product[];
 carousels:Carousel[];
 activeCarouselId='';
 activeCarouselPhoto='';
+id:string;
 
   constructor(private productService:ProductService,private router:Router) { }
 
@@ -50,6 +51,10 @@ activeCarouselPhoto='';
           console.log(error);
         });
           }
-
+          sendId(id:string){
+           this.id=id;
+           console.log('id : '+id);
+           this.router.navigate(['productDetails',id]);
+          }
 
 }

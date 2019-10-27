@@ -15,8 +15,8 @@ public class Product extends TimeSetting<Long> {
 	private String brand;
 	private String description;
 
-	private String price;
-	private String discount;
+	private String marketPrice;
+	private String soldPrice;
 	private String color;
 	private String quantity;
 	private String pCode;
@@ -52,20 +52,23 @@ public class Product extends TimeSetting<Long> {
 		this.description = description;
 	}
 
-	public String getPrice() {
-		return price;
+	
+
+
+	public String getMarketPrice() {
+		return marketPrice;
 	}
 
-	public void setPrice(String price) {
-		this.price = price;
+	public void setMarketPrice(String marketPrice) {
+		this.marketPrice = marketPrice;
 	}
 
-	public String getDiscount() {
-		return discount;
+	public String getSoldPrice() {
+		return soldPrice;
 	}
 
-	public void setDiscount(String discount) {
-		this.discount = discount;
+	public void setSoldPrice(String soldPrice) {
+		this.soldPrice = soldPrice;
 	}
 
 	public String getColor() {
@@ -106,9 +109,9 @@ public class Product extends TimeSetting<Long> {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", brand=" + brand + ", description=" + description + ", price="
-				+ price + ", discount=" + discount + ", color=" + color + ", quantity=" + quantity + ", pCode=" + pCode
-				+ ", category=" + category + "]";
+		return "Product [id=" + id + ", name=" + name + ", brand=" + brand + ", description=" + description
+				+ ", marketPrice=" + marketPrice + ", soldPrice=" + soldPrice + ", color=" + color + ", quantity="
+				+ quantity + ", pCode=" + pCode + ", category=" + category + "]";
 	}
 
 	

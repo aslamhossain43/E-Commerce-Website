@@ -18,7 +18,7 @@ const routes: Routes = [
 {path:'sellToUs',component:SelltousComponent},
 {path:'contactUs',component:ContactusComponent},
 
-{path:'productDetails',component:ProductDetailsComponent},
+{path:'productDetails/:id',component:ProductDetailsComponent},
 {path:'checkOut',component:CheckoutComponent}
 
 
