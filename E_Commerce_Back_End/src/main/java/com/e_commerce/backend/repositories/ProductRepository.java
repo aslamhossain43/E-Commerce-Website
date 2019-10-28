@@ -12,9 +12,14 @@ import com.e_commerce.backend.models.Product;
 public interface ProductRepository extends JpaRepository<Product, Long>,JpaSpecificationExecutor<Product> {
 Product getById(long id);
 
-//GET LAST YEAR CANDIDATES
-	static final String PRODUCT_BY_CATEGORY="FROM Product where category=:category and brand=:brand and id!=:longId";
-	@Query(PRODUCT_BY_CATEGORY)
+//getProductsByIdForSameCategoryAndBrand
+	static final String PRODUCT_BY_CATEGORY_AND_BRAND="FROM Product where category=:category and brand=:brand and id!=:longId";
+	@Query(PRODUCT_BY_CATEGORY_AND_BRAND)
 	List<Product>getProductsByIdForSameCategoryAndBrand(@Param("category") String category,@Param("brand") String brand,@Param("longId")Long longId);
+
+	//getProductsByCategory
+		static final String PRODUCT_BY_CATEGORY="FROM Product where category=:category";
+		@Query(PRODUCT_BY_CATEGORY)
+		List<Product>getProductsByCategory(@Param("category") String category);
 	
 }

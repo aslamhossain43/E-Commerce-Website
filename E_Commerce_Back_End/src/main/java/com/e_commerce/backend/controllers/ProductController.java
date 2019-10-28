@@ -31,12 +31,12 @@ public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
 	public String[] pCodes = new String[6];
-	int index = 0;
-
+	
 	@PostMapping(value = "/addFiles")
 	public ResponseEntity<?> addProductFile(@RequestParam("pFiles") MultipartFile[] pFiles) {
 		LOGGER.info("From class ProductController ,method : addProductFile()");
 		ResponseEntity<?> rt = null;
+		int index = 0;
 
 		for (MultipartFile multipartFile : pFiles) {
 
@@ -82,7 +82,6 @@ public class ProductController {
 			}
 
 		}
-		index = 0;
 		return rt;
 
 	}
@@ -154,5 +153,20 @@ public class ProductController {
 
 		return ResponseEntity.ok().body(products);
 	}
+	
+	
+	
+	
+	@GetMapping(value = "/getProductsByCategory/{category}")
+	public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable("category") String category) {
+		LOGGER.info("From class ProductController, method : getProductsByCategory() ");
+		
+		List<Product> products = productRepository.getProductsByCategory(category);
+
+		return ResponseEntity.ok().body(products);
+	}
+	
+	
+	
 
 }

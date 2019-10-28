@@ -24,6 +24,7 @@ import { ProductService } from './manage/manage.service';
 import { UploadFileService } from './manage/manage.file-service';
 import { NgMaterialModule } from './app.materials';
 import { RouterModule } from '@angular/router';
+import { ProductFilterPipe } from './home/home.filter.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { RouterModule } from '@angular/router';
     ContactusComponent,
     CheckoutComponent,
     ProductDetailsComponent,
+     //for filtering
+     ProductFilterPipe
 
   ],
   imports: [
@@ -45,7 +48,7 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     NgwWowModule,
-    
+   
   //MATERIAL
   NgMaterialModule,
   
