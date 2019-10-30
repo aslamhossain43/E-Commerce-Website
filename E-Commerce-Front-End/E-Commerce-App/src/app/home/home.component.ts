@@ -16,7 +16,7 @@ categories:Category[];
 activeCarouselId='';
 activeCarouselPhoto='';
 id:string;
-categoriesForFilter:Product[];
+categoriesForFilter:string[];
 brandsForFilter:string[];
 colorsForFilter:string[];
 namesForFilter:string[];
@@ -35,9 +35,10 @@ price:string;
     this.getAllCarousel();
    this.getAllCategories();
    //remove duplicate
-
-   this.categoriesForFilter=this.products.filter((v,i) => this.products.findIndex(item => item.category == v.category) === i);
-
+this.getProductsCategoriesNoDuplicate();
+this.getProductsBrandNoDuplicate();
+this.getProductsColorNoDuplicate();
+this.getProductsNameNoDuplicate();
 
 
 
@@ -79,5 +80,53 @@ price:string;
               console.log(error);
             });
               }
+
+
+
+              getProductsCategoriesNoDuplicate(): void {
+                this.productService.getProductsCategoryNoDuplicate()
+                .subscribe((categories) => {
+                  this.categoriesForFilter = categories;
+                  
+                },
+                (error) => {
+                  console.log(error);
+                });
+                  }
+
+
+
+                  getProductsBrandNoDuplicate(): void {
+                    this.productService.getProductsBrandNoDuplicate()
+                    .subscribe((brands) => {
+                      this.brandsForFilter = brands;
+                       },
+                    (error) => {
+                      console.log(error);
+                    });
+                      }
+
+
+                      getProductsColorNoDuplicate(): void {
+                        this.productService.getProductsColorNoDuplicate()
+                        .subscribe((colors) => {
+                          this.colorsForFilter = colors;
+                           },
+                        (error) => {
+                          console.log(error);
+                        });
+                          }
+
+
+                          getProductsNameNoDuplicate(): void {
+                            this.productService.getProductsNameNoDuplicate()
+                            .subscribe((names) => {
+                              this.namesForFilter = names;
+                               },
+                            (error) => {
+                              console.log(error);
+                            });
+                              }
+
 
 }

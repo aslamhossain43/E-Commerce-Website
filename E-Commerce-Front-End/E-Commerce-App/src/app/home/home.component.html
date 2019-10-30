@@ -61,7 +61,7 @@
               <mat-form-field>
                   <mat-label>Category</mat-label>
                   <mat-select matInput [(ngModel)]="category">
-                  <mat-option  [value]="c.category" *ngFor="let c of categoriesForFilter" >{{c.category}}</mat-option>   
+                  <mat-option  [value]="c" *ngFor="let c of categoriesForFilter" >{{c}}</mat-option>   
                     </mat-select>
                 </mat-form-field>
 
@@ -71,14 +71,14 @@
                 <mat-form-field>
                   <mat-label>Brand</mat-label>
                   <mat-select matInput [(ngModel)]="brand">
-                  <mat-option  [value]="p.brand" *ngFor="let p of products" >{{p.brand}}</mat-option>   
+                  <mat-option  [value]="b" *ngFor="let b of brandsForFilter" >{{b}}</mat-option>   
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field>
                     <mat-label>Color</mat-label>
                     <mat-select matInput [(ngModel)]="color">
-                    <mat-option  [value]="p.color" *ngFor="let p of products" >{{p.color}}</mat-option>   
+                    <mat-option  [value]="c" *ngFor="let c of colorsForFilter" >{{c}}</mat-option>   
                       </mat-select>
                   </mat-form-field>
   
@@ -86,21 +86,62 @@
                   <mat-form-field>
                       <mat-label>Name</mat-label>
                       <mat-select matInput [(ngModel)]="name">
-                      <mat-option  [value]="p.name" *ngFor="let p of products" >{{p.name}}</mat-option>   
+                      <mat-option  [value]="n" *ngFor="let n of namesForFilter" >{{n}}</mat-option>   
                         </mat-select>
                     </mat-form-field>
-    
+   
+                    <!--sorting by price-->
 
+                    <button mat-button [matMenuTriggerFor]="animals">Sort by price<span ></span></button>
 
-                    <mat-form-field>
-                        <mat-label>Price</mat-label>
-                        <mat-select>
-                        <mat-option>Lower to upper</mat-option>   
-                        <mat-option>Upper to lower</mat-option>   
-                          
-                      </mat-select>
-                      </mat-form-field>
+                    <mat-menu #animals="matMenu">
+                      <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+                      <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+                    </mat-menu>
+                    
+                    <mat-menu #vertebrates="matMenu">
+                      <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+                      <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+                      <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+                      <button mat-menu-item>Birds</button>
+                      <button mat-menu-item>Mammals</button>
+                    </mat-menu>
+                    
+                    <mat-menu #invertebrates="matMenu">
+                      <button mat-menu-item>Insects</button>
+                      <button mat-menu-item>Molluscs</button>
+                      <button mat-menu-item>Crustaceans</button>
+                      <button mat-menu-item>Corals</button>
+                      <button mat-menu-item>Arachnids</button>
+                      <button mat-menu-item>Velvet worms</button>
+                      <button mat-menu-item>Horseshoe crabs</button>
+                    </mat-menu>
+                    
+                    <mat-menu #fish="matMenu">
+                      <button mat-menu-item>Baikal oilfish</button>
+                      <button mat-menu-item>Bala shark</button>
+                      <button mat-menu-item>Ballan wrasse</button>
+                      <button mat-menu-item>Bamboo shark</button>
+                      <button mat-menu-item>Banded killifish</button>
+                    </mat-menu>
+                    
+                    <mat-menu #amphibians="matMenu">
+                      <button mat-menu-item>Sonoran desert toad</button>
+                      <button mat-menu-item>Western toad</button>
+                      <button mat-menu-item>Arroyo toad</button>
+                      <button mat-menu-item>Yosemite toad</button>
+                    </mat-menu>
+                    
+                    <mat-menu #reptiles="matMenu">
+                      <button mat-menu-item>Banded Day Gecko</button>
+                      <button mat-menu-item>Banded Gila Monster</button>
+                      <button mat-menu-item>Black Tree Monitor</button>
+                      <button mat-menu-item>Blue Spiny Lizard</button>
+                      <button mat-menu-item disabled>Velociraptor</button>
+                    </mat-menu>
       
+<!--/sorting by price-->
+
 
 
 

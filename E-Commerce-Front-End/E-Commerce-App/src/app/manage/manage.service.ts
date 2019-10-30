@@ -78,6 +78,35 @@ export class ProductService {
     }
 
 
+    getProductsCategoryNoDuplicate(): Observable<string[]> {
+        return this.http.get('http://localhost:8080/products/getProductsCategoryNoDuplicate')
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+    getProductsBrandNoDuplicate(): Observable<string[]> {
+        return this.http.get('http://localhost:8080/products/getProductsBrandNoDuplicate')
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+
+    getProductsColorNoDuplicate(): Observable<string[]> {
+        return this.http.get('http://localhost:8080/products/getProductsColorNoDuplicate')
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+    getProductsNameNoDuplicate(): Observable<string[]> {
+        return this.http.get('http://localhost:8080/products/getProductsNamesNoDuplicate')
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
 
 
 
