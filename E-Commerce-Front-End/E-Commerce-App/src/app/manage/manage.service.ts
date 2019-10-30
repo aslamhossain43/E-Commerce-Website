@@ -110,6 +110,24 @@ export class ProductService {
 
 
 
+    getProductsByCategory(category:string): Observable<Product[]> {
+        return this.http.get('http://localhost:8080/products/getProductsByCategory/'+category)
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+
+    getProductsByBrand(brand:string): Observable<Product[]> {
+        return this.http.get('http://localhost:8080/products/getProductsByBrand/'+brand)
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+
+
+
 
     public handlError(error: Response) {
         return Observable.throw(error);
