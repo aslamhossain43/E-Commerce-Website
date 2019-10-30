@@ -22,4 +22,9 @@ Product getById(long id);
 		@Query(PRODUCT_BY_CATEGORY)
 		List<Product>getProductsByCategory(@Param("category") String category);
 	
+		//get Products By Brand
+				static final String PRODUCT_BY_BRANDS="FROM Product where brand=:brand";
+				@Query(PRODUCT_BY_BRANDS)
+				List<Product>getProductsByBrand(@Param("brand") String brand);
+			
 }

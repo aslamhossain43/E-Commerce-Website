@@ -170,6 +170,18 @@ public class ProductController {
 		return ResponseEntity.ok().body(products);
 	}
 	
+	@GetMapping(value = "/getProductsByBrand/{brand}")
+	public ResponseEntity<List<Product>> getProductsByBrand(@PathVariable("brand") String brand) {
+		LOGGER.info("From class ProductController, method : getProductsByBrand() ");
+		
+		List<Product> products = productRepository.getProductsByBrand(brand);
+
+		return ResponseEntity.ok().body(products);
+	}
+	
+	
+	
+	
 	
 	
 	
