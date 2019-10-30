@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PhotosAccess {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PhotosAccess.class);
-//GET PROFILE PHOTO URL
+//GET PHOTO URL
 	private static final Path PHOTO_URL = Paths.get("/home/atif/SImages");
 
 	@GetMapping("/getPhotos/{photoCode}")
@@ -27,7 +27,7 @@ public class PhotosAccess {
 		return ResponseEntity.ok().body(file);
 	}
 
-//GET ALL PROFILE PHOTOS
+//GET ALL PHOTOS
 	public Resource loadAllPhotos(String photoCode) {
 		LOGGER.info("FROM class PhotosAccess,method : loadAllPhotos()---photoCode : " + photoCode);
 		try {

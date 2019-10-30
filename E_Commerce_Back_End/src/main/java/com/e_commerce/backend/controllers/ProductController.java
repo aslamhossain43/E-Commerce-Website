@@ -2,7 +2,9 @@ package com.e_commerce.backend.controllers;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -168,6 +170,62 @@ public class ProductController {
 		return ResponseEntity.ok().body(products);
 	}
 	
+	
+	
+	
+	@GetMapping(value = "/getProductsCategoryNoDuplicate")
+	public ResponseEntity<Set<String>> getProductsCategoryNoDuplicate() {
+		LOGGER.info("From class ProductController, method : getProductsCategoryNoDuplicate() ");
+		
+		Set<String>categories=new HashSet<String>(); 
+		List<Product> products = productRepository.findAll();
+		for (Product product : products) {
+			categories.add(product.getCategory());
+		}
+
+		return ResponseEntity.ok().body(categories);
+	}
+	
+	
+	@GetMapping(value = "/getProductsBrandNoDuplicate")
+	public ResponseEntity<Set<String>> getProductsBrandNoDuplicate() {
+		LOGGER.info("From class ProductController, method : getProductsBrandNoDuplicate() ");
+		
+		Set<String>brands=new HashSet<String>(); 
+		List<Product> products = productRepository.findAll();
+		for (Product product : products) {
+			brands.add(product.getBrand());
+		}
+
+		return ResponseEntity.ok().body(brands);
+	}
+	
+	@GetMapping(value = "/getProductsColorNoDuplicate")
+	public ResponseEntity<Set<String>> getProductsColorNoDuplicate() {
+		LOGGER.info("From class ProductController, method : getProductsColorNoDuplicate() ");
+		
+		Set<String>colors=new HashSet<String>(); 
+		List<Product> products = productRepository.findAll();
+		for (Product product : products) {
+			colors.add(product.getColor());
+		}
+
+		return ResponseEntity.ok().body(colors);
+	}
+	
+	
+	@GetMapping(value = "/getProductsNamesNoDuplicate")
+	public ResponseEntity<Set<String>> getProductsNamesNoDuplicate() {
+		LOGGER.info("From class ProductController, method : getProductsNamesNoDuplicate() ");
+		
+		Set<String>names=new HashSet<String>(); 
+		List<Product> products = productRepository.findAll();
+		for (Product product : products) {
+			names.add(product.getName());
+		}
+
+		return ResponseEntity.ok().body(names);
+	}
 	
 	
 
