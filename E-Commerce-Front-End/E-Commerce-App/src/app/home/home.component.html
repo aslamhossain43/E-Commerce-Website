@@ -46,7 +46,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
         <!-- Navbar brand -->
-        <span class="navbar-brand">Categories:</span>
+        <span class="navbar-brand">Filter, Sort > </span>
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
@@ -57,43 +57,53 @@
         <!-- Collapsible content -->
         <div class="collapse navbar-collapse" id="basicExampleNav">
 
-          <!-- Links -->
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">All
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="#">{{categories[0].category}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">{{categories[1].category}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">{{categories[2].category}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">{{categories[3].category}}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">{{categories[4].category}}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="JavaScript:Void(0)"><b>...</b></a>
-              </li>
             
-          </ul>
-          <!-- Links -->
+              <mat-form-field>
+                  <mat-label>Category</mat-label>
+                  <mat-select matInput [(ngModel)]="category">
+                  <mat-option  [value]="c.category" *ngFor="let c of categoriesForFilter" >{{c.category}}</mat-option>   
+                    </mat-select>
+                </mat-form-field>
 
-          <form class="form-inline">
-            <div class="md-form my-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-              <button type="submit" mat-raised-button>Search</button>
 
-            </div>
-          </form>
+
+
+                <mat-form-field>
+                  <mat-label>Brand</mat-label>
+                  <mat-select matInput [(ngModel)]="brand">
+                  <mat-option  [value]="p.brand" *ngFor="let p of products" >{{p.brand}}</mat-option>   
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Color</mat-label>
+                    <mat-select matInput [(ngModel)]="color">
+                    <mat-option  [value]="p.color" *ngFor="let p of products" >{{p.color}}</mat-option>   
+                      </mat-select>
+                  </mat-form-field>
+  
+
+                  <mat-form-field>
+                      <mat-label>Name</mat-label>
+                      <mat-select matInput [(ngModel)]="name">
+                      <mat-option  [value]="p.name" *ngFor="let p of products" >{{p.name}}</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+    
+
+
+                    <mat-form-field>
+                        <mat-label>Price</mat-label>
+                        <mat-select>
+                        <mat-option>Lower to upper</mat-option>   
+                        <mat-option>Upper to lower</mat-option>   
+                          
+                      </mat-select>
+                      </mat-form-field>
+      
+
+
+
         </div>
         <!-- Collapsible content -->
 
@@ -107,7 +117,7 @@
         <div class="row wow fadeIn">
 
           <!--Grid column-->
-          <div *ngFor="let p of products" class="col-lg-3 col-md-6 mb-4">
+          <div *ngFor="let p of products | productFilter:category:brand:color:name" class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
             <div class="card">

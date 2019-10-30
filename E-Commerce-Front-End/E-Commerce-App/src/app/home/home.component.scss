@@ -5,7 +5,13 @@
     padding-top: 20vh;
   }
 
+mat-label{
+  color: white;
+}
+mat-option{
+  text-align: center;
+}
 
-
-
-
+mat-form-field{
+  display: inline;
+}

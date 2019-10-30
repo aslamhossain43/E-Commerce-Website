@@ -22,3 +22,12 @@ img{
 #addProductM{
   overflow: auto;
 }
+
+nav.navbar.fixed-top {
+  max-height:340px;
+  overflow-y:auto;
+}
+
+mat-option{
+  text-align: center;
+}

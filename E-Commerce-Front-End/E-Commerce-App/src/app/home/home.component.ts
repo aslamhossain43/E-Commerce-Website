@@ -16,13 +16,31 @@ categories:Category[];
 activeCarouselId='';
 activeCarouselPhoto='';
 id:string;
+categoriesForFilter:Product[];
+brandsForFilter:string[];
+colorsForFilter:string[];
+namesForFilter:string[];
+pricesForFilter:string[];
 
+//for filtering
+category:string;
+brand:string;
+color:string;
+name:string;
+price:string;
   constructor(private productService:ProductService,private router:Router) { }
 
   ngOnInit() {
     this.getAllProducts();
     this.getAllCarousel();
    this.getAllCategories();
+   //remove duplicate
+
+   this.categoriesForFilter=this.products.filter((v,i) => this.products.findIndex(item => item.category == v.category) === i);
+
+
+
+
   }
 
   getAllProducts(): void {

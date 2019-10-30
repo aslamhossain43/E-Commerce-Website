@@ -226,7 +226,7 @@
     
             <div class="md-form">
                 <textarea type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="product.description" required></textarea>
-                <label data-error="wrong" data-success="right" for="description">Product description</label>
+                <label data-error="wrong" data-success="right" for="description">Product description (Within 20 words)</label>
               </div>
     
     
@@ -266,20 +266,6 @@
 
 
 
-
-
-
-
-    
-                  <!-- <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="picture" (change)="selectpFile($event)"
-                        [(ngModel)]="product.selectedPFile"
-                          aria-describedby="inputGroupFileAddon01">
-                        <label class="custom-file-label" for="picture">{{product.selectedPFile}}</label>
-                      </div>
-                    </div>
-     -->
 
 
 
@@ -402,7 +388,6 @@
           <table class="table table-hover">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Product name</th>
                   <th>Price</th>
                   <th>Remove</th>
@@ -410,7 +395,6 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">1</th>
                   <td>Product 1</td>
                   <td>100$</td>
                   <td><a><i class="fas fa-times"></i></a></td>
@@ -459,19 +443,15 @@ aria-hidden="true">
       <h4 class="modal-title w-100" id="myModalLabel">Question ? chat with us </h4>
     </div>
     <div class="modal-body">
-      <p>hellogfgggggggggggggggggggggggggggggggggggggggggggggggggggggg
-        gggggggggggggdfffffffffffffffffffffffffffffffffff
-      dfffffffffffffffffffffffffffasasaaaaaaaaaaaaaaaaaaaa
-      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-      asssssssssssssssssssssssssssssssssssssssssssssssssssss
-      ssssssssssssssssssssssssssellogfgggggggggggggggggggggggggggggggg
-      gggggggggggggggggggggggggggggggggggdfffffffffffffffffffffffffffffffffff
-      dfffffffffffffffffffffffffffasasaaaaaaaaaaaaaaa
-      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-      assssssssssssssssssssssssssssssssssssssssssss
-      ssssssssssssssssssssssssssssssssssss</p>
+      <p>hellogfggggggggggggggg<br>
+        ggggggggggggggggggggggg<br>
+        ggggggggggggggggggggggg<br>
+        ggggggdffffffffffffffff<br>
+        fffffffffffffffffffdfff<br>
+        fffffffffffffffffffffff<br>
+        fasasaaaaaaaaaaaaaaaaaa<br>
+        aaaaaaaaaaaaaaaaaaaaaaa<br>
+      </p>
     </div>
     <div class="modal-footer">
       <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="chattingModal.hide()" mdbWavesEffect>Close</button>
