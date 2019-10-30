@@ -185,6 +185,7 @@ public class ProductController {
 	
 	
 	
+	
 	@GetMapping(value = "/getProductsCategoryNoDuplicate")
 	public ResponseEntity<Set<String>> getProductsCategoryNoDuplicate() {
 		LOGGER.info("From class ProductController, method : getProductsCategoryNoDuplicate() ");
