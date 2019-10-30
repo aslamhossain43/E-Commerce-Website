@@ -1,6 +1,7 @@
 package com.e_commerce.backend.controllers;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,11 +31,12 @@ public class ProductController {
 	FileUpload fileUpload;
 	@Autowired
 	ProductRepository productRepository;
-	public String[] pCodes = new String[6];
+	public String[] pCodes;
 	
 	@PostMapping(value = "/addFiles")
 	public ResponseEntity<?> addProductFile(@RequestParam("pFiles") MultipartFile[] pFiles) {
 		LOGGER.info("From class ProductController ,method : addProductFile()");
+		this.pCodes=new String[6];
 		ResponseEntity<?> rt = null;
 		int index = 0;
 
