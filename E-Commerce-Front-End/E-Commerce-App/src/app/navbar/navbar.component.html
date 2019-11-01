@@ -86,7 +86,7 @@
 
         <li id="paddingListId"  class="nav-item" (click)="cartModal.show()">
             <a href="JavaScript:Void(0);" class="nav-link waves-effect">
-              <span class="badge red z-depth-1 mr-1"> 1 </span>
+              <span class="badge red z-depth-1 mr-1"> {{cartNumber}} </span>
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
             </a>
@@ -355,7 +355,7 @@
 
 
 
-<div mdbModal #cartModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+<div mdbModal id="cartModal" #cartModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-side modal-top-right " role="document">
     <div class="modal-content">
@@ -372,17 +372,25 @@
 
           <table class="table table-hover">
               <thead>
-                <tr>
-                  <th>Product name</th>
-                  <th>Price</th>
+                <tr id="cartText">
+                  <th>Picture</th>
+                  <th>Details</th>
                   <th>Remove</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td>{{item.product.name}}</td>
-                  <td>{{item.product.soldPrice}}</td>
-                  <td><a><i class="fas fa-times"></i></a></td>
+                  <td><img id="cartImg" src="http://localhost:8080/getPhotos/{{item.product.frontCode}}" alt=""></td>
+                  <td id="cartText" style="line-height: 120%;"><span>Category : </span>{{item.product.category}}<br>
+                    <span>Brand : </span>{{item.product.brand}}<br>
+                    <span>Name : </span>{{item.product.name}}<br>
+                    <span>Color : </span>{{item.product.color}}<br>
+                    <span>Single price : </span>{{item.product.soldPrice}} Tk.<br>
+                  
+                    <span>Quantity : </span>{{item.quantity}}<br>
+                  
+                  </td>
+                  <td><a href="JavaScript:Void(0)" (click)="remove(item.product.id)"><i class="fas fa-times"></i></a></td>
                 </tr>
     
               </tbody>
@@ -400,7 +408,6 @@
 
 
       <div class="modal-footer">
-        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="cartModal.hide()" mdbWavesEffect>Close</button>
         <button type="button" mdbBtn color="primary" class="relative waves-light" routerLink="/checkOut" aria-label="Close" (click)="cartModal.hide()" mdbWavesEffect >Checkout</button>
       </div>
     </div>

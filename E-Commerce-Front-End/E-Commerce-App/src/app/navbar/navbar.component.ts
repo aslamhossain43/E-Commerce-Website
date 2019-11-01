@@ -34,8 +34,10 @@ selectedCFiles: FileList;
 carousel=new Carousel();
 //-------for cart--------
 id:string;
+quantity:number;
 items: Item[] = [];
 total: number = 0;
+cartNumber:number=0;
 
 //-----------------------
 
@@ -43,6 +45,7 @@ total: number = 0;
     private uploadFileService:UploadFileService,private router:Router,private activatedRoute:ActivatedRoute,
     private productServiceForCart:ProductServiceForCart){
       this.getAllCarousel();
+
   }
  
 
@@ -50,16 +53,28 @@ total: number = 0;
 
 this.getAllCategories();
 this.getAllCarousel();
-this.products=this.productServiceForCart.findAll();
 //----------------for cart---------------
+this.products=this.productServiceForCart.findAll();
 this.id=this.activatedRoute.snapshot.paramMap.get('id');
+this.quantity=+this.activatedRoute.snapshot.paramMap.get('quantity');
+if(this.id){
+  if(+localStorage.getItem('cartNumber')!=0){
+
+    this.cartNumber=+localStorage.getItem('cartNumber')+1;
+
+    localStorage.setItem('cartNumber',JSON.stringify(this.cartNumber));
+  }else{
+
+    localStorage.setItem('cartNumber',JSON.stringify(1));
+  }
+}
 
 if (this.id) {
   var item: Item = {
     product: this.productServiceForCart.find(this.id),
-    quantity: 1
+    quantity: this.quantity
   };
-  if (localStorage.getItem('cart') === null) {
+  if (localStorage.getItem('cart') == null) {
     let cart: any = [];
     cart.push(JSON.stringify(item));
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -68,17 +83,17 @@ if (this.id) {
     let index: number = -1;
     for (var i = 0; i < cart.length; i++) {
       let item: Item = JSON.parse(cart[i]);
-      if (item.product.id === this.id) {
+      if (item.product.id == this.id) {
         index = i;
         break;
       }
     }
-    if (index === -1) {
+    if (index == -1) {
       cart.push(JSON.stringify(item));
       localStorage.setItem('cart', JSON.stringify(cart));
     } else {
       let item: Item = JSON.parse(cart[index]);
-      item.quantity += 1;
+      item.quantity += this.quantity;
       cart[index] = JSON.stringify(item);
       localStorage.setItem("cart", JSON.stringify(cart));
     }
@@ -105,10 +120,10 @@ $('input[type=text], input[type=password], input[type=email], input[type=url], i
 // wow js
 this.ngWowService.init();
 
+let url = this.router.createUrlTree(['productDetails', this.id])
+window.open(url.toString(), '_blank')
 
-this.router.navigate(['productDetails',this.id]);
   }
- 
 
 
 
@@ -242,6 +257,9 @@ productReset():void{
 
 }
 //----------------cart---------------
+
+
+
 loadCart(): void {
   this.total = 0;
   this.items = [];
@@ -256,6 +274,8 @@ loadCart(): void {
     this.total += item.product.soldPrice * item.quantity;
   }
   localStorage.setItem('total',JSON.stringify(this.total));
+  //---------------------load cart count-------
+  this.cartNumber=+localStorage.getItem('cartNumber');
 }
 
 remove(id: string): void {
@@ -263,8 +283,15 @@ remove(id: string): void {
   let index: number = -1;
   for (var i = 0; i < cart.length; i++) {
     let item: Item = JSON.parse(cart[i]);
-    if (item.product.id === id) {
+    if (item.product.id == id) {
       cart.splice(i, 1);
+
+  //-------------------remove cart count------
+  this.cartNumber=+localStorage.getItem('cartNumber');
+  let cn=this.cartNumber-+item.quantity;
+  localStorage.setItem('cartNumber',JSON.stringify(cn));
+
+
       break;
     }
   }

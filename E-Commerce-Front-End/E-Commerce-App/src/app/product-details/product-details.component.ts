@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, ElementRef, Input } from '
 import { Product } from '../manage/product';
 import { ProductService } from '../manage/manage.service';
 import { ActivatedRoute } from '@angular/router';
+import { ProductServiceForCart } from '../app.cart-service';
 declare var jquery:any;
 declare var $ :any;
 
@@ -14,7 +15,8 @@ export class ProductDetailsComponent implements OnInit{
 id:string;
   product=new Product();
   products:Product[];
-  constructor(private productService:ProductService,private route:ActivatedRoute) {
+  quantity:number=1;
+  constructor(private productService:ProductService,private route:ActivatedRoute,private productServiceForCart:ProductServiceForCart) {
 
 this.id=this.route.snapshot.paramMap.get('id');
    }
