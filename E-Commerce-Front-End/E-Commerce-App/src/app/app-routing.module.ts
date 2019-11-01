@@ -8,6 +8,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
 {path:'',component:HomeComponent},
@@ -19,6 +20,8 @@ const routes: Routes = [
 {path:'contactUs',component:ContactusComponent},
 
 {path:'productDetails/:id',component:ProductDetailsComponent},
+{path:'productDetails/:id/navbar/:id',component:NavbarComponent},
+
 {path:'checkOut',component:CheckoutComponent}
 
 

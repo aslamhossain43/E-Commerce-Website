@@ -5,10 +5,15 @@ import { catchError, map } from 'rxjs/operators';
 import { Product } from './product';
 import { Category } from './category';
 import { Carousel } from './carousel';
+import { EmailSending } from './manage.email';
 @Injectable()
 export class ProductService {
+    constructor(private http: Http) {
 
-    constructor(private http: Http) { }
+
+
+
+     }
 
     addProduct(product: Product) {
         const body = JSON.stringify(product);
@@ -49,6 +54,17 @@ export class ProductService {
         } else {
             return this.http.post(`http://localhost:8080/categories/addCategory`, body, options);
         }
+    }
+
+
+
+    emailSending(emailSending:EmailSending) {
+        const body = JSON.stringify(emailSending);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+       
+            return this.http.post(`http://localhost:8080/email/send`, body, options);
+       
     }
 
     getAllCategories(): Observable<Category[]> {
@@ -125,7 +141,6 @@ export class ProductService {
                     catchError(this.handlError);
                 }));
     }
-
 
 
 

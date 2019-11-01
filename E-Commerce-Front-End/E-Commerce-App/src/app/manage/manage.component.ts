@@ -3,6 +3,8 @@ import { Product } from './product';
 import { UploadFileService } from './manage.file-service';
 import { ProductService } from './manage.service';
 import { Category } from './category';
+import { Item } from './item';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manage',
@@ -27,7 +29,6 @@ selectedpFiles: FileList;
 // FOR NG MATERIAL
 
 
-
 constructor(private uploadService: UploadFileService,
   private productService: ProductService) {
 
@@ -37,7 +38,7 @@ constructor(private uploadService: UploadFileService,
 
 // NG LIFE CYCLE
 ngOnInit(): void {
-  //this.getAllCategories();
+  
 }
 
 
@@ -111,5 +112,4 @@ getAllCategories(): void {
           });
     }
     
-
 }

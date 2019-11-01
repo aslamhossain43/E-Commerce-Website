@@ -392,7 +392,7 @@
           <!--Footer-->
           <div class="modal-footer">
         
-            <strong id="totalTkPosition">Total = 200 Tk.</strong>
+            <strong id="totalTkPosition">Total = {{total}} Tk.</strong>
         
           </div>
     
@@ -424,14 +424,19 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
      
-
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Send email to authority </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
 
       <div class="modal-body mx-3">
 
           <div class="md-form mb-4">
               <i class="fas fa-user-circle prefix grey-text"></i>
-            <input type="text" id="user" class="form-control validate">
+            <input type="text" id="user" [(ngModel)]="emailSending.name" class="form-control validate">
               <label data-error="wrong" data-success="right" for="user">Your name</label>
             </div>
     
@@ -440,20 +445,20 @@
 
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="mail" class="form-control validate">
+          <input type="email" id="mail" [(ngModel)]="emailSending.from" class="form-control validate">
           <label data-error="wrong" data-success="right" for="mail">Your email</label>
         </div>
 
         <div class="md-form mb-4">
             <i class="fas fa-phone prefix grey-text"></i>
-          <input type="text" id="phn" class="form-control validate">
+          <input type="text" id="phn" [(ngModel)]="emailSending.phone" class="form-control validate">
           <label data-error="wrong" data-success="right" for="phn">Your phone</label>
         </div>
 
 
         <div class="md-form mb-4">
             <i class="far fa-comment prefix grey-text"></i>
-            <input type="text" id="msg" class="form-control validate">
+            <input type="text" id="msg" [(ngModel)]="emailSending.message" class="form-control validate">
             <label data-error="wrong" data-success="right" for="phn">Your message</label>
           </div>
 
@@ -461,7 +466,7 @@
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-default">Send</button>
+        <button class="btn btn-default" (click)="sendingEmail()" data-dismiss="modal" aria-label="Close">Send</button>
       </div>
     </div>
   </div>
