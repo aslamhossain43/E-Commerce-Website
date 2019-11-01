@@ -3,7 +3,6 @@ import { Product } from './product';
 import { UploadFileService } from './manage.file-service';
 import { ProductService } from './manage.service';
 import { Category } from './category';
-import { Item } from './item';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

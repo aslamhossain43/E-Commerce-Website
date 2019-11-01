@@ -38,7 +38,6 @@ getProductsByIdForSameCategoryAndBrand(): void {
   this.productService.getProductsByIdForSameCategoryAndBrand(this.id)
   .subscribe((allproducts) => {
     this.products = allproducts;
-    console.log('from home getAllproducts() '+allproducts[0].name);
   },
   (error) => {
     console.log(error);

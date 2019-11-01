@@ -25,6 +25,7 @@ import { UploadFileService } from './manage/manage.file-service';
 import { NgMaterialModule } from './app.materials';
 import { RouterModule } from '@angular/router';
 import { ProductFilterPipe } from './home/home.filter.pipe';
+import { ProductServiceForCart } from './app.cart-service';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { ProductFilterPipe } from './home/home.filter.pipe';
 
   ],
     schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [ProductService,UploadFileService],
+  providers: [ProductService,UploadFileService,ProductServiceForCart],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

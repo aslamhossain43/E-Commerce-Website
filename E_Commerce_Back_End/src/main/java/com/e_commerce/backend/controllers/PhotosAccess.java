@@ -27,6 +27,7 @@ public class PhotosAccess {
 		return ResponseEntity.ok().body(file);
 	}
 
+	
 //GET ALL PHOTOS
 	public Resource loadAllPhotos(String photoCode) {
 		LOGGER.info("FROM class PhotosAccess,method : loadAllPhotos()---photoCode : " + photoCode);
