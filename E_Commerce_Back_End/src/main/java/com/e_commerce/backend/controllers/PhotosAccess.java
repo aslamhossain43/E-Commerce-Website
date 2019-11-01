@@ -36,9 +36,11 @@ public class PhotosAccess {
 			if (resource.exists() || resource.isReadable()) {
 				return resource;
 			} else {
+				LOGGER.info("try block in if condition");
 				throw new RuntimeException("FAIL!");
 			}
 		} catch (MalformedURLException e) {
+LOGGER.info("catch block");
 			throw new RuntimeException("FAIL!");
 		}
 	}
