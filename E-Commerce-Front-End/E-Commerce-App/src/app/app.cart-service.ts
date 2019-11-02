@@ -3,15 +3,15 @@ import { RequestOptions, Headers, Response, Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Product } from './cart-entities/product';
+import { Item } from './cart-entities/item';
 
 @Injectable()
 export class ProductServiceForCart {
     private products:Product[];
-    
+    items: Item[] = [];
 //-----------------------
     constructor(private http: Http) {
 this.getAllProducts();
-        
     }
 
 
@@ -26,6 +26,10 @@ this.getAllProducts();
                 }));
     }
 
+    
+
+
+    
 
     getAllProducts(): void {
         this.getAllProductsForCart()
@@ -37,7 +41,23 @@ this.getAllProducts();
         });
           }
 
-
+allItemsFromLocalStorage(){
+ 
+    this.items = [];
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    for (var i = 0; i < cart.length; i++) {
+      let item = JSON.parse(cart[i]);
+      this.items.push({
+        product: item.product,
+        quantity: item.quantity,
+        cart1:item.cart1,
+        cart2:item.cart2
+  
+      });
+    }
+    return this.items;
+  
+}
 
 
 findAll(): Product[]{

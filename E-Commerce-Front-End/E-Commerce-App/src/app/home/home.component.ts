@@ -224,4 +224,8 @@ export class HomeComponent implements OnInit {
     this.getAllProducts();
   }
 
+  sendId(id:string){
+this.router.navigate(['productDetails',id]);
+  }
+
 }

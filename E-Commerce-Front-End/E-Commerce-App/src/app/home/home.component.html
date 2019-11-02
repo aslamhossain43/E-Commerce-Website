@@ -242,7 +242,7 @@
             <!--Card image-->
             <div *ngIf="p.frontCode" class="view overlay">
               <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
-              <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" >
+              <a href="JavaScript:Void(0);" (click)="sendId(p.id)">
                 <div class="mask rgba-white-slight"></div>
               </a>
             </div>
@@ -255,12 +255,12 @@
             <!--Card content-->
             <div class="card-body text-center">
               <!--Category & Title-->
-              <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" class="grey-text">
+              <a href="JavaScript:Void(0);" (click)="sendId(p.id)" class="grey-text">
                 <h5>{{p.category}}</h5>
               </a>
               <h5>
                 <strong>
-                  <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
+                  <a href="JavaScript:Void(0);" (click)="sendId(p.id)" class="dark-grey-text" >{{p.name}}
                     <span class="badge badge-pill danger-color">NEW</span>
                   </a>
                 </strong>

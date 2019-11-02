@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit} from '@angular/core';
 import { NgwWowService } from 'ngx-wow';
 import { ProductService } from '../manage/manage.service';
 import { UploadFileService } from '../manage/manage.file-service';
@@ -17,7 +17,7 @@ declare var $ :any;
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit{
  
  product=new Product();
  products:Product[];
@@ -38,7 +38,6 @@ quantity:number;
 items: Item[] = [];
 total: number = 0;
 cartNumber:number=0;
-
 //-----------------------
 
   constructor(private ngWowService:NgwWowService,private productService:ProductService,
@@ -57,6 +56,31 @@ this.getAllCarousel();
 this.products=this.productServiceForCart.findAll();
 this.id=this.activatedRoute.snapshot.paramMap.get('id');
 this.quantity=+this.activatedRoute.snapshot.paramMap.get('quantity');
+
+
+//-------------check price quantity two---if two then redirect to cart page--------
+
+if (localStorage.getItem('cart') != null) {
+  
+let cart: any = JSON.parse(localStorage.getItem('cart'));
+ 
+    for (var i = 0; i < cart.length; i++) {
+      let item: Item = JSON.parse(cart[i]);
+      if (item.product.id == this.id) {
+        if(this.quantity==2 && item.quantity>=1){
+          alert('You cannot add that amount to the cart — we have 2 in stock for you and you already have 1 in your cart. !')
+  //return is used to prevent next execution
+ return this.router.navigate(['productDetails',this.id]);
+        }
+          if(item.quantity==2){
+  alert('The quantity of this product is already 2. Try other products !')
+  //return is used to prevent next execution
+ return this.router.navigate(['productDetails',this.id]);
+          }
+      }
+    }
+  }
+  //-------add cart count------------------
 if(this.id){
   if(+localStorage.getItem('cartNumber')!=0){
 
@@ -68,17 +92,23 @@ if(this.id){
     localStorage.setItem('cartNumber',JSON.stringify(1));
   }
 }
-
+//------------------------------------------------
+//initialize item
 if (this.id) {
   var item: Item = {
     product: this.productServiceForCart.find(this.id),
-    quantity: this.quantity
+    quantity: this.quantity,
+    cart1:1,
+    cart2:1
   };
+  // when first cart
   if (localStorage.getItem('cart') == null) {
     let cart: any = [];
+    item.cart2=0;
     cart.push(JSON.stringify(item));
     localStorage.setItem('cart', JSON.stringify(cart));
   } else {
+    // when any number cart exist
     let cart: any = JSON.parse(localStorage.getItem('cart'));
     let index: number = -1;
     for (var i = 0; i < cart.length; i++) {
@@ -88,13 +118,18 @@ if (this.id) {
         break;
       }
     }
+    //check cart exist but this id not exist
     if (index == -1) {
+      item.cart2=0;
       cart.push(JSON.stringify(item));
       localStorage.setItem('cart', JSON.stringify(cart));
       
-    } else {
+    } 
+    //cart exist and same id exist
+    else {
       let item: Item = JSON.parse(cart[index]);
       item.quantity += this.quantity;
+      item.cart2=1;
       cart[index] = JSON.stringify(item);
       localStorage.setItem("cart", JSON.stringify(cart));
       
@@ -126,7 +161,7 @@ this.ngWowService.init();
 this.router.navigate(['productDetails',this.id]);
 
   }
-
+  
 
 
 // FOR FILE UPLOAD
@@ -176,7 +211,6 @@ resetCarousel():void{
       );
   }
   
-  // FOR CONSUMERS
   // ADD CONSUMERS
   addProduct(): void {
     this.productService.addProduct(this.product)
@@ -270,7 +304,10 @@ loadCart(): void {
     let item = JSON.parse(cart[i]);
     this.items.push({
       product: item.product,
-      quantity: item.quantity
+      quantity: item.quantity,
+      cart1:item.cart1,
+      cart2:item.cart2
+
     });
       
     this.total += item.product.soldPrice * item.quantity;
@@ -290,7 +327,7 @@ remove(id: string): void {
 
   //-------------------remove cart count------
   this.cartNumber=+localStorage.getItem('cartNumber');
-  let cn=this.cartNumber-+item.quantity;
+  let cn=this.cartNumber-+(item.cart1+item.cart2);
   localStorage.setItem('cartNumber',JSON.stringify(cn));
 
 
@@ -299,6 +336,15 @@ remove(id: string): void {
   }
   localStorage.setItem("cart", JSON.stringify(cart));
   this.loadCart();
+
+  //----------------load------------
+  if (!localStorage.getItem('foo')) { 
+    localStorage.setItem('foo', 'no reload') 
+    location.reload() 
+  } else {
+    localStorage.removeItem('foo') 
+  
+  }
 }
 //--------------------------------------------
 
