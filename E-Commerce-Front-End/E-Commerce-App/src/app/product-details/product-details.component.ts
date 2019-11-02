@@ -19,6 +19,15 @@ id:string;
   constructor(private productService:ProductService,private route:ActivatedRoute,private productServiceForCart:ProductServiceForCart) {
 
 this.id=this.route.snapshot.paramMap.get('id');
+
+if (!localStorage.getItem('foo')) { 
+  localStorage.setItem('foo', 'no reload') 
+  location.reload() 
+} else {
+  localStorage.removeItem('foo') 
+
+}
+
    }
 
   ngOnInit() {

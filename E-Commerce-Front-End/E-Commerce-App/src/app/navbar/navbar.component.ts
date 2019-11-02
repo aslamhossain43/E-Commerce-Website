@@ -45,7 +45,7 @@ cartNumber:number=0;
     private uploadFileService:UploadFileService,private router:Router,private activatedRoute:ActivatedRoute,
     private productServiceForCart:ProductServiceForCart){
       this.getAllCarousel();
-
+    
   }
  
 
@@ -91,14 +91,17 @@ if (this.id) {
     if (index == -1) {
       cart.push(JSON.stringify(item));
       localStorage.setItem('cart', JSON.stringify(cart));
+      
     } else {
       let item: Item = JSON.parse(cart[index]);
       item.quantity += this.quantity;
       cart[index] = JSON.stringify(item);
       localStorage.setItem("cart", JSON.stringify(cart));
+      
     }
   }
   this.loadCart();
+  
 } else {
   this.loadCart();
 }
@@ -120,8 +123,7 @@ $('input[type=text], input[type=password], input[type=email], input[type=url], i
 // wow js
 this.ngWowService.init();
 
-let url = this.router.createUrlTree(['productDetails', this.id])
-window.open(url.toString(), '_blank')
+this.router.navigate(['productDetails',this.id]);
 
   }
 
