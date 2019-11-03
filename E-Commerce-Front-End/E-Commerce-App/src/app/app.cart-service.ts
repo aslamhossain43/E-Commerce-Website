@@ -60,6 +60,9 @@ allItemsFromLocalStorage(){
 }
 
 
+
+
+
 findAll(): Product[]{
     return this.products;
 }

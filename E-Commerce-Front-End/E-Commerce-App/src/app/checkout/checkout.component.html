@@ -27,22 +27,43 @@
         <ul class="list-group mb-3 z-depth-1">
           <li *ngFor="let item of items" class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
-              <h6 class="my-0">{{item.product.category}}</h6>
-              <small class="text-muted">{{item.product.name}}</small>
+              <small class="text-muted"> Category : {{item.product.category}}<br></small>
+
+              <small class="text-muted"> Brand : {{item.product.brand}}<br></small>
+              <small class="text-muted"> Name : {{item.product.name}}</small>
             </div>
-            <span class="text-muted">{{item.quantity}}<i class="fa fa-times" aria-hidden="true"></i>{{item.product.soldPrice}}</span>
+
+            <span class="text-muted">{{item.quantity}}<i class="fa fa-times"
+                aria-hidden="true"></i>{{item.product.soldPrice}} Tk.</span>
           </li>
-         
+
+
+
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+             <small class="text-muted"></small>
+              </div>
+  
+              <span class="text-muted">Total = {{total}} Tk.</span>
+            </li>
+
+
+
         </ul>
         <!-- Cart -->
 
         <!-- Promo code -->
         <form class="card p-2">
+
+
+
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code" aria-label="Recipient's username"
-              aria-describedby="basic-addon2">
+
+
+            <input type="text" [(ngModel)]="promo_code_proxy" name="promo_code_proxy" class="form-control"
+              aria-label="Recipient's username" aria-describedby="basic-addon2" readonly>
             <div class="input-group-append">
-              <button class="btn btn-secondary btn-md waves-effect m-0" type="button">Redeem</button>
+              <button disabled class="btn btn-secondary btn-md waves-effect m-0" type="button">Promo code</button>
             </div>
           </div>
         </form>
@@ -75,8 +96,9 @@
 
                 <!--firstName-->
                 <div class="md-form ">
-                  <input type="text" id="firstName" class="form-control">
-                  <label for="firstName" class="">First name</label>
+                  <input type="text" [(ngModel)]="person.firstName" name="firstName" id="firstNameId"
+                    class="form-control" placeholder="Atif" required>
+                  <label for="firstNameId" class="">First name</label>
                 </div>
 
               </div>
@@ -87,8 +109,9 @@
 
                 <!--lastName-->
                 <div class="md-form">
-                  <input type="text" id="lastName" class="form-control">
-                  <label for="lastName" class="">Last name</label>
+                  <input type="text" [(ngModel)]="person.lastName" name="lastName" id="lastNameId" class="form-control"
+                    placeholder="Aslam" required>
+                  <label for="lastNameId" class="">Last name</label>
                 </div>
 
               </div>
@@ -107,8 +130,9 @@
               <div class="col-md-6 mb-2">
                 <!--phone-->
                 <div class="md-form mb-5">
-                  <input type="text" id="phone" class="form-control" placeholder="017******74">
-                  <label for="phone" class="">Phone Number</label>
+                  <input type="text" [(ngModel)]="person.phone" name="phone" id="phoneId" class="form-control"
+                    placeholder="017******74" required>
+                  <label for="phoneId" class="">Phone Number</label>
                 </div>
 
               </div>
@@ -122,8 +146,9 @@
 
                 <!--email-->
                 <div class="md-form mb-5">
-                  <input type="email" id="email" class="form-control" placeholder="youremail@gmail.com">
-                  <label for="email" class="">Email (optional)</label>
+                  <input type="email" [(ngModel)]="person.email" name="email" id="emailId" class="form-control"
+                    placeholder="youremail@gmail.com">
+                  <label for="emailId" class="">Email (optional)</label>
                 </div>
 
               </div>
@@ -144,7 +169,8 @@
 
                 <!--present address-->
                 <div class="md-form mb-5">
-                  <input type="text" id="paddress" class="form-control" placeholder="Present Address">
+                  <input type="text" [(ngModel)]="person.presentAddress" name="presentAddress" id="paddress"
+                    class="form-control" placeholder="Present Address" required>
                   <label for="paddress" class="">Present Address</label>
                 </div>
 
@@ -160,7 +186,8 @@
 
                 <!--permanent address-->
                 <div class="md-form mb-5">
-                  <input type="text" id="peraddress" class="form-control" placeholder="Permanent Address">
+                  <input type="text" [(ngModel)]="person.permanentAddress" name="permanentAddress" id="peraddress"
+                    class="form-control" placeholder="Permanent Address">
                   <label for="peraddress" class="">Permanent Address (optional)</label>
                 </div>
 
@@ -180,7 +207,8 @@
 
 
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="same-address">
+                  <input type="checkbox" [(ngModel)]="cashOnDelivery" name="cashOnDelivery"
+                    [ngModelOptions]="{standalone: true}" class="custom-control-input" id="same-address">
                   <label class="custom-control-label" for="same-address">Cash on delivery</label>
                 </div>
 
@@ -192,7 +220,8 @@
 
 
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="save-info">
+                  <input type="checkbox" [(ngModel)]="saveInfo" name="saveInfo" [ngModelOptions]="{standalone: true}"
+                    class="custom-control-input" id="save-info">
                   <label class="custom-control-label" for="save-info">Save this information for next time</label>
                 </div>
 
@@ -207,7 +236,8 @@
 
 
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!(cashOnDelivery && person.firstName && person.lastName
+             && person.phone && person.presentAddress)" (click)="continueCheckout()">Continue to checkout</button>
 
           </form>
 

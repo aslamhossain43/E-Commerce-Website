@@ -7,6 +7,6 @@ phone:string;
 email:string;
 presentAddress:string;
 permanentAddress:string;
-checkBoxForInfoSave:boolean;
+promoCode:string;
 
 }

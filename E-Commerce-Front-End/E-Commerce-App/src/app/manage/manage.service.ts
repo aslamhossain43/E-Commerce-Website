@@ -6,6 +6,7 @@ import { Product } from './product';
 import { Category } from './category';
 import { Carousel } from './carousel';
 import { EmailSending } from './manage.email';
+import { PersonAndProductsCombinedForCheckOut } from './checkout';
 @Injectable()
 export class ProductService {
     constructor(private http: Http) {
@@ -54,6 +55,14 @@ export class ProductService {
         } else {
             return this.http.post(`http://localhost:8080/categories/addCategory`, body, options);
         }
+    }
+
+    addCheckout(personAndProductsCombinedForCheckOut:PersonAndProductsCombinedForCheckOut) {
+        const body = JSON.stringify(personAndProductsCombinedForCheckOut);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.post(`http://localhost:8080/checkout/addCheckout`, body, options);
+       
     }
 
 

@@ -341,6 +341,7 @@ remove(id: string): void {
   if (!localStorage.getItem('foo')) { 
     localStorage.setItem('foo', 'no reload') 
     location.reload() 
+    localStorage.removeItem('foo')
   } else {
     localStorage.removeItem('foo') 
   
