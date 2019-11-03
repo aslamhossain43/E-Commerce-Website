@@ -71,7 +71,7 @@ public class ProductController {
 
 			} else {
 
-				this.pCodes[index] = "P" + UUID.randomUUID().toString().substring(26).toUpperCase();
+				this.pCodes[index] = "PRODUCT" + UUID.randomUUID().toString().replace("-", "");
 
 				try {
 					FileUpload.productFileUpload(multipartFile, this.pCodes[index]);

@@ -108,7 +108,7 @@ public class CarouselController {
 
 			} else {
 
-				String cCode = "C" + UUID.randomUUID().toString().substring(26).toUpperCase();
+				String cCode = "CAROUSEL" + UUID.randomUUID().toString().replace("-", "");
 
 				try {
 					FileUpload.carouselFileUpload(multipartFile, cCode);
