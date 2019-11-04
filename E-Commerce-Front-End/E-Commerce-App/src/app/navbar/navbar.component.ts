@@ -328,7 +328,13 @@ remove(id: string): void {
   //-------------------remove cart count------
   this.cartNumber=+localStorage.getItem('cartNumber');
   let cn=this.cartNumber-+(item.cart1+item.cart2);
-  localStorage.setItem('cartNumber',JSON.stringify(cn));
+  if(cn<0){
+    cn=0;
+    localStorage.setItem('cartNumber',JSON.stringify(cn));
+  }else{
+    localStorage.setItem('cartNumber',JSON.stringify(cn));
+    
+  }
 
 
       break;

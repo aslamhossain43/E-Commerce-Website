@@ -16,6 +16,8 @@ export class ManageCheckoutComponent implements OnInit {
   personAndProductsCombinedForCheckOuts: PersonAndProductsCombinedForCheckOut[] = [];
   person = new Person();
   productForCheckOuts: ProductsForCheckOut[];
+removeId:string;
+
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
@@ -44,5 +46,49 @@ export class ManageCheckoutComponent implements OnInit {
 
         });
   }
+
+
+
+
+
+  sendId(id:string){
+this.removeId=id;
+
+  }
+  noRemoveOrder(){
+    this.removeId='';
+  }
+removeOrder(){
+this.productService.deleteOrder(this.removeId)
+.subscribe(response=>{
+
+ //----------------load------------
+ if (!localStorage.getItem('foo')) { 
+  localStorage.setItem('foo', 'no reload') 
+  location.reload() 
+  localStorage.removeItem('foo')
+} else {
+  localStorage.removeItem('foo') 
+
+}
+
+
+},
+(error)=>{
+
+});
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

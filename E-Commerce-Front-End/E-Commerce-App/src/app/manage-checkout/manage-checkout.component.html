@@ -203,7 +203,7 @@
   
   
               <hr class="mb-4">
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Remove order</button>
+              <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modalConfirmDelete" (click)="sendId(personAndProductsCombinedForCheckOut.person.id)" type="submit">Remove order</button>
   
             </form>
   
@@ -220,3 +220,34 @@
     
   </main>
   <!--Main layout-->
+
+
+      
+      <!--Modal: modalConfirmDelete-->
+      <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+          <!--Content-->
+          <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+              <p class="heading">Are you sure?</p>
+            </div>
+      
+            <!--Body-->
+            <div class="modal-body">
+      
+              <i class="fas fa-times fa-4x animated rotateIn"></i>
+      
+            </div>
+      
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+              <a href="JavaScript:Void(0)" class="btn  btn-outline-danger" data-dismiss="modal" (click)="removeOrder()">Yes</a>
+              <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal" (click)="noRemoveOrder()">No</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+      <!--Modal: modalConfirmDelete-->

@@ -65,6 +65,11 @@ export class ProductService {
        
     }
 
+    deleteOrder(id: string) {
+        return this.http.delete(`http://localhost:8080/checkout/delete/` + id);
+        }
+
+
     getAllCheckout(): Observable<PersonAndProductsCombinedForCheckOut[]> {
         return this.http.get('http://localhost:8080/checkout/getAllCheckout')
             .pipe(map((response: Response) => response.json(),

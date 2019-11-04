@@ -6,6 +6,7 @@ import { Person } from '../manage/person';
 import { ProductService } from '../manage/manage.service';
 import { PersonAndProductsCombinedForCheckOut } from '../manage/checkout';
 import { ProductsForCheckOut } from '../manage/productsforcheckout';
+import { Router } from '@angular/router';
 
 declare var jquery:any;
 declare var $ :any;
@@ -26,7 +27,7 @@ person=new Person();
 cashOnDelivery:boolean;
 saveInfo:boolean;
 total:number=0;
-  constructor(private productService:ProductService,private productServiceForCart:ProductServiceForCart) {
+  constructor(private productService:ProductService,private productServiceForCart:ProductServiceForCart,private router:Router) {
 
    }
 
@@ -56,6 +57,7 @@ this.person=JSON.parse(localStorage.getItem('person'));
 this.saveInfo=true;
 this.cashOnDelivery=true;
 }
+
 
   }
 
@@ -87,13 +89,19 @@ this.person.cartNumber=this.cartNumber;
 this.person.total=''+this.total;
 
     this.personAndProductsCombinedForCheckOut.person=this.person;
-    console.log(''+this.productsForCheckOuts)
-    console.log(''+this.person)
-
+   
 this.productService.addCheckout(this.personAndProductsCombinedForCheckOut)
 .subscribe(response => {
   if(response.statusText==='OK'){
-    alert('Your order is completed successfully !');
+   
+
+
+
+alert('Your order is completed successfully !');
+
+this.freshLocalstorage();
+
+
   }
   },
   (error)=>{
@@ -101,10 +109,26 @@ this.productService.addCheckout(this.personAndProductsCombinedForCheckOut)
   });
 
 
-
   }
 
+  freshLocalstorage(){
+
+
+    let cn:number=0;
+    let tt:number=0;
+    localStorage.setItem('cartNumber',JSON.stringify(cn));
+    localStorage.setItem('total',JSON.stringify(tt));
+    localStorage.removeItem('cart');
+    //----------------load------------
+  if (!localStorage.getItem('foo')) { 
+    localStorage.setItem('foo', 'no reload') 
+    location.reload() 
+    localStorage.removeItem('foo')
+  } else {
+    localStorage.removeItem('foo') 
   
+  }
+  }
 
 
 
@@ -115,5 +139,7 @@ this.productService.addCheckout(this.personAndProductsCombinedForCheckOut)
       this.total += item.product.soldPrice * item.quantity;
     }
     }
+
+   
 
 }
