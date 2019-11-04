@@ -33,15 +33,15 @@ public abstract class TimeSetting<ID> {
 	@PrePersist
 	public void prepersist() {
 		Date currentDate = new Date();
-		this.createdDate = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss aa").format(currentDate);
-		this.lastModifiedDate = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss aa").format(currentDate);
+		this.createdDate = new SimpleDateFormat("dd/MM/yyyy , hh:mm:ss aa").format(currentDate);
+		this.lastModifiedDate = new SimpleDateFormat("dd/MM/yyyy , hh:mm:ss aa").format(currentDate);
 
 	}
 
 	@PreUpdate
 	public void preUpdate() {
 		Date currentDate = new Date();
-		this.lastModifiedDate = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss aa").format(currentDate);
+		this.lastModifiedDate = new SimpleDateFormat("dd/MM/yyyy , hh:mm:ss aa").format(currentDate);
 
 }
 }

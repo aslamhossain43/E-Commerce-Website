@@ -24,9 +24,14 @@ private String email;
 private String presentAddress;
 private String permanentAddress;
 private String promoCode;
+private String cartNumber;
+private String total;
 
 @OneToMany(mappedBy="person",cascade=CascadeType.ALL)
 private Set<ProductsForCheckOut> productsForCheckOuts;
+
+
+
 
 @Override
 public Long getId() {
@@ -100,6 +105,22 @@ public void setProductsForCheckOuts(Set<ProductsForCheckOut> productsForCheckOut
 
 public void setId(Long id) {
 	this.id = id;
+}
+
+public String getCartNumber() {
+	return cartNumber;
+}
+
+public void setCartNumber(String cartNumber) {
+	this.cartNumber = cartNumber;
+}
+
+public String getTotal() {
+	return total;
+}
+
+public void setTotal(String total) {
+	this.total = total;
 }
 
 
