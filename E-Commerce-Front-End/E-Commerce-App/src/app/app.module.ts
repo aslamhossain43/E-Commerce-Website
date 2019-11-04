@@ -26,6 +26,7 @@ import { NgMaterialModule } from './app.materials';
 import { RouterModule } from '@angular/router';
 import { ProductFilterPipe } from './home/home.filter.pipe';
 import { ProductServiceForCart } from './app.cart-service';
+import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ProductServiceForCart } from './app.cart-service';
     CheckoutComponent,
     ProductDetailsComponent,
      //for filtering
-     ProductFilterPipe
+     ProductFilterPipe,
+     ManageCheckoutComponent
 
   ],
   imports: [

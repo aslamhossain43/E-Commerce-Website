@@ -5,6 +5,7 @@ import { Item } from '../cart-entities/item';
 import { Person } from '../manage/person';
 import { ProductService } from '../manage/manage.service';
 import { PersonAndProductsCombinedForCheckOut } from '../manage/checkout';
+import { ProductsForCheckOut } from '../manage/productsforcheckout';
 
 declare var jquery:any;
 declare var $ :any;
@@ -16,7 +17,7 @@ declare var $ :any;
 export class CheckoutComponent implements OnInit {
 items: Item[]=[];
 personAndProductsCombinedForCheckOut=new PersonAndProductsCombinedForCheckOut();
-products:Product[]=[];
+productsForCheckOuts:ProductsForCheckOut[]=[];
 product=new Product();
 cartNumber:string;
 promo_code_proxy:string;
@@ -39,6 +40,8 @@ total:number=0;
           $(this).siblings('label').removeClass('active');
       }
   });
+
+
 //for cart
   this.items=this.productServiceForCart.allItemsFromLocalStorage();
   this.getTotal();
@@ -48,18 +51,28 @@ console.log('promo code : '+this.promo_code_original);
 this.promo_code_proxy=Math.random().toString(36).substring(1,36);
 console.log('promo code : '+this.promo_code_proxy);
 
+if(localStorage.getItem('person')!=null){
+this.person=JSON.parse(localStorage.getItem('person'));
+this.saveInfo=true;
+this.cashOnDelivery=true;
+}
+
   }
 
   continueCheckout():void{
 
     this.items.forEach(element => {
-this.products.push(element.product);      
+      //if id not null then it is not work in server for cascadeType.ALL
+      element.product.id=null;
+      element.product.quantity=''+element.quantity;
+this.productsForCheckOuts.push(element.product);      
     });
-    this.personAndProductsCombinedForCheckOut.products=this.products;
+    this.personAndProductsCombinedForCheckOut.productsForCheckOuts=this.productsForCheckOuts;
     if (localStorage.getItem('promo_code_proxy')!=null) {
       
       this.person.promoCode=this.promo_code_original;
     } else {
+      this.person.promoCode='';
       localStorage.setItem('promo_code_proxy',JSON.stringify(this.promo_code_proxy));
     }
 
@@ -70,8 +83,11 @@ if(localStorage.getItem('person')==null){
 
 }
 
+this.person.cartNumber=this.cartNumber;
+this.person.total=''+this.total;
+
     this.personAndProductsCombinedForCheckOut.person=this.person;
-    console.log(''+this.products)
+    console.log(''+this.productsForCheckOuts)
     console.log(''+this.person)
 
 this.productService.addCheckout(this.personAndProductsCombinedForCheckOut)

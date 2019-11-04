@@ -9,10 +9,12 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.component';
 
 const routes: Routes = [
 {path:'',component:HomeComponent},
 {path:'manage',component:ManageComponent},
+{path:'manageCheckout',component:ManageCheckoutComponent},
 
 {path:'aboutUs',component:AboutusComponent},
 {path:'ourProducts',component:OurproductsComponent},

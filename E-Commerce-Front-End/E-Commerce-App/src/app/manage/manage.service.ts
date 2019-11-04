@@ -65,6 +65,16 @@ export class ProductService {
        
     }
 
+    getAllCheckout(): Observable<PersonAndProductsCombinedForCheckOut[]> {
+        return this.http.get('http://localhost:8080/checkout/getAllCheckout')
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+
+
+
 
 
     emailSending(emailSending:EmailSending) {

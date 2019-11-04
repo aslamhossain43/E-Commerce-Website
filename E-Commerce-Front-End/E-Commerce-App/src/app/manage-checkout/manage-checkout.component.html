@@ -1,0 +1,222 @@
+<!--Main layout-->
+<main class="mt-5 pt-4">
+    <div *ngFor="let personAndProductsCombinedForCheckOut of personAndProductsCombinedForCheckOuts" class="container wow fadeIn">
+  
+      <!-- Heading -->
+      <h2 class="my-5 h2 text-center">Buyer informations</h2>
+      <h5 class="my-5 h2 text-center" > Ordered Time : {{personAndProductsCombinedForCheckOut.person.createdDate}}</h5>
+  
+      <!--Grid row-->
+      <div class="row">
+  
+  
+  
+  
+  
+  
+  
+        <!--Grid column for cart-->
+        <div class="col-md-4 mb-4">
+  
+          <!-- Heading -->
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Cart informations</span>
+            <span class="badge badge-secondary badge-pill">{{personAndProductsCombinedForCheckOut.person.cartNumber}}</span>
+          </h4>
+  
+          <!-- Cart -->
+          <ul class="list-group mb-3 z-depth-1">
+            <li *ngFor="let product of personAndProductsCombinedForCheckOut.productsForCheckOuts"  class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <img id="cartImg" src="http://localhost:8080/getPhotos/{{product.frontCode}}" alt=""><br>
+                <small class="text-muted"> Category : {{product.category}}<br></small>
+  
+                <small class="text-muted"> Brand : {{product.brand}}<br></small>
+                <small class="text-muted"> Name : {{product.name}}<br></small>
+                <small class="text-muted"> Color : {{product.color}}</small>
+              </div>
+              <span class="text-muted">{{product.quantity}}<i class="fa fa-times"
+                aria-hidden="true"></i>{{product.soldPrice}} Tk.</span>
+            </li>
+  
+  
+  
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+               <small class="text-muted"></small>
+                </div>
+    
+                <span class="text-muted">Total = {{personAndProductsCombinedForCheckOut.person.total}} Tk.</span>
+              </li>
+  
+  
+  
+          </ul>
+          <!-- Cart -->
+  
+          <!-- Promo code -->
+          <form class="card p-2">
+  
+  
+  
+            <div class="input-group">
+  
+  
+              <input type="text" value="{{personAndProductsCombinedForCheckOut.person.promoCode}}"  class="form-control"
+                aria-label="Recipient's username" aria-describedby="basic-addon2" readonly>
+              <div class="input-group-append">
+                <button disabled class="btn btn-secondary btn-md waves-effect m-0" type="button">Promo code</button>
+              </div>
+            </div>
+          </form>
+          <!-- Promo code -->
+  
+        </div>
+        <!--//Grid column for cart-->
+  
+  
+  
+  
+  
+  
+  
+        <!--Grid column for person information-->
+        <div class="col-md-8 mb-4">
+  
+          <!--Card-->
+          <div class="card">
+  
+            <!--Card content-->
+            <form class="card-body">
+  
+  
+              <!--Grid row-->
+              <div class="row">
+  
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+  
+                  <!--firstName-->
+                  <div class="md-form">
+                    <input mdbInput type="text" value="{{personAndProductsCombinedForCheckOut.person.firstName}}" id="firstNameId"
+                      class="form-control" placeholder="First name" readonly>
+                    <label for="firstNameId" class="">First name</label>
+                  </div>
+  
+                </div>
+                <!--Grid column-->
+  
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+  
+                  <!--lastName-->
+                  <div class="md-form">
+                    <input mdbInput type="text" value="{{personAndProductsCombinedForCheckOut.person.lastName}}" name="lastName" id="lastNameId" class="form-control"
+                     placeholder="Last name" readonly>
+                    <label for="lastNameId" class="">Last name</label>
+                  </div>
+  
+                </div>
+                <!--Grid column-->
+  
+              </div>
+              <!--Grid row-->
+  
+  
+  
+  
+              <!--Grid row-->
+              <div class="row">
+  
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+                  <!--phone-->
+                  <div class="md-form mb-5">
+                    <input mdbInput type="text" value="{{personAndProductsCombinedForCheckOut.person.phone}}" name="phone" id="phoneId" class="form-control"
+                     placeholder="Phone number" readonly>
+                    <label for="phoneId" class="">Phone Number</label>
+                  </div>
+  
+                </div>
+                <!--Grid column-->
+  
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+  
+  
+  
+  
+                  <!--email-->
+                  <div class="md-form mb-5">
+                    <input mdbInput type="email" value="{{personAndProductsCombinedForCheckOut.person.email}}" name="email" id="emailId" class="form-control"
+                     placeholder="Email" readonly>
+                    <label for="emailId" class="">Email (optional)</label>
+                  </div>
+  
+                </div>
+                <!--Grid column-->
+  
+              </div>
+              <!--Grid row-->
+  
+  
+  
+  
+  
+              <!--Grid row-->
+              <div class="row">
+  
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+  
+                  <!--present address-->
+                  <div class="md-form mb-5">
+                    <input mdbInput type="text" value="{{personAndProductsCombinedForCheckOut.person.presentAddress}}" name="presentAddress" id="paddress"
+                      class="form-control" placeholder="Present address" readonly>
+                    <label for="paddress" class="">Present Address</label>
+                  </div>
+  
+                </div>
+                <!--Grid column-->
+  
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+  
+  
+  
+  
+  
+                  <!--permanent address-->
+                  <div class="md-form mb-5">
+                    <input mdbInput type="text" value="{{personAndProductsCombinedForCheckOut.person.permanentAddress}}" name="permanentAddress" id="peraddress"
+                      class="form-control" placeholder="Permanent address" readonly>
+                    <label for="peraddress" class="">Permanent Address (optional)</label>
+                  </div>
+  
+  
+                </div>
+                <!--Grid column-->
+  
+              </div>
+              <!--Grid row-->
+  
+  
+  
+              <hr class="mb-4">
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Remove order</button>
+  
+            </form>
+  
+          </div>
+          <!--/.Card-->
+  
+        </div>
+        <!--//Grid column for person information-->
+  
+      </div>
+      <!--Grid row-->
+  <hr>
+    </div>
+    
+  </main>
+  <!--Main layout-->

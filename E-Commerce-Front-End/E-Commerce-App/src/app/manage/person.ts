@@ -8,5 +8,7 @@ email:string;
 presentAddress:string;
 permanentAddress:string;
 promoCode:string;
-
+createdDate:string;
+cartNumber:string;
+total:string;
 }
