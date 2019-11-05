@@ -7,6 +7,8 @@ import { Category } from './category';
 import { Carousel } from './carousel';
 import { EmailSending } from './manage.email';
 import { PersonAndProductsCombinedForCheckOut } from './checkout';
+import { Fb } from './fb';
+import { Twitter } from './twitter';
 @Injectable()
 export class ProductService {
     constructor(private http: Http) {
@@ -57,6 +59,25 @@ export class ProductService {
         }
     }
 
+
+
+    addFb(fb:Fb) {
+        const body = JSON.stringify(fb);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.post(`http://localhost:8080/link/addFb`, body, options);
+        
+    }
+
+    addTwitter(twitter:Twitter) {
+        const body = JSON.stringify(twitter);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.post(`http://localhost:8080/link/addTwitter`, body, options);
+        
+    }
+
+
     addCheckout(personAndProductsCombinedForCheckOut:PersonAndProductsCombinedForCheckOut) {
         const body = JSON.stringify(personAndProductsCombinedForCheckOut);
         const headers = new Headers({ 'Content-Type': 'application/json' });
@@ -102,6 +123,20 @@ export class ProductService {
 
     getProductById(id: string): Observable<Product> {
         return this.http.get('http://localhost:8080/products/getProductById/' + id)
+            .pipe(map((response: Response) => response.json(),
+                catchError(this.handlError)
+            ));
+    }
+
+    getFb(): Observable<Fb> {
+        return this.http.get('http://localhost:8080/link/getFb')
+            .pipe(map((response: Response) => response.json(),
+                catchError(this.handlError)
+            ));
+    }
+
+    getTwitter(): Observable<Twitter> {
+        return this.http.get('http://localhost:8080/link/getTwitter')
             .pipe(map((response: Response) => response.json(),
                 catchError(this.handlError)
             ));

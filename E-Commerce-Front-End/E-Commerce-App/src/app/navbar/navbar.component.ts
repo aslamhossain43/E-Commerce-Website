@@ -9,6 +9,9 @@ import { EmailSending } from '../manage/manage.email';
 import { Item } from '../cart-entities/item';
 import { Product } from '../cart-entities/product';
 import { ProductServiceForCart } from '../app.cart-service';
+import { Fb } from '../manage/fb';
+import { Twitter } from '../manage/twitter';
+import { Alert } from 'selenium-webdriver';
 declare var jquery:any;
 declare var $ :any;
 
@@ -32,6 +35,10 @@ selectedpFiles: FileList;
 //for carousel files
 selectedCFiles: FileList;
 carousel=new Carousel();
+fb=new Fb();
+fbLink:Fb;
+twitter=new Twitter();
+twitterLink:Twitter
 //-------for cart--------
 id:string;
 quantity:number;
@@ -52,6 +59,8 @@ cartNumber:number=0;
 
 this.getAllCategories();
 this.getAllCarousel();
+this.getFb();
+this.getTwitter();
 //----------------for cart---------------
 this.products=this.productServiceForCart.findAll();
 this.id=this.activatedRoute.snapshot.paramMap.get('id');
@@ -354,6 +363,70 @@ remove(id: string): void {
   }
 }
 //--------------------------------------------
+
+fbSave(){
+  this.productService.addFb(this.fb)
+  .subscribe(response => {
+   if(response.statusText==='OK'){
+     alert('Link added successfully !');
+     this.fb=new Fb();
+   } 
+  },
+  (error)=>{
+
+  });
+}
+
+
+
+
+
+getFb():void{
+
+this.productService.getFb()
+.subscribe(response=>{
+  this.fbLink=response;
+},
+(error)=>{
+
+});
+
+}
+
+
+
+
+
+twitterSave(){
+  this.productService.addTwitter(this.twitter)
+  .subscribe(response => {
+   if(response.statusText==='OK'){
+     alert('Link added successfully !');
+     this.twitter=new Twitter();
+   } 
+  },
+  (error)=>{
+
+  });
+}
+
+
+
+
+
+getTwitter():void{
+
+this.productService.getTwitter()
+.subscribe(response=>{
+  this.twitterLink=response;
+},
+(error)=>{
+
+});
+
+}
+
+
 
 
 
