@@ -31,7 +31,7 @@
         <li id="paddingListId" class="nav-item">
           <a class="nav-link waves-effect" href="contactUs" target="_blank">Contact Us</a>
         </li>
-        <li id="paddingListId" class="btn-group" mdbDropdown>
+        <li id="paddingListId" *ngIf="uid === emailUid" class="btn-group" mdbDropdown>
           <a class="nav-link waves-effect" mdbDropdownToggle>Admin Section</a>
           <div class="dropdown-menu">
               <a class="dropdown-item" href="JavaScript:Void(0);" (click)="addProductModal.show()">Add new product</a>
@@ -52,12 +52,17 @@
       <ul class="navbar-nav nav-flex-icons">
 
 
+        <li id="paddingListId" *ngIf="!authenticatedName" class="nav-item">
+          <a href="login" class="nav-link waves-effect" target="_blank">Sign in
+          </a>
+        </li>
 
-          <li id="ppId" class="btn-group" mdbDropdown>
 
-              <img src="assets/aslam-1.jpg" mdbDropdownToggle class="rounded-circle img-fluid">
+          <li id="ppId" *ngIf="photoUrl" class="btn-group" mdbDropdown>
+
+              <a><img [src]="photoUrl"  mdbDropdownToggle class="rounded-circle img-fluid"></a>
               <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
+                  <a class="dropdown-item" href="JavaScript:Void()" (click)="logout()" >Log Out ({{authenticatedName}})</a>
                 </div>
           
         

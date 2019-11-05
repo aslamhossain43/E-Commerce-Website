@@ -12,6 +12,7 @@ import { ProductServiceForCart } from '../app.cart-service';
 import { Fb } from '../manage/fb';
 import { Twitter } from '../manage/twitter';
 import { Alert } from 'selenium-webdriver';
+import { AngularFireAuth } from '@angular/fire/auth';
 declare var jquery:any;
 declare var $ :any;
 
@@ -46,11 +47,19 @@ items: Item[] = [];
 total: number = 0;
 cartNumber:number=0;
 //-----------------------
+emailUid='qCv0iprRpzcdX5eLSaP6WMpV9X73';
 
+
+  uid: string;
+  authenticatedName: any;
+  photoUrl: string;
+
+//----------------------
   constructor(private ngWowService:NgwWowService,private productService:ProductService,
     private uploadFileService:UploadFileService,private router:Router,private activatedRoute:ActivatedRoute,
-    private productServiceForCart:ProductServiceForCart){
+    private productServiceForCart:ProductServiceForCart,public af: AngularFireAuth){
       this.getAllCarousel();
+      this.loginProperties();
     
   }
  
@@ -61,6 +70,7 @@ this.getAllCategories();
 this.getAllCarousel();
 this.getFb();
 this.getTwitter();
+
 //----------------for cart---------------
 this.products=this.productServiceForCart.findAll();
 this.id=this.activatedRoute.snapshot.paramMap.get('id');
@@ -427,8 +437,42 @@ this.productService.getTwitter()
 }
 
 
+loginProperties() {
+  this.af.authState.subscribe(auth => {
+    if (auth !== null) {
+      if (!auth.displayName) {
+        this.authenticatedName = auth.email;
+      } else {
+        this.authenticatedName = auth.displayName;
+      }
+      this.photoUrl = auth.photoURL;
+      this.uid = auth.uid;
+      console.log('uid: ' + auth.uid);
+    }
+  });
+}
 
+// LOGOUT
+logout() {
+  this.af.auth.signOut();
+  this.authenticatedName = null;
+  this.photoUrl = null;
+  
+ this.loadPage();
+}
 
+loadPage(){
 
+ //----------------load------------
+ if (!localStorage.getItem('foo')) { 
+  localStorage.setItem('foo', 'no reload') 
+  location.reload() 
+  localStorage.removeItem('foo')
+} else {
+  localStorage.removeItem('foo') 
+
+}
+
+}
 
 }

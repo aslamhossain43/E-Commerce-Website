@@ -1,0 +1,60 @@
+// AUTHENTICATION
+
+.form-container {
+    background:rgb(149, 146, 197);
+    padding:1.2em;
+    margin-top: 10%;
+   margin-bottom: 5%;
+    width:50%;
+    margin-left:25%;
+    height:100%;
+  }
+  
+button{
+    padding:1.2em;
+    width:100%;
+    cursor:pointer;
+    margin-bottom:15px;
+    font-size:1em;
+}
+
+
+#lock {
+    width:40%;
+    margin: 1.2em auto 1em auto;
+    display:block;
+}
+
+
+#fb {
+    border: 1px solid #95989A;
+     background:rgb(31, 93, 226);
+    background-size: 25px;
+    color:#fff;
+}
+
+#google {
+    border: 1px solid #95989A;
+    background: green;
+    background-size: 25px;
+}
+
+
+@media (max-width: 600px) {
+    #page {
+        padding:1em;
+    }
+    #toolbar {
+        width:90%;
+        margin-left: -45%;
+    }
+    #fb {
+        background:#3B5998;
+    }
+
+    #google {
+        background: #fff;
+    }
+
+}
+

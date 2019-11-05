@@ -27,6 +27,11 @@ import { RouterModule } from '@angular/router';
 import { ProductFilterPipe } from './home/home.filter.pipe';
 import { ProductServiceForCart } from './app.cart-service';
 import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,8 @@ import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.compo
     ProductDetailsComponent,
      //for filtering
      ProductFilterPipe,
-     ManageCheckoutComponent
+     ManageCheckoutComponent,
+     LoginComponent
 
   ],
   imports: [
@@ -54,7 +60,8 @@ import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.compo
    
   //MATERIAL
   NgMaterialModule,
-  
+  //for auth
+  AngularFireModule.initializeApp(environment.firebase),
 
     FormsModule,
     HttpModule,
@@ -66,7 +73,7 @@ import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.compo
 
   ],
     schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [ProductService,UploadFileService,ProductServiceForCart],
+  providers: [ProductService,UploadFileService,ProductServiceForCart,AuthGuard,AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
