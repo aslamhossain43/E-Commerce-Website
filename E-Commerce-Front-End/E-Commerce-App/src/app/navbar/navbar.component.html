@@ -26,7 +26,7 @@
           <a class="nav-link waves-effect" href="ourProducts" target="_blank">Our Products</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" href="sellToUs" target="_blank">Sell On ZubiShopping</a>
+          <a class="nav-link waves-effect" href="sellToUs" target="_blank">Sell On Tizaramart</a>
         </li>
         <li id="paddingListId" class="nav-item">
           <a class="nav-link waves-effect" href="contactUs" target="_blank">Contact Us</a>
@@ -37,8 +37,9 @@
               <a class="dropdown-item" href="JavaScript:Void(0);" (click)="addProductModal.show()">Add new product</a>
               <a class="dropdown-item" href="JavaScript:Void(0);" (click)="addCarouselModal.show()">Edit carousel pictures</a>
               <a class="dropdown-item" href="manageCheckout">Manage checkout</a>
-              <a class="dropdown-item" href="#">Log Out (Atif Aslam)</a>
+              <a class="dropdown-item" href="JavaScript:Void(0)" data-toggle="modal" data-target="#FbModal">Edit facebook Link</a>
 
+              <a class="dropdown-item" href="JavaScript:Void(0)" data-toggle="modal" data-target="#twitterModal">Edit twitter Link</a>
 
 
             </div>
@@ -68,12 +69,12 @@
 
        
         <li id="paddingListId" class="nav-item">
-          <a href="" class="nav-link waves-effect" target="_blank">
+          <a href="{{fbLink.fblink}}" class="nav-link waves-effect" target="_blank">
             <i class="fab fa-facebook-f"></i>
           </a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a href="" class="nav-link waves-effect" target="_blank">
+          <a href="{{twitterLink.twitter}}" class="nav-link waves-effect" target="_blank">
             <i class="fab fa-twitter"></i>
           </a>
         </li>
@@ -477,3 +478,65 @@
     </div>
   </div>
 </div>
+
+<!--Fb modal-->
+<div class="modal fade" id="FbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add facebook link</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fab fa-facebook-f prefix grey-text"></i>
+          <input mdbInput type="text" [(ngModel)]="fb.fblink" name="fblink" id="fbId" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="fbId">Facebook link</label>
+        </div>
+
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-default" [disabled]="!fb.fblink" (click)="fbSave()" data-dismiss="modal" aria-label="Close">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--//Fb modal-->
+
+
+
+<!--Fb modal-->
+<div class="modal fade" id="twitterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Twitter link</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fab fa-twitter prefix grey-text"></i>
+          <input mdbInput type="text" [(ngModel)]="twitter.twitter" name="twitterlink" id="twitterId" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="twitterId">Twitter link</label>
+        </div>
+
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-default" [disabled]="!twitter.twitter" (click)="twitterSave()" data-dismiss="modal" aria-label="Close">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--//twitter modal-->
+
+
