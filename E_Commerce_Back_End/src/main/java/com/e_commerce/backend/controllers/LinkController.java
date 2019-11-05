@@ -68,6 +68,7 @@ public class LinkController {
 		return ResponseEntity.ok().body("ok");
 
 	}
+	
 
 	@RequestMapping(value = "/getTwitter")
 	public ResponseEntity<?> getTwitter() {
