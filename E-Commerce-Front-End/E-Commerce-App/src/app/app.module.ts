@@ -32,6 +32,7 @@ import { AuthGuard } from './auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AngularFireModule } from '@angular/fire';
      //for filtering
      ProductFilterPipe,
      ManageCheckoutComponent,
-     LoginComponent
+     LoginComponent,
+     FooterComponent
 
   ],
   imports: [

@@ -48,6 +48,7 @@ total: number = 0;
 cartNumber:number=0;
 //-----------------------
 emailUid='qCv0iprRpzcdX5eLSaP6WMpV9X73';
+fbUid='7fHZCwUlZyfLPm8ScDVkOkswM932';
 
 
   uid: string;

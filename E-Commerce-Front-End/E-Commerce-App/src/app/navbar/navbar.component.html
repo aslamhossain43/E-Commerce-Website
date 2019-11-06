@@ -31,7 +31,7 @@
         <li id="paddingListId" class="nav-item">
           <a class="nav-link waves-effect" href="contactUs" target="_blank">Contact Us</a>
         </li>
-        <li id="paddingListId" *ngIf="uid === emailUid" class="btn-group" mdbDropdown>
+        <li id="paddingListId" *ngIf="uid===fbUid || uid === emailUid" class="btn-group" mdbDropdown>
           <a class="nav-link waves-effect" mdbDropdownToggle>Admin Section</a>
           <div class="dropdown-menu">
               <a class="dropdown-item" href="JavaScript:Void(0);" (click)="addProductModal.show()">Add new product</a>
@@ -437,7 +437,7 @@
     <div class="modal-content">
      
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Send email to authority </h4>
+        <h4 class="modal-title w-100 font-weight-bold">Send email to us </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -448,7 +448,7 @@
 
           <div class="md-form mb-4">
               <i class="fas fa-user-circle prefix grey-text"></i>
-            <input type="text" id="user" [(ngModel)]="emailSending.name" class="form-control validate">
+            <input mdbInput type="text" id="user" [(ngModel)]="emailSending.name" class="form-control validate">
               <label data-error="wrong" data-success="right" for="user">Your name</label>
             </div>
     
@@ -457,20 +457,20 @@
 
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="mail" [(ngModel)]="emailSending.from" class="form-control validate">
+          <input mdbInput type="email" id="mail" [(ngModel)]="emailSending.from" class="form-control validate">
           <label data-error="wrong" data-success="right" for="mail">Your email</label>
         </div>
 
         <div class="md-form mb-4">
             <i class="fas fa-phone prefix grey-text"></i>
-          <input type="text" id="phn" [(ngModel)]="emailSending.phone" class="form-control validate">
+          <input mdbInput type="text" id="phn" [(ngModel)]="emailSending.phone" class="form-control validate">
           <label data-error="wrong" data-success="right" for="phn">Your phone</label>
         </div>
 
 
         <div class="md-form mb-4">
             <i class="far fa-comment prefix grey-text"></i>
-            <input type="text" id="msg" [(ngModel)]="emailSending.message" class="form-control validate">
+            <textarea mdbInput type="text" class="md-textarea form-control" rows="2" id="msg" [(ngModel)]="emailSending.message"></textarea>
             <label data-error="wrong" data-success="right" for="phn">Your message</label>
           </div>
 
