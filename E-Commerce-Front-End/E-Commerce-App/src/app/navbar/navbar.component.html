@@ -26,7 +26,7 @@
           <a class="nav-link waves-effect" href="ourProducts" target="_blank">Our Products</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" href="sellToUs" target="_blank">Sell On Tizaramart</a>
+          <a class="nav-link waves-effect" href="JavaScript:Void(0);" (click)="thirdProductModal.show()">Sell On Tizaramart</a>
         </li>
         <li id="paddingListId" class="nav-item">
           <a class="nav-link waves-effect" href="contactUs" target="_blank">Contact Us</a>
@@ -40,6 +40,7 @@
               <a class="dropdown-item" href="JavaScript:Void(0)" data-toggle="modal" data-target="#FbModal">Edit facebook Link</a>
 
               <a class="dropdown-item" href="JavaScript:Void(0)" data-toggle="modal" data-target="#twitterModal">Edit twitter Link</a>
+              <a class="dropdown-item" href="sellToUs">3rd party products</a>
 
 
             </div>
@@ -321,6 +322,138 @@
 
 
 <!--/Add product modal-->
+
+
+
+
+
+<!--Add 3rd product modal-->
+
+
+
+<div id="addProductM" mdbModal #thirdProductModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="thirdProductModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Add your product here !</h4>
+      </div>
+      <div class="modal-body">
+        
+
+
+
+
+        <div class="md-form mb-5">
+          <input mdbInput type="text" id="yourname" class="form-control validate" [(ngModel)]="thirdPartyProduct.yourname" required>
+          <label data-error="wrong" data-success="right" for="yourname">Your name</label>
+        </div>
+
+
+        <div class="md-form mb-5">
+          <input mdbInput type="text" id="yourphn" class="form-control validate" [(ngModel)]="thirdPartyProduct.yourphn" required>
+          <label data-error="wrong" data-success="right" for="yourphn">Your phone</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <input mdbInput type="text" id="youraddress" class="form-control validate" [(ngModel)]="thirdPartyProduct.youraddress" required>
+          <label data-error="wrong" data-success="right" for="youraddress">Your address (Within 20 words)</label>
+        </div>
+
+
+
+
+
+
+
+          <div class="md-form mb-5">
+              <input mdbInput type="text" id="name" class="form-control validate" [(ngModel)]="thirdPartyProduct.name" required>
+              <label data-error="wrong" data-success="right" for="name">Name of product</label>
+            </div>
+    
+    
+            <div class="md-form mb-5">
+              <input mdbInput type="text" id="brand" class="form-control validate" [(ngModel)]="thirdPartyProduct.brand" required>
+              <label data-error="wrong" data-success="right" for="brand">Brand name of product</label>
+            </div>
+    
+    
+            <div class="md-form">
+                <textarea mdbInput type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="thirdPartyProduct.description" required></textarea>
+                <label data-error="wrong" data-success="right" for="description">Description of product (Within 20 words)</label>
+              </div>
+    
+    
+    
+    
+    
+              
+
+    
+            <div class="md-form mb-5">
+              <input mdbInput type="text" id="soldPrice" class="form-control validate" [(ngModel)]="thirdPartyProduct.soldPrice" required>
+              <label data-error="wrong" data-success="right" for="soldPrice">Sold price of product (single price)</label>
+            </div>
+    
+           
+    
+              <div class="md-form mb-5">
+                  <input mdbInput type="text" id="color" class="form-control validate" [(ngModel)]="thirdPartyProduct.color" required>
+                  <label data-error="wrong" data-success="right" for="color">Color of product</label>
+                </div>
+    
+    
+                <div class="md-form mb-5">
+                    <input mdbInput type="text" id="quantity" class="form-control validate" [(ngModel)]="thirdPartyProduct.quantity" required>
+                    <label data-error="wrong" data-success="right" for="quantity">Quantity of product</label>
+                  </div>
+      
+    
+    
+
+                    <div *ngIf="!selectedtpFiles" class="input-group">
+            
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="first-picture" (change)="selecttpFile($event)"
+                          name="selectedtpFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                        <label class="custom-file-label" for="first-picture">Choose pictures  of product !</label>
+                      </div>
+                    </div>
+        
+                    <div *ngFor="let p of selectedtpFiles" class="input-group">
+                    
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="picture" (change)="selecttpFile($event)"     
+                          name="selectedtpFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                        <label class="custom-file-label" for="picture">{{p.name}}</label>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="waves-light" [disabled]="!(thirdPartyProduct.yourname && thirdPartyProduct
+        .yourphn && thirdPartyProduct.youraddress &&  thirdPartyProduct.name && thirdPartyProduct.brand && 
+        thirdPartyProduct.description && thirdPartyProduct.soldPrice && thirdPartyProduct.color && 
+        thirdPartyProduct.quantity && selectedtpFiles[0].name)" (click)="uploadThirdPartyFile()" aria-label="Close" (click)="thirdProductModal.hide()" mdbWavesEffect>Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--/Add 3rd product modal-->
+
+
+
+
+
 
 <!--Add category modal-->
 

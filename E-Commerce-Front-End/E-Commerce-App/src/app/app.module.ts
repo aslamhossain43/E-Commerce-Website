@@ -33,6 +33,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { FooterComponent } from './footer/footer.component';
+import { SelltousDetailsComponent } from './selltous-details/selltous-details.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FooterComponent } from './footer/footer.component';
      ProductFilterPipe,
      ManageCheckoutComponent,
      LoginComponent,
-     FooterComponent
+     FooterComponent,
+     SelltousDetailsComponent
 
   ],
   imports: [

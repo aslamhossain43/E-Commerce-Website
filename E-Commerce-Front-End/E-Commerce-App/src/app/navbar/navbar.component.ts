@@ -13,6 +13,7 @@ import { Fb } from '../manage/fb';
 import { Twitter } from '../manage/twitter';
 import { Alert } from 'selenium-webdriver';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ThirdPartyProduct } from '../manage/thirdparty-product';
 declare var jquery:any;
 declare var $ :any;
 
@@ -25,7 +26,7 @@ export class NavbarComponent implements OnInit{
  
  product=new Product();
  products:Product[];
-
+thirdPartyProduct=new ThirdPartyProduct();
  
  category=new Category();
  categories:Category[];
@@ -33,6 +34,8 @@ export class NavbarComponent implements OnInit{
  emailSending=new EmailSending();
  // FOR FILE
 selectedpFiles: FileList;
+
+selectedtpFiles: FileList;
 //for carousel files
 selectedCFiles: FileList;
 carousel=new Carousel();
@@ -188,6 +191,9 @@ this.router.navigate(['productDetails',this.id]);
 selectpFile(event) {
   this.selectedpFiles = event.target.files;
 }
+selecttpFile(event) {
+  this.selectedtpFiles = event.target.files;
+}
 // CAROUSEL FILES UPLOAD
 selectCFile(event) {
   this.selectedCFiles = event.target.files;
@@ -230,6 +236,11 @@ resetCarousel():void{
         }
       );
   }
+
+
+
+
+
   
   // ADD CONSUMERS
   addProduct(): void {
@@ -244,8 +255,38 @@ resetCarousel():void{
         });
   }
   
+  uploadThirdPartyFile() {
+    this.uploadFileService.pushThirdPartyFileToStorage(this.selectedtpFiles)
+      .subscribe(response => {
+        if (response.statusText === 'OK') {
+          this.addThirdPartyProduct();
+        }
+      },
+        (error) => {
+          console.log(error.statusText);
+          // YOU MUST NOT CHANGE THIS FORMAT
+          alert('Your operation is failed ! please select valid image .');
+          this.productReset();
+        }
+      );
+  }
 
 
+  addThirdPartyProduct(): void {
+    this.productService.addThirdPartyProduct(this.thirdPartyProduct)
+      .subscribe(response => {
+        if (response.statusText === 'OK') {
+          alert('Operation success !');
+          this.thirdPartyProductReset();
+        }
+      },
+        (error) => {
+        });
+  }
+
+  thirdPartyProductReset(){
+    this.thirdPartyProduct=new ThirdPartyProduct();
+  }
 
  getAllCarousel(): void {
         this.productService.getAllCarousel()

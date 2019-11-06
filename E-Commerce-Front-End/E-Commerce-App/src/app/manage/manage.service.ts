@@ -9,6 +9,7 @@ import { EmailSending } from './manage.email';
 import { PersonAndProductsCombinedForCheckOut } from './checkout';
 import { Fb } from './fb';
 import { Twitter } from './twitter';
+import { ThirdPartyProduct } from './thirdparty-product';
 @Injectable()
 export class ProductService {
     constructor(private http: Http) {
@@ -29,8 +30,25 @@ export class ProductService {
         }
     }
 
+
+    addThirdPartyProduct(tpProduct: ThirdPartyProduct) {
+        const body = JSON.stringify(tpProduct);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+            return this.http.post('http://localhost:8080/thirdParty/addThirdPartyProduct', body, options);
+       
+    }
+
     getAllProducts(): Observable<Product[]> {
         return this.http.get('http://localhost:8080/products/getAllProducts')
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+
+    getAllThirdPartyProducts(): Observable<ThirdPartyProduct[]> {
+        return this.http.get('http://localhost:8080/thirdParty/getAllThirdPartyProducts')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -126,6 +144,24 @@ export class ProductService {
             .pipe(map((response: Response) => response.json(),
                 catchError(this.handlError)
             ));
+    }
+
+    getThirdPartyProductById(id: string): Observable<ThirdPartyProduct> {
+        return this.http.get('http://localhost:8080/thirdParty/getThirdPartyProductById/' + id)
+            .pipe(map((response: Response) => response.json(),
+                catchError(this.handlError)
+            ));
+    }
+
+
+    deleteProductById(id: string){
+        return this.http.delete('http://localhost:8080/products/delete/' + id);
+          
+    }
+
+    deleteThirdPartyProductById(id: string){
+        return this.http.delete('http://localhost:8080/thirdParty/delete/' + id);
+          
     }
 
     getFb(): Observable<Fb> {

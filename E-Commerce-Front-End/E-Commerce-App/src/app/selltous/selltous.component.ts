@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ThirdPartyProduct } from '../manage/thirdparty-product';
+import { ProductService } from '../manage/manage.service';
 
 @Component({
   selector: 'app-selltous',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./selltous.component.scss']
 })
 export class SelltousComponent implements OnInit {
-
-  constructor() { }
+tpProducts:ThirdPartyProduct[];
+  constructor(private productService:ProductService) { }
 
   ngOnInit() {
+    this.getAlltpProducts();
+  }
+
+  getAlltpProducts():void{
+    this.productService.getAllThirdPartyProducts()
+    .subscribe(tpProducts=>{
+      this.tpProducts=tpProducts;
+    },
+    (error)=>{
+
+    })
   }
 
 }

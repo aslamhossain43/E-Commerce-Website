@@ -24,6 +24,18 @@ export class UploadFileService {
      return this.http.post('http://localhost:8080/carousel/addCFiles', formdata);
   }
 
+  pushThirdPartyFileToStorage(pictures:FileList) {
+    const formdata: FormData = new FormData();
+    
+    
+    for (let x = 0; x < pictures.length; x++) {
+      formdata.append("tpFiles", pictures[x]);
+    }
+
+
+     return this.http.post('http://localhost:8080/thirdParty/addtpFiles', formdata);
+  }
+
 
 
 

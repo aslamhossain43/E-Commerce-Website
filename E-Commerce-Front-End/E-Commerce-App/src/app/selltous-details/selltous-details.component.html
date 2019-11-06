@@ -1,0 +1,148 @@
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+
+<!--Grid column-->
+<div id="gridColumn" class="col-md-6 mb-4">
+
+
+
+       <!--carousel-->
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li *ngIf="product.frontCode" data-target="#demo" data-slide-to="0" class="active"></li>
+    <li *ngIf="product.backCode" data-target="#demo" data-slide-to="1"></li>
+    <li *ngIf="product.leftCode" data-target="#demo" data-slide-to="2"></li>
+    <li *ngIf="product.rightCode" data-target="#demo" data-slide-to="3"></li>
+    <li *ngIf="product.headCode" data-target="#demo" data-slide-to="4"></li>
+    <li *ngIf="product.footCode" data-target="#demo" data-slide-to="5"></li>
+
+
+
+
+   
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+
+
+    <div *ngIf="product.frontCode" class="carousel-item active">
+      <img src="http://localhost:8080/getPhotos/{{product.frontCode}}" alt="">
+    </div>
+
+
+    <div *ngIf="product.backCode" class="carousel-item">
+      <img src="http://localhost:8080/getPhotos/{{product.backCode}}" alt="">
+    </div>
+
+
+
+
+
+
+
+    <div *ngIf="product.leftCode" class="carousel-item">
+        <img src="http://localhost:8080/getPhotos/{{product.leftCode}}" alt="">
+      </div>
+  
+  
+      <div *ngIf="product.rightCode" class="carousel-item">
+        <img src="http://localhost:8080/getPhotos/{{product.rightCode}}" alt="">
+      </div>
+
+
+
+    <div *ngIf="product.headCode" class="carousel-item">
+        <img src="http://localhost:8080/getPhotos/{{product.headCode}}" alt="">
+      </div>
+  
+  
+      <div *ngIf="product.footCode" class="carousel-item">
+        <img src="http://localhost:8080/getPhotos/{{product.footCode}}" alt="">
+      </div>
+
+
+
+   
+
+
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+<!--/.Carousel-->
+</div>
+
+
+
+
+
+
+
+
+        <!--/Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+
+            <p class="lead"><b>About seller : </b></p>
+
+            <p class="lead">Seller name : {{product.yourname}}</p>
+            <p class="lead">Seller phone : {{product.yourphn}}</p>
+            <p class="lead">Seller address : {{product.youraddress}}</p>
+
+
+            <p class="lead"><b>About product : </b></p>
+
+            <p class="lead">Product name : {{product.name}}</p>
+            <p class="lead">Product brand : {{product.brand}}</p>
+
+            <p class="lead">Product quantity : {{product.quantity}}</p>
+            <p class="lead">Product single price : {{product.soldPrice}} Tk.</p>
+            <p class="lead">Product details : {{product.description}}</p>
+          
+          
+          
+          
+
+            <form class="d-flex justify-content-left">
+              <!-- Default input -->
+               <a href="JavaScript:Void(0)" (click)="deletetpProduct(product.id)"><button type="button" mdbBtn color="danger" mdbWavesEffect><i class="fas fa-trash-alt"></i> Delete
+                 
+               </button></a>
+
+            </form>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+     
+
+    </div>
+  </main>
+  <!--Main layout-->

@@ -1,1 +1,64 @@
-<p>selltous works!</p>
+
+      <!--Section: Products v.3-->
+      <section class="text-center mb-4">
+
+        <!--Grid row -->
+        <div  class="row wow fadeIn">
+
+          <!--Grid column -->
+          <div *ngFor="let p of tpProducts" class="col-lg-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+                 <p id="dateId">Submission Date : {{p.createdDate}}</p>
+
+              <!--Card image-->
+              <div *ngIf="p.frontCode" class="view overlay">
+                <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+                <a href="JavaScript:Void(0);" [routerLink]="['sellToUs', p.id]"  target="_blank" >
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <!--/Card image-->
+
+
+
+
+
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+               
+                <h5>
+                  <strong>
+                    <a href="JavaScript:Void(0);" [routerLink]="['sellToUs', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
+                    </a>
+                  </strong>
+                </h5>
+
+                <a href="JavaScript:Void(0);" [routerLink]="['sellToUs', p.id]"  target="_blank"  class="grey-text">
+                    <h5>{{p.description}}</h5>
+                  </a>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>{{p.soldPrice}} Tk.</strong>
+                </h4>
+
+              </div>
+              <!--Card content-->
+
+            </div>
+            <!--Card-->
+
+          </div>
+          <!--Grid column-->
+          
+
+        </div>
+        <!--Grid row-->
+
+
+
+
+      </section>
