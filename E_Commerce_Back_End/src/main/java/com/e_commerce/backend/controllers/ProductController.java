@@ -1,5 +1,6 @@
 package com.e_commerce.backend.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.e_commerce.backend.files.FileUpload;
 import com.e_commerce.backend.models.Product;
+import com.e_commerce.backend.models.ThirdPartyProduct;
 import com.e_commerce.backend.repositories.ProductRepository;
 
 @RequestMapping(value = "/products")
@@ -34,6 +36,8 @@ public class ProductController {
 	@Autowired
 	ProductRepository productRepository;
 	public String[] pCodes;
+	private String photoUrl="/home/atif/SImages/";
+
 	
 	@PostMapping(value = "/addFiles")
 	public ResponseEntity<?> addProductFile(@RequestParam("pFiles") MultipartFile[] pFiles) {
@@ -239,6 +243,69 @@ public class ProductController {
 
 		return ResponseEntity.ok().body(names);
 	}
+	
+	
+	
+	
+	
+	
+	
+
+@RequestMapping(value = "/delete/{id}")
+public ResponseEntity<?> deleteProductById(@PathVariable("id") String id) {
+	LOGGER.info("From class ProductsController, method : deleteProductById() ");
+
+	long longId = Long.valueOf(id);
+	Product product=this.productRepository.getById(longId);
+	
+	
+	if (product.getFrontCode()!=null) {
+		
+	
+	File frontFile=new File(photoUrl+product.getFrontCode()+".jpeg");
+	frontFile.delete();
+	}
+
+	if (product.getBackCode()!=null) {
+		
+	File backFile=new File(photoUrl+product.getBackCode()+".jpeg");
+	backFile.delete();
+	}
+if (product.getLeftCode()!=null) {
+	
+	File leftFile=new File(photoUrl+product.getLeftCode()+".jpeg");
+	leftFile.delete();
+}
+
+if (product.getRightCode()!=null) {
+	
+	File rightFile=new File(photoUrl+product.getRightCode()+".jpeg");
+	rightFile.delete();
+}
+if (product.getHeadCode()!=null) {
+	
+	
+	File headFile=new File(photoUrl+product.getHeadCode()+".jpeg");
+	headFile.delete();
+}
+if (product.getFootCode()!=null) {
+	
+	File footerFile=new File(photoUrl+product.getFootCode()+".jpeg");
+	footerFile.delete();
+}
+	
+	
+	this.productRepository.delete(product);
+
+	
+	
+	return ResponseEntity.ok().body("OK");
+}
+
+
+	
+
+	
 	
 	
 	
