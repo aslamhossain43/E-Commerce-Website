@@ -31,42 +31,28 @@
         <li id="paddingListId" class="nav-item">
           <a class="nav-link waves-effect" href="contactUs" target="_blank">Contact Us</a>
         </li>
-        <li id="paddingListId" *ngIf="uid===fbUid || uid === emailUid" class="btn-group" mdbDropdown>
+
+        <li data-toggle="modal" (click)="admin.show()" id="paddingListId" *ngIf="photoUrl && (uid===fbUid || uid === emailUid)">
           <a class="nav-link waves-effect" mdbDropdownToggle>Admin Section</a>
-          <div class="dropdown-menu">
-              <a class="dropdown-item" href="JavaScript:Void(0);" (click)="addProductModal.show()">Add new product</a>
-              <a class="dropdown-item" href="JavaScript:Void(0);" (click)="addCarouselModal.show()">Edit carousel pictures</a>
-              <a class="dropdown-item" href="manageCheckout">Manage checkout</a>
-              <a class="dropdown-item" href="JavaScript:Void(0)" data-toggle="modal" data-target="#FbModal">Edit facebook Link</a>
-
-              <a class="dropdown-item" href="JavaScript:Void(0)" data-toggle="modal" data-target="#twitterModal">Edit twitter Link</a>
-              <a class="dropdown-item" href="sellToUs">3rd party products</a>
-
-
-            </div>
-      
-
         </li>
+
+
       </ul>
 
       <!-- Right -->
       <ul class="navbar-nav nav-flex-icons">
 
 
-        <li id="paddingListId" *ngIf="!authenticatedName" class="nav-item">
-          <a href="login" class="nav-link waves-effect" target="_blank">Sign in
+        <li id="paddingListId" *ngIf="!authenticatedName"  (click)="goToLogin()" class="nav-item">
+          <a href="JavaScript:Void(0)" class="nav-link waves-effect">Sign in
           </a>
         </li>
 
 
-          <li id="ppId" *ngIf="photoUrl" class="btn-group" mdbDropdown>
+          <li id="ppId" *ngIf="photoUrl" class="btn-group" mdbDropdown data-toggle="modal" data-target="#modalLogoutAvatar">
 
-              <a><img [src]="photoUrl"  mdbDropdownToggle class="rounded-circle img-fluid"></a>
-              <div class="dropdown-menu">
-                  <a class="dropdown-item" href="JavaScript:Void()" (click)="logout()" >Log Out ({{authenticatedName}})</a>
-                </div>
-          
-        
+              <a><img id="navPhoto" [src]="photoUrl"  mdbDropdownToggle class="rounded-circle img-fluid"></a>
+             
         
         </li>
         
@@ -677,4 +663,75 @@
 
 <!--//twitter modal-->
 
+<!--admin section modal-->
 
+<div mdbModal #admin="mdbModal" class="modal fade top modal-scrolling" id="frameModalTop" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Body-->
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center align-items-center">
+
+
+          <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="admin.hide()"
+          (click)="addProductModal.show()">Add product</a>
+
+            <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="admin.hide()"
+             (click)="addCarouselModal.show()">Edit carousel</a>
+
+            <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect 
+            href="manageCheckout">Manage checkout</a>
+
+
+            <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="admin.hide()"
+            data-toggle="modal" data-target="#FbModal">Edit Fb link</a>
+            
+            <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="admin.hide()"
+            data-toggle="modal" data-target="#twitterModal">Edit twitter link</a>
+            
+            <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect href="sellToUs">Third party product</a>
+    
+
+
+
+          <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+            data-dismiss="modal" (click)="admin.hide()">Close</a>
+
+
+
+        </div>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+<!--//admin section modal-->
+
+<!--Modal: Logout with Avatar Form-->
+<div class="modal fade" id="modalLogoutAvatar" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header">
+        <img [src]="photoUrl" alt="avatar" class="rounded-circle img-responsive">
+      </div>
+      <!--Body-->
+      <div class="modal-body text-center mb-1">
+
+        <h5 class="mt-1 mb-2">{{authenticatedName}} </h5>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-cyan mt-1" data-dismiss="modal" aria-label="Close" (click)="logout()">Log Out <i class="fas fa-sign-in ml-1"></i></button>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--//Modal: Logout with Avatar Form-->

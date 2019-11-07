@@ -12,12 +12,8 @@ export class LoginComponent implements OnInit {
 
   error: any;
   constructor(public af: AngularFireAuth, private router: Router) {
+    
 
-    this.af.authState.subscribe(auth => {
-      if (auth) {
-        this.router.navigateByUrl('/home');
-      }
-    });
   }
 
 
@@ -44,7 +40,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-
 
 
 

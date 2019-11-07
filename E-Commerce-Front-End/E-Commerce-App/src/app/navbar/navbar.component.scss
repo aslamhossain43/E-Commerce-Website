@@ -1,5 +1,5 @@
 
-img{
+#navPhoto{
   width: 25px;
   height: 25px;;
   
@@ -11,6 +11,7 @@ img{
 #paddingListId{
   padding-left: 10px;
 }
+
 #newCategoryBtnId{
   margin-top: 50px;
   margin-bottom: 30px;
@@ -26,6 +27,8 @@ img{
 nav.navbar.fixed-top {
   max-height:340px;
   overflow-y:auto;
+  
+  
 }
 
 mat-option{
@@ -44,3 +47,4 @@ mat-option{
   font-size: 10px;
   
 }
+/*------------*/

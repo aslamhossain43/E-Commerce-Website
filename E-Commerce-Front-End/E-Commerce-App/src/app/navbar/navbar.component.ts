@@ -74,6 +74,7 @@ this.getAllCategories();
 this.getAllCarousel();
 this.getFb();
 this.getTwitter();
+//---------for nav-------
 
 //----------------for cart---------------
 this.products=this.productServiceForCart.findAll();
@@ -185,7 +186,6 @@ this.router.navigate(['productDetails',this.id]);
 
   }
   
-
 
 // FOR FILE UPLOAD
 selectpFile(event) {
@@ -494,27 +494,24 @@ loginProperties() {
   });
 }
 
+
+goToLogin(){
+  this.router.navigateByUrl('login');
+}
 // LOGOUT
 logout() {
   this.af.auth.signOut();
   this.authenticatedName = null;
   this.photoUrl = null;
-  
- this.loadPage();
-}
-
-loadPage(){
-
- //----------------load------------
- if (!localStorage.getItem('foo')) { 
-  localStorage.setItem('foo', 'no reload') 
-  location.reload() 
-  localStorage.removeItem('foo')
-} else {
-  localStorage.removeItem('foo') 
 
 }
 
-}
+
+
+
+
+
+
+
 
 }
