@@ -12,6 +12,19 @@ import com.e_commerce.backend.models.Product;
 public interface ProductRepository extends JpaRepository<Product, Long>,JpaSpecificationExecutor<Product> {
 Product getById(long id);
 
+
+
+
+//getProducts By ASC
+	static final String PRODUCT_BY_DESC="FROM Product ORDER BY id DESC";
+	@Query(PRODUCT_BY_DESC)
+	List<Product>getProductsByASC();
+
+
+
+
+
+
 //getProductsByIdForSameCategoryAndBrand
 	static final String PRODUCT_BY_CATEGORY_AND_BRAND="FROM Product where category=:category and brand=:brand and id!=:longId";
 	@Query(PRODUCT_BY_CATEGORY_AND_BRAND)

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,14 +37,23 @@ public class CategoryController {
 	}
 	
 	
-	
 	@GetMapping(value="/getAllCategories")
 	public ResponseEntity<List<Category>>getAllCategories(){
 		LOGGER.info("From class CategoryController, method : getAllCategories() ");
-		List<Category>categories=categoryRepository.findAll();
+		List<Category>categories=categoryRepository.getCategoriesByDESC();
 	return ResponseEntity.ok().body(categories);
 	}
-	
+	@RequestMapping(value = "/delete/{id}")
+	public ResponseEntity<?>deleteCategory(@PathVariable("id") String id){
+		LOGGER.info("From class CategoryController, method : deleteCategory() ");
+		
+		long longId = Long.valueOf(id);
+		Category category=this.categoryRepository.getById(longId);
+		if (category!=null) {
+			this.categoryRepository.delete(category);
+		}
+		return ResponseEntity.ok().body("ok");
+	}
 	
 	
 
