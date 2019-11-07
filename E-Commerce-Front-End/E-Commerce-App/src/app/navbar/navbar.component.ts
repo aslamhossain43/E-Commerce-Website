@@ -14,6 +14,8 @@ import { Twitter } from '../manage/twitter';
 import { Alert } from 'selenium-webdriver';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ThirdPartyProduct } from '../manage/thirdparty-product';
+
+import { auth as authen } from 'firebase';
 declare var jquery:any;
 declare var $ :any;
 
@@ -249,12 +251,25 @@ resetCarousel():void{
         if (response.statusText === 'OK') {
           alert('Operation success !');
           this.productReset();
+          this.loadPage();
+
         }
       },
         (error) => {
         });
   }
   
+loadPage(){
+  if (!localStorage.getItem('foo')) { 
+    localStorage.setItem('foo', 'no reload') 
+    location.reload() 
+  } else {
+    localStorage.removeItem('foo') 
+  
+  }
+}
+
+
   uploadThirdPartyFile() {
     this.uploadFileService.pushThirdPartyFileToStorage(this.selectedtpFiles)
       .subscribe(response => {
@@ -503,6 +518,7 @@ logout() {
   this.af.auth.signOut();
   this.authenticatedName = null;
   this.photoUrl = null;
+  this.loginProperties();
 
 }
 
@@ -510,7 +526,34 @@ logout() {
 
 
 
+loginFb() {
+  this.af.auth.signInWithPopup(new authen.FacebookAuthProvider()).then(
+    (success) => {
+      this.loginProperties();
+    }).catch(
+      (err) => {
 
+      });
+}
+
+loginGoogle() {
+  this.af.auth.signInWithPopup(new authen.GoogleAuthProvider()).then(
+    (success) => {
+      this.loginProperties();
+    }).catch(
+      (err) => {
+      });
+}
+
+deleteCategory(id:string){
+  this.productService.deleteCategory(id).
+  subscribe(response=>{
+    if(response.statusText==='OK'){
+      alert('Delete successfully');
+      this.getAllCategories();
+    }
+  });
+}
 
 
 

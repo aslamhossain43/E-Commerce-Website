@@ -1,1 +1,598 @@
-<p>ourproducts works!</p>
+
+
+
+
+
+  <!--Main layout-->
+  <main>
+    <div class="container">
+
+      <!--Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+
+        <!-- Navbar brand -->
+        
+<button id="newFilter" type="button" mdbBtn color="light" mdbWavesEffect (click)="newFilter()">New filter</button>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+            
+              <mat-form-field>
+                  <mat-label>Category</mat-label>
+                  <mat-select matInput [(ngModel)]="category">
+                  <mat-option  [value]="c" *ngFor="let c of categoriesForFilter" >{{c}}</mat-option>   
+                    </mat-select>
+                </mat-form-field>
+
+
+
+
+                <mat-form-field>
+                  <mat-label>Brand</mat-label>
+                  <mat-select matInput [(ngModel)]="brand">
+                  <mat-option  [value]="b" *ngFor="let b of brandsForFilter" >{{b}}</mat-option>   
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Color</mat-label>
+                    <mat-select matInput [(ngModel)]="color">
+                    <mat-option  [value]="c" *ngFor="let c of colorsForFilter" >{{c}}</mat-option>   
+                      </mat-select>
+                  </mat-form-field>
+  
+
+
+
+
+
+
+                  <mat-form-field>
+                      <mat-label>Name</mat-label>
+                      <mat-select matInput [(ngModel)]="name">
+                      <mat-option  [value]="n" *ngFor="let n of namesForFilter" >{{n}}</mat-option>   
+                        </mat-select>
+                    </mat-form-field>
+   
+
+
+
+                    <!--sorting by price-->
+
+                    <button id="sortByPrice" mat-button [matMenuTriggerFor]="lowerAndUpper">Sort by price</button><i class="fa fa-caret-down" aria-hidden="true"></i>
+
+                    <mat-menu #lowerAndUpper="matMenu">
+                      <button mat-menu-item [matMenuTriggerFor]="lowerToUpper">Lower to upper price</button>
+                      <button mat-menu-item [matMenuTriggerFor]="upperToLower">Upper to lower price</button>
+                    </mat-menu>
+                    
+                    <mat-menu #lowerToUpper="matMenu">
+                      <button mat-menu-item [matMenuTriggerFor]="lowerToUpperCategories">Categories</button>
+                      <button mat-menu-item [matMenuTriggerFor]="lowerToUpperBrands">Brands</button>
+                    </mat-menu>
+                    
+                    <mat-menu #upperToLower="matMenu">
+                      
+
+                        <button mat-menu-item [matMenuTriggerFor]="upperToLowerCategories">Ctaegories</button>
+                    
+                        <button mat-menu-item [matMenuTriggerFor]="upperToLowerBrands">Brands</button>
+                    
+                      </mat-menu>
+                    
+                    <mat-menu #lowerToUpperCategories="matMenu">
+                      <button mat-menu-item *ngFor="let c of categoriesForFilter" (click)="getLowerToUpperSortedProductsByCategory(c)">{{c}}</button>
+                    </mat-menu>
+                    <mat-menu #lowerToUpperBrands="matMenu">
+                        <button mat-menu-item *ngFor="let b of brandsForFilter" (click)="getLowerToUpperSortedProductsByBrand(b)" >{{b}}</button>
+                 
+                      </mat-menu>
+
+
+                    
+                    <mat-menu #upperToLowerCategories="matMenu">
+                        <button mat-menu-item *ngFor="let c of categoriesForFilter" (click)="getUpperToLowerSortedProductsByCategory(c)"  >{{c}}</button>
+                 
+                      
+                    </mat-menu>
+                    
+                    <mat-menu #upperToLowerBrands="matMenu">
+                        <button mat-menu-item *ngFor="let b of brandsForFilter" (click)="getUpperToLowerSortedProductsByBrand(b)" >{{b}}</button>
+                 
+                        
+                      </mat-menu>
+                      
+                 
+      
+<!--/sorting by price-->
+
+
+
+
+        </div>
+        <!-- Collapsible content -->
+
+      </nav>
+      <!--/.Navbar-->
+
+
+
+
+        <!--Grid row for filter-->
+        <div  *ngIf="products"  class="row">
+
+          <!--filter result-->
+          <!--Grid column -->
+          <div *ngFor="let p of products | productFilter:category:brand:color:name" class="col-lg-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card wow rollIn">
+
+
+
+              <!--Card image-->
+              <div *ngIf="p.frontCode" class="view overlay">
+                <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+                <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" >
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <!--/Card image-->
+
+
+
+
+
+              <!--Card content-->
+              <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank"  class="grey-text">
+                  <h5>{{p.category}}</h5>
+                </a>
+                <h5>
+                  <strong>
+                    <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
+                  
+                    </a>
+                  </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                  <strong>{{p.soldPrice}} Tk.</strong>
+                </h4>
+
+              </div>
+              <!--Card content-->
+
+            </div>
+            <!--Card-->
+            
+            <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+            <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+            
+
+
+          </div>
+          <!--Grid column-->
+<!--/filter result-->
+          
+
+        </div>
+        <!--Grid row for filter-->
+
+
+
+
+
+
+
+  <!--Grid row for lower to upper category sort-->
+  <div  *ngIf="lowerToUpperProductsByCategory"  class="row wow fadeIn">
+
+
+
+      <!--Grid column -->
+      <div *ngFor="let p of lowerToUpperProductsByCategory" class="col-lg-3 col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card wow rotateInDownLeft">
+
+
+
+            <!--Card image-->
+            <div *ngIf="p.frontCode" class="view overlay">
+              <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+              <a href="JavaScript:Void(0);" (click)="sendId(p.id)">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+
+
+
+
+
+            <!--Card content-->
+            <div class="card-body text-center">
+              <!--Category & Title-->
+              <a href="JavaScript:Void(0);" (click)="sendId(p.id)" class="grey-text">
+                <h5>{{p.category}}</h5>
+              </a>
+              <h5>
+                <strong>
+                  <a href="JavaScript:Void(0);" (click)="sendId(p.id)" class="dark-grey-text" >{{p.name}}
+                   
+                  </a>
+                </strong>
+              </h5>
+
+              <h4 class="font-weight-bold blue-text">
+                <strong>{{p.soldPrice}} Tk.</strong>
+              </h4>
+
+            </div>
+            <!--Card content-->
+
+          </div>
+          <!--Card-->
+          
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+                  
+
+        </div>
+        <!--Grid column-->
+<!--/seraching result-->
+
+    </div>
+    <!--/Grid row for lower to upper category sort-->
+
+
+
+  <!--Grid row for upper to lower category sort-->
+  <div  *ngIf="upperToLowerProductsByCategory"  class="row">
+
+
+
+      <!--Grid column -->
+      <div *ngFor="let p of upperToLowerProductsByCategory" class="col-lg-3 col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card wow rotateInDownRight">
+
+
+
+            <!--Card image-->
+            <div *ngIf="p.frontCode" class="view overlay">
+              <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+              <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" >
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+
+
+
+
+
+            <!--Card content-->
+            <div class="card-body text-center">
+              <!--Category & Title-->
+              <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" class="grey-text">
+                <h5>{{p.category}}</h5>
+              </a>
+              <h5>
+                <strong>
+                  <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
+                 
+                  </a>
+                </strong>
+              </h5>
+
+              <h4 class="font-weight-bold blue-text">
+                <strong>{{p.soldPrice}} Tk.</strong>
+              </h4>
+
+            </div>
+            <!--Card content-->
+
+          </div>
+          <!--Card-->
+ 
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+            <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+            
+
+        </div>
+        <!--Grid column-->
+<!--/seraching result-->
+
+    </div>
+    <!--/Grid row for upper to lower category sort-->
+
+
+
+  <!--Grid row for lower to upper brand sort-->
+  <div  *ngIf="lowerToUpperProductsByBrand"  class="row">
+
+
+
+      <!--Grid column -->
+      <div *ngFor="let p of lowerToUpperProductsByBrand" class="col-lg-3 col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card wow rotateInUpLeft">
+
+
+
+            <!--Card image-->
+            <div *ngIf="p.frontCode" class="view overlay">
+              <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+              <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" >
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+
+
+
+
+
+            <!--Card content-->
+            <div class="card-body text-center">
+              <!--Category & Title-->
+              <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" class="grey-text">
+                <h5>{{p.category}}</h5>
+              </a>
+              <h5>
+                <strong>
+                  <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
+                
+                  </a>
+                </strong>
+              </h5>
+
+              <h4 class="font-weight-bold blue-text">
+                <strong>{{p.soldPrice}} Tk.</strong>
+              </h4>
+
+            </div>
+            <!--Card content-->
+
+          </div>
+          <!--Card-->
+          
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+            <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+            
+
+        </div>
+        <!--Grid column-->
+<!--/seraching result-->
+
+    </div>
+    <!--/Grid row for lower to upper barnd sort-->
+
+
+
+
+
+  <!--Grid row for upper to lower brand sort-->
+  <div  *ngIf="upperToLowerProductsByBrand"  class="row">
+
+
+
+      <!--Grid column -->
+      <div *ngFor="let p of upperToLowerProductsByBrand" class="col-lg-3 col-md-6 mb-4">
+
+          <!--Card-->
+          <div class="card wow rotateInUpRight">
+
+
+
+            <!--Card image-->
+            <div *ngIf="p.frontCode" class="view overlay">
+              <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+              <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" >
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <!--/Card image-->
+
+
+
+
+
+            <!--Card content-->
+            <div class="card-body text-center">
+              <!--Category & Title-->
+              <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" class="grey-text">
+                <h5>{{p.category}}</h5>
+              </a>
+              <h5>
+                <strong>
+                  <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
+                 
+                  </a>
+                </strong>
+              </h5>
+
+              <h4 class="font-weight-bold blue-text">
+                <strong>{{p.soldPrice}} Tk.</strong>
+              </h4>
+
+            </div>
+            <!--Card content-->
+
+          </div>
+          <!--Card-->
+          
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+          
+
+        </div>
+        <!--Grid column-->
+<!--/seraching result-->
+
+    </div>
+    <!--/Grid row for upper to lower barnd sort-->
+
+
+
+    </div>
+
+
+
+<!--edit product modal-->
+
+
+
+<div id="editProductM" mdbModal #editProductModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="resetFiles();editProductModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Edit product here !</h4>
+      </div>
+      <div class="modal-body">
+        
+
+        <input type="text" [(ngModel)]="productObj.id" hidden>
+           
+
+          <div class="md-form mb-5">
+              <input type="text" id="name" class="form-control validate" [(ngModel)]="productObj.name" required>
+              <label data-error="wrong" data-success="right" for="name">Product name</label>
+            </div>
+    
+    
+            <div class="md-form mb-5">
+              <input type="text" id="brand" class="form-control validate" [(ngModel)]="productObj.brand" required>
+              <label data-error="wrong" data-success="right" for="brand">Brand name</label>
+            </div>
+    
+    
+            <div class="md-form">
+                <textarea type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="productObj.description" required></textarea>
+                <label data-error="wrong" data-success="right" for="description">Product description (Within 20 words)</label>
+              </div>
+    
+    
+    
+    
+    
+              <div class="md-form mb-5">
+                <input type="text" id="marketPrice" class="form-control validate" [(ngModel)]="productObj.marketPrice" required>
+                <label data-error="wrong" data-success="right" for="marketPrice">Market price of product</label>
+              </div>
+
+    
+            <div class="md-form mb-5">
+              <input type="text" id="soldPrice" class="form-control validate" [(ngModel)]="productObj.soldPrice" required>
+              <label data-error="wrong" data-success="right" for="soldPrice">Sold price of product</label>
+            </div>
+    
+           
+    
+              <div class="md-form mb-5">
+                  <input type="text" id="color" class="form-control validate" [(ngModel)]="productObj.color" required>
+                  <label data-error="wrong" data-success="right" for="color">Color of product</label>
+                </div>
+    
+    
+                <div class="md-form mb-5">
+                    <input type="text" id="quantity" class="form-control validate" [(ngModel)]="productObj.quantity" required>
+                    <label data-error="wrong" data-success="right" for="quantity">Quantity of product</label>
+                  </div>
+      
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div *ngIf="!selectedpFiles" class="input-group">
+            
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="first-picture" (change)="selectpFile($event)"
+                          name="selectedpFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                        <label class="custom-file-label" for="first-picture">Choose Product's pictures !</label>
+                      </div>
+                    </div>
+        
+                    <div *ngFor="let p of selectedpFiles" class="input-group">
+                    
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="picture" (change)="selectpFile($event)"     
+                          name="selectedpFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                        <label class="custom-file-label" for="picture">{{p.name}}</label>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <br><br>
+    <!--Material select-->
+    
+        <mat-select matInput placeholder="Select a category" [(ngModel)]="productObj.category" name="category" required>
+          <mat-option  [value]="category.category" *ngFor="let category of categories" >{{category.category}}</mat-option>
+         
+        </mat-select>
+    
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="waves-light" [disabled]="!(productObj.name && productObj.brand && productObj.description &&
+        productObj.soldPrice && productObj.marketPrice && productObj.color && productObj.quantity && selectedpFiles &&
+        productObj.category)" (click)="uploadFile()" aria-label="Close" (click)="editProductModal.hide()" mdbWavesEffect>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--/Add product modal-->
+
+
+
+
+
+
+
+
+  </main>
+  <!--Main layout-->
+

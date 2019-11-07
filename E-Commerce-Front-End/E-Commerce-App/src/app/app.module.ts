@@ -27,7 +27,6 @@ import { RouterModule } from '@angular/router';
 import { ProductFilterPipe } from './home/home.filter.pipe';
 import { ProductServiceForCart } from './app.cart-service';
 import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.component';
-import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
@@ -50,7 +49,6 @@ import { SelltousDetailsComponent } from './selltous-details/selltous-details.co
      //for filtering
      ProductFilterPipe,
      ManageCheckoutComponent,
-     LoginComponent,
      FooterComponent,
      SelltousDetailsComponent
 

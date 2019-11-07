@@ -1,0 +1,40 @@
+
+.container{
+
+    padding-top: 10vh;
+}
+
+mat-label{
+    color: white;
+  }
+  mat-option{
+    text-align: center;
+  }
+  
+  mat-form-field{
+    display: inline;
+  }
+  #newFilter{
+    margin-right: 20px;
+  }
+  
+  #sortByPrice{
+    margin-left: 30px;
+    color: white;
+    margin-right: 20px;
+  }
+  
+  
+  #editBtn{
+  
+    padding: .4rem 2.5rem;
+  }
+  #deleteBtn{
+  
+    padding: .4rem 2.4rem;
+  }
+  
+  #editProductM{
+    overflow: auto;
+  }
+  

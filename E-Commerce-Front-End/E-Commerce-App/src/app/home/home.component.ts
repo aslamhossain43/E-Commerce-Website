@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Category } from '../manage/category';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UploadFileService } from '../manage/manage.file-service';
+import { WOW } from 'wowjs/dist/wow.min';
 declare var jquery:any;
 declare var $ :any;
 @Component({
@@ -25,8 +26,10 @@ emailUid='qCv0iprRpzcdX5eLSaP6WMpV9X73';
 fbUid='7fHZCwUlZyfLPm8ScDVkOkswM932';
 
 
-uid: string;
 
+uid: string;
+authenticatedName: any;
+photoUrl: string;
 
   lowerToUpperProductsByCategory: Product[];
 
@@ -84,16 +87,33 @@ $('input[type=text], input[type=password], input[type=email], input[type=url], i
   }
 });
 
+
+
+new WOW().init();
+
+
+
+
   }
+
+
 
   loginProperties() {
     this.af.authState.subscribe(auth => {
       if (auth !== null) {
+        if (!auth.displayName) {
+          this.authenticatedName = auth.email;
+        } else {
+          this.authenticatedName = auth.displayName;
+        }
+        this.photoUrl = auth.photoURL;
         this.uid = auth.uid;
-        
+        console.log('uid: ' + auth.uid);
       }
     });
   }
+  
+
   selectpFile(event) {
     this.selectedpFiles = event.target.files;
   }

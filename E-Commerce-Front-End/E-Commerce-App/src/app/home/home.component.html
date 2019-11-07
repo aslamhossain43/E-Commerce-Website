@@ -161,14 +161,14 @@
 
 
         <!--Grid row for filter-->
-        <div  *ngIf="products"  class="row wow fadeIn">
+        <div  *ngIf="products"  class="row">
 
           <!--filter result-->
           <!--Grid column -->
           <div *ngFor="let p of products | productFilter:category:brand:color:name" class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card">
+            <div class="card  wow lightSpeedIn">
 
 
 
@@ -209,8 +209,8 @@
             </div>
             <!--Card-->
             
-            <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
-            <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+            <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+            <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
             
 
 
@@ -229,7 +229,7 @@
 
 
   <!--Grid row for lower to upper category sort-->
-  <div  *ngIf="lowerToUpperProductsByCategory"  class="row wow fadeIn">
+  <div  *ngIf="lowerToUpperProductsByCategory"  class="row">
 
 
 
@@ -237,7 +237,7 @@
       <div *ngFor="let p of lowerToUpperProductsByCategory" class="col-lg-3 col-md-6 mb-4">
 
           <!--Card-->
-          <div class="card">
+          <div class="card wow rotateInDownLeft">
 
 
 
@@ -278,10 +278,9 @@
           </div>
           <!--Card-->
           
- 
-          <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
-          <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
-         
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+                  
 
         </div>
         <!--Grid column-->
@@ -293,7 +292,7 @@
 
 
   <!--Grid row for upper to lower category sort-->
-  <div  *ngIf="upperToLowerProductsByCategory"  class="row wow fadeIn">
+  <div  *ngIf="upperToLowerProductsByCategory"  class="row">
 
 
 
@@ -301,7 +300,7 @@
       <div *ngFor="let p of upperToLowerProductsByCategory" class="col-lg-3 col-md-6 mb-4">
 
           <!--Card-->
-          <div class="card">
+          <div class="card wow rotateInDownRight">
 
 
 
@@ -342,10 +341,9 @@
           </div>
           <!--Card-->
  
-          
-          <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
-          <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
-         
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+            <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+            
 
         </div>
         <!--Grid column-->
@@ -365,7 +363,7 @@
       <div *ngFor="let p of lowerToUpperProductsByBrand" class="col-lg-3 col-md-6 mb-4">
 
           <!--Card-->
-          <div class="card">
+          <div class="card wow rotateInUpLeft">
 
 
 
@@ -406,10 +404,9 @@
           </div>
           <!--Card-->
           
-          
-          <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
-          <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
-         
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+            <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+            
 
         </div>
         <!--Grid column-->
@@ -423,7 +420,7 @@
 
 
   <!--Grid row for upper to lower brand sort-->
-  <div  *ngIf="upperToLowerProductsByBrand"  class="row wow fadeIn">
+  <div  *ngIf="upperToLowerProductsByBrand"  class="row">
 
 
 
@@ -431,7 +428,7 @@
       <div *ngFor="let p of upperToLowerProductsByBrand" class="col-lg-3 col-md-6 mb-4">
 
           <!--Card-->
-          <div class="card">
+          <div class="card wow rotateInUpRight">
 
 
 
@@ -472,10 +469,9 @@
           </div>
           <!--Card-->
           
-           
-          <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
-          <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
-         
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+          <button *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+          
 
         </div>
         <!--Grid column-->

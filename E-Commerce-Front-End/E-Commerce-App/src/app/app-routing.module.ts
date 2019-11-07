@@ -10,7 +10,6 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.component';
-import { LoginComponent } from './login/login.component';
 import { SelltousDetailsComponent } from './selltous-details/selltous-details.component';
 
 const routes: Routes = [
@@ -21,7 +20,6 @@ const routes: Routes = [
 
 
 
-{path:'login',component:LoginComponent},
 {path:'aboutUs',component:AboutusComponent},
 
 {path:'sellToUs/sellToUs/:id',component:SelltousDetailsComponent},
