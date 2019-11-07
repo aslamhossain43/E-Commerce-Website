@@ -99,6 +99,9 @@ public class ProductController {
 		LOGGER.info("From class ProductController ,method : addProduct()");
 
 		if (this.pCodes.length != 0) {
+			if (product.getId()==null) {
+				
+			
 
 			LOGGER.info("pCode : " + this.pCodes);
 			product.setName(product.getName());
@@ -123,7 +126,82 @@ public class ProductController {
 			LOGGER.info("pCodes : " + this.pCodes);
 			this.pCodes = null;
 			product.setId(null);
+			}else {
+				
+				
+				
 
+				long longId = Long.valueOf(product.getId());
+				Product p=this.productRepository.getById(longId);
+				
+				
+				if (p.getFrontCode()!=null) {
+					
+				
+				File frontFile=new File(photoUrl+p.getFrontCode()+".jpeg");
+				frontFile.delete();
+				}
+
+				if (p.getBackCode()!=null) {
+					
+				File backFile=new File(photoUrl+p.getBackCode()+".jpeg");
+				backFile.delete();
+				}
+			if (p.getLeftCode()!=null) {
+				
+				File leftFile=new File(photoUrl+p.getLeftCode()+".jpeg");
+				leftFile.delete();
+			}
+
+			if (p.getRightCode()!=null) {
+				
+				File rightFile=new File(photoUrl+p.getRightCode()+".jpeg");
+				rightFile.delete();
+			}
+			if (p.getHeadCode()!=null) {
+				
+				
+				File headFile=new File(photoUrl+p.getHeadCode()+".jpeg");
+				headFile.delete();
+			}
+			if (p.getFootCode()!=null) {
+				
+				File footerFile=new File(photoUrl+p.getFootCode()+".jpeg");
+				footerFile.delete();
+			}
+				
+
+			p.setId(longId);
+			p.setName(product.getName());
+			p.setBrand(product.getBrand());
+			p.setDescription(product.getDescription());
+			p.setMarketPrice(product.getMarketPrice());
+			p.setSoldPrice(product.getSoldPrice());
+			p.setColor(product.getColor());
+			p.setQuantity(product.getQuantity());
+
+			p.setFrontCode(this.pCodes[0]);
+			p.setBackCode(this.pCodes[1]);
+			p.setLeftCode(this.pCodes[2]);
+			p.setRightCode(this.pCodes[3]);
+			p.setHeadCode(this.pCodes[4]);
+			p.setFootCode(this.pCodes[5]);
+
+			p.setCategory(product.getCategory());
+
+			productRepository.save(p);
+
+			LOGGER.info("pCodes : " + this.pCodes);
+			this.pCodes = null;
+			product.setId(null);
+
+				
+			
+				
+				
+			}
+			
+			
 		}
 		return ResponseEntity.ok().body("Operation success !");
 

@@ -4,6 +4,10 @@ import { ProductService } from '../manage/manage.service';
 import { Carousel } from '../manage/carousel';
 import { Router } from '@angular/router';
 import { Category } from '../manage/category';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UploadFileService } from '../manage/manage.file-service';
+declare var jquery:any;
+declare var $ :any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,6 +15,19 @@ import { Category } from '../manage/category';
 })
 export class HomeComponent implements OnInit {
   products: Product[];
+  product=new Product;
+
+  productObj=new Product;
+
+selectedpFiles: FileList;
+//-----------------------
+emailUid='qCv0iprRpzcdX5eLSaP6WMpV9X73';
+fbUid='7fHZCwUlZyfLPm8ScDVkOkswM932';
+
+
+uid: string;
+
+
   lowerToUpperProductsByCategory: Product[];
 
   lowerToUpperProductsByBrand: Product[];
@@ -39,7 +56,12 @@ export class HomeComponent implements OnInit {
   color: string;
   name: string;
   price: string;
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router,public af: AngularFireAuth,
+    private uploadFileService:UploadFileService) {
+
+    this.loginProperties();
+
+   }
 
   ngOnInit() {
     this.getAllProducts();
@@ -52,6 +74,82 @@ export class HomeComponent implements OnInit {
     this.getProductsNameNoDuplicate();
 
 
+    //for form
+$('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea').each(function (element, i) {
+  if ((element.value !== undefined && element.value.length > 0) || $(this).attr('placeholder') !== null) {
+      $(this).siblings('label').addClass('active');
+  }
+  else {
+      $(this).siblings('label').removeClass('active');
+  }
+});
+
+  }
+
+  loginProperties() {
+    this.af.authState.subscribe(auth => {
+      if (auth !== null) {
+        this.uid = auth.uid;
+        
+      }
+    });
+  }
+  selectpFile(event) {
+    this.selectedpFiles = event.target.files;
+  }
+
+
+
+  uploadFile() {
+    this.uploadFileService.pushFileToStorage(this.selectedpFiles)
+      .subscribe(response => {
+        if (response.statusText === 'OK') {
+          this.addProduct();
+        }
+      },
+        (error) => {
+          console.log(error.statusText);
+          // YOU MUST NOT CHANGE THIS FORMAT
+          alert('Your operation is failed ! please select valid image .');
+          this.productReset();
+        }
+      );
+  }
+
+
+
+
+
+  
+  // ADD CONSUMERS
+  addProduct(): void {
+    this.productService.addProduct(this.productObj)
+      .subscribe(response => {
+        if (response.statusText === 'OK') {
+          alert('Operation success !');
+
+          this.productReset();
+          this.loadProduct();
+        }
+      },
+        (error) => {
+        });
+  }
+  productReset(){
+    this.productObj=new Product();
+  }
+loadProduct(){
+
+  if (!localStorage.getItem('foo')) { 
+    localStorage.setItem('foo', 'no reload') 
+    location.reload() 
+  } else {
+    localStorage.removeItem('foo') 
+  
+  }
+}
+  resetFiles(){
+    this.selectedpFiles=null;
   }
 
   getAllProducts(): void {
@@ -226,6 +324,22 @@ export class HomeComponent implements OnInit {
 
   sendId(id:string){
 this.router.navigate(['productDetails',id]);
+  }
+
+  getProductById(id:string){
+    this.productService.getProductById(id)
+    .subscribe(p=>{
+      this.productObj=p;
+    });
+  }
+  deleteProductById(id:string){
+    this.productService.deleteProductById(id)
+    .subscribe(response=>{
+      if(response.statusText==='OK'){
+        alert('Delete successfully !');
+        this.loadProduct();
+      }
+    });
   }
 
 }

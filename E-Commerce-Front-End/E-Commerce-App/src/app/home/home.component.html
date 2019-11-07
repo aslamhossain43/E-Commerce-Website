@@ -160,9 +160,6 @@
 
 
 
-      <!--Section: Products v.3-->
-      <section class="text-center mb-4">
-
         <!--Grid row for filter-->
         <div  *ngIf="products"  class="row wow fadeIn">
 
@@ -197,7 +194,7 @@
                 <h5>
                   <strong>
                     <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
-                      <span class="badge badge-pill danger-color">NEW</span>
+                  
                     </a>
                   </strong>
                 </h5>
@@ -211,6 +208,11 @@
 
             </div>
             <!--Card-->
+            
+            <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+            <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+            
+
 
           </div>
           <!--Grid column-->
@@ -261,7 +263,7 @@
               <h5>
                 <strong>
                   <a href="JavaScript:Void(0);" (click)="sendId(p.id)" class="dark-grey-text" >{{p.name}}
-                    <span class="badge badge-pill danger-color">NEW</span>
+                   
                   </a>
                 </strong>
               </h5>
@@ -275,6 +277,11 @@
 
           </div>
           <!--Card-->
+          
+ 
+          <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+          <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+         
 
         </div>
         <!--Grid column-->
@@ -320,7 +327,7 @@
               <h5>
                 <strong>
                   <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
-                    <span class="badge badge-pill danger-color">NEW</span>
+                 
                   </a>
                 </strong>
               </h5>
@@ -334,6 +341,11 @@
 
           </div>
           <!--Card-->
+ 
+          
+          <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+          <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+         
 
         </div>
         <!--Grid column-->
@@ -379,7 +391,7 @@
               <h5>
                 <strong>
                   <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
-                    <span class="badge badge-pill danger-color">NEW</span>
+                
                   </a>
                 </strong>
               </h5>
@@ -393,6 +405,11 @@
 
           </div>
           <!--Card-->
+          
+          
+          <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+          <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+         
 
         </div>
         <!--Grid column-->
@@ -440,7 +457,7 @@
               <h5>
                 <strong>
                   <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
-                    <span class="badge badge-pill danger-color">NEW</span>
+                 
                   </a>
                 </strong>
               </h5>
@@ -454,6 +471,11 @@
 
           </div>
           <!--Card-->
+          
+           
+          <button *ngIf="fbUid===uid || emailUid===uid"  id="editBtn" type="button" mdbBtn color="success" (click)="getProductById(p.id)"  (click)="editProductModal.show()" mdbWavesEffect>Edit</button>
+          <button *ngIf="fbUid===uid || emailUid===uid" id="deleteBtn" type="button" mdbBtn color="danger" (click)="deleteProductById(p.id)" mdbWavesEffect>Delete</button>
+         
 
         </div>
         <!--Grid column-->
@@ -464,10 +486,152 @@
 
 
 
-      </section>
-      <!--Section: Products v.3-->
-
     </div>
+
+
+
+<!--edit product modal-->
+
+
+
+<div id="editProductM" mdbModal #editProductModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="resetFiles();editProductModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Edit product here !</h4>
+      </div>
+      <div class="modal-body">
+        
+
+        <input type="text" [(ngModel)]="productObj.id" hidden>
+           
+
+          <div class="md-form mb-5">
+              <input type="text" id="name" class="form-control validate" [(ngModel)]="productObj.name" required>
+              <label data-error="wrong" data-success="right" for="name">Product name</label>
+            </div>
+    
+    
+            <div class="md-form mb-5">
+              <input type="text" id="brand" class="form-control validate" [(ngModel)]="productObj.brand" required>
+              <label data-error="wrong" data-success="right" for="brand">Brand name</label>
+            </div>
+    
+    
+            <div class="md-form">
+                <textarea type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="productObj.description" required></textarea>
+                <label data-error="wrong" data-success="right" for="description">Product description (Within 20 words)</label>
+              </div>
+    
+    
+    
+    
+    
+              <div class="md-form mb-5">
+                <input type="text" id="marketPrice" class="form-control validate" [(ngModel)]="productObj.marketPrice" required>
+                <label data-error="wrong" data-success="right" for="marketPrice">Market price of product</label>
+              </div>
+
+    
+            <div class="md-form mb-5">
+              <input type="text" id="soldPrice" class="form-control validate" [(ngModel)]="productObj.soldPrice" required>
+              <label data-error="wrong" data-success="right" for="soldPrice">Sold price of product</label>
+            </div>
+    
+           
+    
+              <div class="md-form mb-5">
+                  <input type="text" id="color" class="form-control validate" [(ngModel)]="productObj.color" required>
+                  <label data-error="wrong" data-success="right" for="color">Color of product</label>
+                </div>
+    
+    
+                <div class="md-form mb-5">
+                    <input type="text" id="quantity" class="form-control validate" [(ngModel)]="productObj.quantity" required>
+                    <label data-error="wrong" data-success="right" for="quantity">Quantity of product</label>
+                  </div>
+      
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div *ngIf="!selectedpFiles" class="input-group">
+            
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="first-picture" (change)="selectpFile($event)"
+                          name="selectedpFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                        <label class="custom-file-label" for="first-picture">Choose Product's pictures !</label>
+                      </div>
+                    </div>
+        
+                    <div *ngFor="let p of selectedpFiles" class="input-group">
+                    
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="picture" (change)="selectpFile($event)"     
+                          name="selectedpFiles" aria-describedby="inputGroupFileAddon01" multiple="multiple">
+                        <label class="custom-file-label" for="picture">{{p.name}}</label>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <br><br>
+    <!--Material select-->
+    
+        <mat-select matInput placeholder="Select a category" [(ngModel)]="productObj.category" name="category" required>
+          <mat-option  [value]="category.category" *ngFor="let category of categories" >{{category.category}}</mat-option>
+         
+        </mat-select>
+    
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" mdbBtn color="primary" class="waves-light" [disabled]="!(productObj.name && productObj.brand && productObj.description &&
+        productObj.soldPrice && productObj.marketPrice && productObj.color && productObj.quantity && selectedpFiles &&
+        productObj.category)" (click)="uploadFile()" aria-label="Close" (click)="editProductModal.hide()" mdbWavesEffect>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--/Add product modal-->
+
+
+
+
+
+
+
+
   </main>
   <!--Main layout-->
 
