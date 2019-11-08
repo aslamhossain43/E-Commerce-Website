@@ -16,6 +16,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ThirdPartyProduct } from '../manage/thirdparty-product';
 
 import { auth as authen } from 'firebase';
+import { Phone } from '../manage/phone';
+import { Email } from '../manage/email';
 declare var jquery:any;
 declare var $ :any;
 
@@ -45,6 +47,20 @@ fb=new Fb();
 fbLink:Fb;
 twitter=new Twitter();
 twitterLink:Twitter
+
+
+phone=new Phone();
+phones:Phone[];
+
+email=new Email();
+emails:Email[];
+
+
+
+
+
+
+
 //-------for cart--------
 id:string;
 quantity:number;
@@ -76,6 +92,9 @@ this.getAllCategories();
 this.getAllCarousel();
 this.getFb();
 this.getTwitter();
+this.getAllPhones();
+this.getAllEmails();
+
 //---------for nav-------
 
 //----------------for cart---------------
@@ -368,8 +387,10 @@ productReset():void{
   this.product=new Product();
 
 }
+refreshEmail(){
+  this.emailSending=new EmailSending();
+}
 //----------------cart---------------
-
 
 
 loadCart(): void {
@@ -554,6 +575,99 @@ deleteCategory(id:string){
     }
   });
 }
+
+
+
+
+
+
+
+
+
+
+phoneSave(){
+  this.productService.addPhone(this.phone)
+  .subscribe(response => {
+   if(response.statusText==='OK'){
+     alert('Phone number added successfully !');
+     this.phone=new Phone();
+   } 
+  },
+  (error)=>{
+
+  });
+}
+
+
+
+
+
+emailSave(){
+  this.productService.addEmail(this.email)
+  .subscribe(response => {
+   if(response.statusText==='OK'){
+     alert('Email added successfully !');
+     this.email=new Email();
+   } 
+  },
+  (error)=>{
+
+  });
+}
+
+
+getAllPhones(): void {
+  this.productService.getAllPhones()
+  .subscribe((phones) => {
+
+
+this.phones=phones;
+ 
+  },
+  (error) => {
+    console.log(error);
+  });
+    }
+
+
+
+
+    getAllEmails(): void {
+      this.productService.getAllEmails()
+      .subscribe((emails) => {
+    
+    
+    this.emails=emails;
+     
+      },
+      (error) => {
+        console.log(error);
+      });
+        }
+    
+
+
+        deletePhone(id:string){
+          this.productService.deletePhoneById(id).
+          subscribe(response=>{
+            if(response.statusText==='OK'){
+              alert('Delete successfully');
+              this.getAllPhones();
+            }
+          });
+        }
+        
+
+
+        deleteEmail(id:string){
+          this.productService.deleteEmailById(id).
+          subscribe(response=>{
+            if(response.statusText==='OK'){
+              alert('Delete successfully');
+              this.getAllEmails();
+            }
+          });
+        }
 
 
 

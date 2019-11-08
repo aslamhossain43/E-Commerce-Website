@@ -10,6 +10,8 @@ import { PersonAndProductsCombinedForCheckOut } from './checkout';
 import { Fb } from './fb';
 import { Twitter } from './twitter';
 import { ThirdPartyProduct } from './thirdparty-product';
+import { Phone } from './phone';
+import { Email } from './email';
 @Injectable()
 export class ProductService {
     constructor(private http: Http) {
@@ -93,6 +95,37 @@ export class ProductService {
     }
 
 
+
+
+
+
+    addPhone(phone:Phone) {
+        const body = JSON.stringify(phone);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.post(`http://localhost:8080/contacts/addPhone`, body, options);
+        
+    }
+
+
+    addEmail(email:Email) {
+        const body = JSON.stringify(email);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.post(`http://localhost:8080/contacts/addEmail`, body, options);
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
     addCheckout(personAndProductsCombinedForCheckOut:PersonAndProductsCombinedForCheckOut) {
         const body = JSON.stringify(personAndProductsCombinedForCheckOut);
         const headers = new Headers({ 'Content-Type': 'application/json' });
@@ -115,6 +148,28 @@ export class ProductService {
                     catchError(this.handlError);
                 }));
     }
+
+
+
+
+
+
+    getAllPhones(): Observable<Phone[]> {
+        return this.http.get('http://localhost:8080/contacts/getAllPhones')
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+
+    getAllEmails(): Observable<Email[]> {
+        return this.http.get('http://localhost:8080/contacts/getAllEmails')
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+
 
 
 
@@ -162,6 +217,22 @@ export class ProductService {
         return this.http.delete('http://localhost:8080/thirdParty/delete/' + id);
           
     }
+
+
+    deletePhoneById(id: string){
+        return this.http.delete('http://localhost:8080/contacts/delete/phone/' + id);
+          
+    }
+
+
+    deleteEmailById(id: string){
+        return this.http.delete('http://localhost:8080/contacts/delete/email/' + id);
+          
+    }
+
+
+
+
 
     getFb(): Observable<Fb> {
         return this.http.get('http://localhost:8080/link/getFb')
