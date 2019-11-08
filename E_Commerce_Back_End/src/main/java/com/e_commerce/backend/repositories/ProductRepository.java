@@ -15,10 +15,10 @@ Product getById(long id);
 
 
 
-//getProducts By ASC
+//getProducts By DESC
 	static final String PRODUCT_BY_DESC="FROM Product ORDER BY id DESC";
 	@Query(PRODUCT_BY_DESC)
-	List<Product>getProductsByASC();
+	List<Product>getProductsByDESC();
 
 
 

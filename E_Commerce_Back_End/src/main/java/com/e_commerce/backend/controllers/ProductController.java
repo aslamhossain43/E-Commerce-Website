@@ -211,7 +211,7 @@ public class ProductController {
 
 		LOGGER.info("From class ProductController ,method : getAllProducts()");
 
-		List<Product> products = productRepository.getProductsByASC();
+		List<Product> products = productRepository.getProductsByDESC();
 		return ResponseEntity.ok().body(products);
 
 	}
