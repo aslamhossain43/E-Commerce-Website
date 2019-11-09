@@ -159,12 +159,15 @@ this.gMCode=null;
 			)) {
 
 			if (googleMaps!=null) {
+				for (GoogleMap googleMap2 : googleMaps) {
+					
 				
-				File gMapFile = new File(ABS_PATH + googleMaps.get(0).getgMap() + ".jpeg");
+				File gMapFile = new File(ABS_PATH + googleMap2.getgMap() + ".jpeg");
 				gMapFile.delete();
 			
-				this.googleMapRepository.delete(googleMaps.get(0));
+				this.googleMapRepository.delete(googleMap2);
 				
+				}
 				
 				
 				
@@ -182,10 +185,10 @@ this.gMCode=null;
 			}
 
 			
-			GoogleMap googleMap=new GoogleMap();
-			googleMap.setgMap(this.gMCode);
+			GoogleMap googleMap1=new GoogleMap();
+			googleMap1.setgMap(this.gMCode);
 			
-			this.googleMapRepository.save(googleMap);
+			this.googleMapRepository.save(googleMap1);
 			
 			rt = ResponseEntity.ok().body(" success file upload ");
 
