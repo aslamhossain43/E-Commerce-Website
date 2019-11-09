@@ -3,31 +3,54 @@
 
   <!-- Card image -->
   <div class="view view-cascade overlay">
-    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Card image cap">
+    <img class="card-img-top" src="http://localhost:8080/getPhotos/{{googleMap.gMap}}" alt="Card image cap">
     <a href="#!">
       <div class="mask rgba-white-slight"></div>
     </a>
   </div>
 
   <!-- Card content -->
-  <div class="card-body card-body-cascade text-center">
+  <div class="card-body card-body-cascade text-center wow slideInLeft">
 
+
+
+
+
+      <h6>Our operation office used to open Saturday to Thursday in between 10:00 AM to 6:00 PM (GMT + 06:00), except any government holiday.<br></h6>
+    
+      <h4 id="cn">TizaraMart Contacts</h4><br>
+      <h6  *ngFor="let phone of phones" ><i class="fas fa-phone-alt"></i> +88{{phone.phone}}</h6><br>
+     
+
+      <h6 *ngFor="let email of emails"><i class="fas fa-envelope"></i> {{email.email}}</h6><br>
+  
+
+
+    </div>
+
+<hr>
     <!-- Title -->
-    <h4 class="card-title"><strong>My adventure</strong></h4>
+    <h5 class="card-title  wow slideInRight"><strong>
+      <b>Important note</b><br><br>
+
+      All our contact numbers are for sales assistance only. In order to increase efficiency, TizaraMart does not provide a telephone 
+      contact method for sales assistance. Based on the nature of problems had by our customers, it is much timelier and more effective and faster
+       for issues to be handled via  mobile/email rather than over the phone.<br><br>
+
+
+       TizaraMart doesn’t use to give a visit to the customer’s premises for any kind of sales meeting. For any kind of sales meeting,
+        the customer can visit our operation office anytime during our operation office hours. But if anyhow any customer needs to have a chat 
+        with us they can chat online.
+
+
+
+
+    </strong></h5>
     <!-- Subtitle -->
-    <h6 class="font-weight-bold indigo-text py-2">Photography</h6>
-    <!-- Text -->
-    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem perspiciatis voluptatum a, quo nobis, non commodi quia repellendus sequi nulla voluptatem dicta reprehenderit, placeat laborum ut beatae ullam suscipit veniam.
-    </p>
+   
 
-    <!-- Linkedin -->
-    <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
-    <!-- Twitter -->
-    <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
-    <!-- Dribbble -->
-    <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>
 
-  </div>
+
 
 </div>
 <!-- Card -->

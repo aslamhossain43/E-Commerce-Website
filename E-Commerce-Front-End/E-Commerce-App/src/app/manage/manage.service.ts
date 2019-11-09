@@ -12,6 +12,7 @@ import { Twitter } from './twitter';
 import { ThirdPartyProduct } from './thirdparty-product';
 import { Phone } from './phone';
 import { Email } from './email';
+import { GoogleMap } from './googlemap';
 @Injectable()
 export class ProductService {
     constructor(private http: Http) {
@@ -206,6 +207,15 @@ export class ProductService {
                 catchError(this.handlError)
             ));
     }
+
+
+    getGmPhoto(): Observable<GoogleMap> {
+        return this.http.get(`http://localhost:8080/contacts/getGMPhoto`)
+            .pipe(map((response: Response) => response.json(),
+                catchError(this.handlError)
+            ));
+    }
+
 
 
     deleteProductById(id: string){

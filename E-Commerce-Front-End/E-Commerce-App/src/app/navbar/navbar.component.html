@@ -167,6 +167,70 @@
 
 
 
+<!--add GMPhoto modal-->
+
+<div mdbModal #addgmModal="mdbModal" class="modal fade top modal-scrolling" id="frameModalTop" tabindex="-1"
+  role="dialog" aria-labelledby="myModalTop" aria-hidden="true" >
+  <div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Body-->
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center align-items-center">
+
+          <strong class="pt-3 pr-2">Edit google map pictures !</strong>
+          <br><br>
+
+          
+
+          
+            
+          <div *ngIf="!selectedgmFiles" class="input-group">
+            
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="first-picture" (change)="selectgmFile($event)"
+                name="selectedgmFiles" aria-describedby="inputGroupFileAddon01">
+              <label class="custom-file-label" for="first-picture">Choose google map picture !</label>
+            </div>
+          </div>
+
+          <div *ngFor="let g of selectedgmFiles" class="input-group">
+          
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="picture" (change)="selectgmFile($event)"     
+                name="selectedgmFiles" aria-describedby="inputGroupFileAddon01" >
+              <label class="custom-file-label" for="picture">{{g.name}}</label>
+            </div>
+          </div>
+
+
+
+           
+
+
+          <div class="modal-footer d-flex justify-content-center">
+              <button mdbBtn color="primary" [disabled]="!selectedgmFiles"
+              (click)="addgmPicture()" aria-label="Close" (click)="addgmModal.hide()"
+               mdbWavesEffect>Save</button>
+          </div>
+
+          <div class="modal-footer d-flex justify-content-center">
+              <button mdbBtn color="primary" (click)="resetgmFile()" aria-label="Close" (click)="addgmModal.hide()"
+               mdbWavesEffect>Close</button>
+          </div>
+
+
+         
+
+        </div>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+<!--/add gmapPhoto modal-->
+
 
 
 
@@ -751,7 +815,6 @@
 
 
 
-
           <button type="button" id="adsBtn" class="btn btn-outline-primary" data-dismiss="modal" (click)="admin.hide()"
           data-toggle="modal" data-target="#phoneModal">Add phone number</button>
           
@@ -764,6 +827,14 @@
 
             <button id="adsBtn" type="button" class="btn btn-outline-primary" data-dismiss="modal" (click)="admin.hide()"
              (click)="addCarouselModal.show()">Edit carousel</button>
+
+
+
+
+             <button id="adsBtn" type="button" class="btn btn-outline-primary" data-dismiss="modal" (click)="admin.hide()"
+             (click)="addgmModal.show()">Edit google map photo</button>
+
+
 
              <button type="button" id="adsBtn" class="btn btn-outline-primary" data-dismiss="modal" (click)="admin.hide()"
             data-toggle="modal" data-target="#FbModal">Edit Fb link</button>

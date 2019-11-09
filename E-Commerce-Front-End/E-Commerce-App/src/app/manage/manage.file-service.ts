@@ -37,6 +37,15 @@ export class UploadFileService {
   }
 
 
+  pushgmFileToStorage(picture:File) {
+    const formdata: FormData = new FormData();
+    
+    
+      formdata.append("gMFile", picture);
+   
+
+     return this.http.post('http://localhost:8080/contacts/addGMFile', formdata);
+  }
 
 
 

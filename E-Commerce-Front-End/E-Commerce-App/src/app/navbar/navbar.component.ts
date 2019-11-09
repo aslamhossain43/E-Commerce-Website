@@ -40,6 +40,10 @@ thirdPartyProduct=new ThirdPartyProduct();
 selectedpFiles: FileList;
 
 selectedtpFiles: FileList;
+
+
+
+selectedgmFiles: FileList;
 //for carousel files
 selectedCFiles: FileList;
 carousel=new Carousel();
@@ -208,6 +212,11 @@ this.router.navigate(['productDetails',this.id]);
   }
   
 
+  //GOOGLE MAP
+  selectgmFile(event){
+    this.selectedgmFiles=event.target.files;
+  }
+
 // FOR FILE UPLOAD
 selectpFile(event) {
   this.selectedpFiles = event.target.files;
@@ -236,6 +245,27 @@ this.getAllCarousel();
   this.getAllCarousel();
 });
 }
+
+
+addgmPicture(){
+
+  this.uploadFileService.pushgmFileToStorage(this.selectedgmFiles.item(0))
+  .subscribe(response =>{
+    if(response.statusText==='OK'){
+      alert('Pictures upload success !')
+      this.resetgmFile();
+    }
+  },
+  (error)=>{
+    alert('Your picture is not uploaded accurately !')
+    this.resetgmFile();
+  });
+  }
+  
+  resetgmFile(){
+    this.selectedgmFiles=null;
+  }
+
 resetCarousel():void{
   this.carousel=new Carousel();
   this.selectedCFiles=null;
