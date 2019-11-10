@@ -99,7 +99,11 @@ this.getTwitter();
 this.getAllPhones();
 this.getAllEmails();
 
-//---------for nav-------
+
+
+
+
+
 
 //----------------for cart---------------
 this.products=this.productServiceForCart.findAll();
@@ -117,7 +121,8 @@ let cart: any = JSON.parse(localStorage.getItem('cart'));
       let item: Item = JSON.parse(cart[i]);
       if (item.product.id == this.id) {
         if(this.quantity==2 && item.quantity>=1){
-          alert('You cannot add that amount to the cart — we have 2 in stock for you and you already have 1 in your cart. !')
+
+      alert('You cannot add that amount to the cart — we have 2 in stock for you and you already have 1 in your cart !')
   //return is used to prevent next execution
  return this.router.navigate(['productDetails',this.id]);
         }
@@ -234,15 +239,22 @@ addCarouselPictures(){
 this.uploadFileService.pushCarouselFileToStorage(this.selectedCFiles)
 .subscribe(response =>{
   if(response.statusText==='OK'){
-    alert('Pictures upload success !')
     this.resetCarousel();
 this.getAllCarousel();
+
+$("#validMsgModal").modal('show');
+
+
+
   }
 },
 (error)=>{
-  alert('Your picture is not uploaded accurately !')
   this.resetCarousel();
   this.getAllCarousel();
+
+  $("#errorMsgModal").modal('show');
+
+
 });
 }
 
@@ -252,13 +264,15 @@ addgmPicture(){
   this.uploadFileService.pushgmFileToStorage(this.selectedgmFiles.item(0))
   .subscribe(response =>{
     if(response.statusText==='OK'){
-      alert('Pictures upload success !')
       this.resetgmFile();
+
+
+      $("#validMsgModal").modal('show');
     }
   },
   (error)=>{
-    alert('Your picture is not uploaded accurately !')
     this.resetgmFile();
+    $("#errorMsgModal").modal('show');
   });
   }
   
@@ -280,10 +294,8 @@ resetCarousel():void{
         }
       },
         (error) => {
-          console.log(error.statusText);
-          // YOU MUST NOT CHANGE THIS FORMAT
-          alert('Your operation is failed ! please select valid image .');
           this.productReset();
+          $("#errorMsgModal").modal('show');
         }
       );
   }
@@ -298,13 +310,16 @@ resetCarousel():void{
     this.productService.addProduct(this.product)
       .subscribe(response => {
         if (response.statusText === 'OK') {
-          alert('Operation success !');
+          
           this.productReset();
           this.loadPage();
+          $("#validMsgModal").modal('show');
+
 
         }
       },
         (error) => {
+          $("#errorMsgModal").modal('show');
         });
   }
   
@@ -327,10 +342,10 @@ loadPage(){
         }
       },
         (error) => {
-          console.log(error.statusText);
-          // YOU MUST NOT CHANGE THIS FORMAT
-          alert('Your operation is failed ! please select valid image .');
+        
           this.productReset();
+
+          $("#errorMsgModal").modal('show');
         }
       );
   }
@@ -340,11 +355,13 @@ loadPage(){
     this.productService.addThirdPartyProduct(this.thirdPartyProduct)
       .subscribe(response => {
         if (response.statusText === 'OK') {
-          alert('Operation success !');
+       
           this.thirdPartyProductReset();
+          $("#validMsgModal").modal('show');
         }
       },
         (error) => {
+          $("#errorMsgModal").modal('show');
         });
   }
 
@@ -380,14 +397,17 @@ loadPage(){
         this.productService.addCategory(this.category)
           .subscribe(response => {
             if (response.statusText === 'OK') {
-            //  this.getConsumers();
-              alert('Operation success !');
+          
               this.categoryReset();
               this.getAllCategories();
+
+              $("#validMsgModal").modal('show');
+
+
             }
           },
             (error) => {
-              alert('Operation failed !');
+              $("#errorMsgModal").modal('show');
               
             });
       }
@@ -397,13 +417,13 @@ loadPage(){
         this.productService.emailSending(this.emailSending)
           .subscribe(response => {
             if (response.statusText === 'OK') {
-              alert('Email is sent !');
               this.emailSending=new EmailSending();
+              $("#validMsgModal").modal('show');
             
             }
           },
             (error) => {
-              alert('Email is not sent !');
+              $("#errorMsgModal").modal('show');
               
             });
       }
@@ -486,12 +506,12 @@ fbSave(){
   this.productService.addFb(this.fb)
   .subscribe(response => {
    if(response.statusText==='OK'){
-     alert('Link added successfully !');
      this.fb=new Fb();
+     $("#validMsgModal").modal('show');
    } 
   },
   (error)=>{
-
+    $("#errorMsgModal").modal('show');
   });
 }
 
@@ -519,12 +539,12 @@ twitterSave(){
   this.productService.addTwitter(this.twitter)
   .subscribe(response => {
    if(response.statusText==='OK'){
-     alert('Link added successfully !');
      this.twitter=new Twitter();
+     $("#validMsgModal").modal('show');
    } 
   },
   (error)=>{
-
+    $("#errorMsgModal").modal('show');
   });
 }
 
@@ -600,9 +620,12 @@ deleteCategory(id:string){
   this.productService.deleteCategory(id).
   subscribe(response=>{
     if(response.statusText==='OK'){
-      alert('Delete successfully');
       this.getAllCategories();
+      $("#validMsgModal").modal('show');
     }
+  },
+  (error)=>{
+    $("#errorMsgModal").modal('show');
   });
 }
 
@@ -619,12 +642,12 @@ phoneSave(){
   this.productService.addPhone(this.phone)
   .subscribe(response => {
    if(response.statusText==='OK'){
-     alert('Phone number added successfully !');
      this.phone=new Phone();
+     $("#validMsgModal").modal('show');
    } 
   },
   (error)=>{
-
+    $("#errorMsgModal").modal('show');
   });
 }
 
@@ -636,12 +659,12 @@ emailSave(){
   this.productService.addEmail(this.email)
   .subscribe(response => {
    if(response.statusText==='OK'){
-     alert('Email added successfully !');
      this.email=new Email();
+     $("#validMsgModal").modal('show');
    } 
   },
   (error)=>{
-
+    $("#errorMsgModal").modal('show');
   });
 }
 
@@ -681,9 +704,12 @@ this.phones=phones;
           this.productService.deletePhoneById(id).
           subscribe(response=>{
             if(response.statusText==='OK'){
-              alert('Delete successfully');
               this.getAllPhones();
+              $("#validMsgModal").modal('show');
             }
+          },
+          (error)=>{
+            $("#errorMsgModal").modal('show');
           });
         }
         
@@ -693,9 +719,12 @@ this.phones=phones;
           this.productService.deleteEmailById(id).
           subscribe(response=>{
             if(response.statusText==='OK'){
-              alert('Delete successfully');
               this.getAllEmails();
+              $("#validMsgModal").modal('show');
             }
+          },
+          (error)=>{
+            $("#errorMsgModal").modal('show');
           });
         }
 

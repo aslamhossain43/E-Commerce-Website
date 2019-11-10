@@ -126,7 +126,7 @@
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
-               <a href="JavaScript:Void(0)" (click)="deletetpProduct(product.id)"><button type="button" mdbBtn color="danger" mdbWavesEffect><i class="fas fa-trash-alt"></i> Delete
+               <a href="JavaScript:Void(0)" data-toggle="modal" data-target="#modalConfirmDelete"><button type="button" mdbBtn color="danger" mdbWavesEffect><i class="fas fa-trash-alt"></i> Delete
                  
                </button></a>
 
@@ -146,3 +146,89 @@
     </div>
   </main>
   <!--Main layout-->
+
+
+
+
+
+
+
+      
+      <!--Modal: modalConfirmDelete-->
+      <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+          <!--Content-->
+          <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+              <p class="heading">Are you sure?</p>
+            </div>
+      
+            <!--Body-->
+            <div class="modal-body">
+      
+              <i class="fas fa-times fa-4x animated rotateIn"></i>
+      
+            </div>
+      
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+              <a href="JavaScript:Void(0)" class="btn  btn-outline-danger" data-dismiss="modal" (click)="deletetpProduct(product.id)">Yes</a>
+              <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+      <!--Modal: modalConfirmDelete-->
+
+
+
+
+
+
+<!--Modal: valid msg  modal-->
+<div class="modal fade top" id="validMsgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true" data-backdrop="true">
+<div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+  <!--Content-->
+  <div class="modal-content">
+    <!--Body-->
+    <div class="modal-body">
+      <div class="row d-flex justify-content-center align-items-center">
+
+        <p class="pt-3 pr-2">Your operation has been completed successfully !</p>
+
+        <button type="button" id="msgOKbtn" class="btn btn-outline-success" data-dismiss="modal">Ok, thanks</button>
+      </div>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+</div>
+<!--Modal: validMsgModal modal-->
+
+
+
+<!--Modal: error msg  modal-->
+<div class="modal fade top" id="errorMsgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true" data-backdrop="true">
+<div class="modal-dialog modal-frame modal-top modal-notify modal-info" role="document">
+  <!--Content-->
+  <div class="modal-content">
+    <!--Body-->
+    <div class="modal-body">
+      <div class="row d-flex justify-content-center align-items-center">
+
+        <p class="pt-3 pr-2">Your operation has not been completed successfully !</p>
+
+        <button type="button" id="msgOKbtn" class="btn btn-outline-success" data-dismiss="modal">Ok, thanks</button>
+      </div>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>
+</div>
+<!--Modal: errorMsgModal modal-->
+

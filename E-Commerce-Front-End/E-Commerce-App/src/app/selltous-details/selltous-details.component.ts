@@ -3,7 +3,8 @@ import { ThirdPartyProduct } from '../manage/thirdparty-product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../manage/manage.service';
 import { Response } from '@angular/http';
-
+declare var jquery:any;
+declare var $ :any;
 @Component({
   selector: 'app-selltous-details',
   templateUrl: './selltous-details.component.html',
@@ -44,10 +45,13 @@ deletetpProduct(id:string){
   this.productService.deleteThirdPartyProductById(id)
   .subscribe((response:Response)=>{
 if(response.statusText==='OK'){
-  alert('Delete successfully !');
+
+  $("#validMsgModal").modal('show');
+
 }
   },(error)=>{
 
+    $("#errorMsgModal").modal('show');
   })
 }
 

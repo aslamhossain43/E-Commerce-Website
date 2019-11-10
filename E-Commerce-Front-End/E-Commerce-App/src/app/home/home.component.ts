@@ -108,7 +108,6 @@ new WOW().init();
         }
         this.photoUrl = auth.photoURL;
         this.uid = auth.uid;
-        console.log('uid: ' + auth.uid);
       }
     });
   }
@@ -128,10 +127,10 @@ new WOW().init();
         }
       },
         (error) => {
-          console.log(error.statusText);
-          // YOU MUST NOT CHANGE THIS FORMAT
-          alert('Your operation is failed ! please select valid image .');
+          
           this.productReset();
+        
+          $("#errorMsgModal").modal('show');
         }
       );
   }
@@ -146,13 +145,16 @@ new WOW().init();
     this.productService.addProduct(this.productObj)
       .subscribe(response => {
         if (response.statusText === 'OK') {
-          alert('Operation success !');
-
+       
           this.productReset();
           this.loadProduct();
+       
+          $("#validMsgModal").modal('show');
         }
       },
         (error) => {
+
+          $("#errorMsgModal").modal('show');
         });
   }
   productReset(){
@@ -187,7 +189,6 @@ loadProduct(){
 
       },
         (error) => {
-          console.log(error);
         });
   }
   getAllCarousel(): void {
@@ -201,7 +202,6 @@ loadProduct(){
         console.log(carousel);
       },
         (error) => {
-          console.log(error);
         });
   }
 
@@ -213,7 +213,6 @@ loadProduct(){
         console.log(categories);
       },
         (error) => {
-          console.log(error);
         });
   }
 
@@ -229,7 +228,6 @@ loadProduct(){
         this.upperToLowerProductsByBrand = [];
       },
         (error) => {
-          console.log(error);
         });
   }
 
@@ -245,7 +243,6 @@ loadProduct(){
         this.upperToLowerProductsByBrand = [];
       },
         (error) => {
-          console.log(error);
         });
   }
 
@@ -265,7 +262,6 @@ loadProduct(){
 
       },
         (error) => {
-          console.log(error);
         });
   }
 
@@ -282,7 +278,6 @@ loadProduct(){
 
       },
         (error) => {
-          console.log(error);
         });
   }
 
@@ -296,7 +291,6 @@ loadProduct(){
 
       },
         (error) => {
-          console.log(error);
         });
   }
 
@@ -308,7 +302,6 @@ loadProduct(){
         this.brandsForFilter = brands;
       },
         (error) => {
-          console.log(error);
         });
   }
 
@@ -319,7 +312,6 @@ loadProduct(){
         this.colorsForFilter = colors;
       },
         (error) => {
-          console.log(error);
         });
   }
 
@@ -330,7 +322,6 @@ loadProduct(){
         this.namesForFilter = names;
       },
         (error) => {
-          console.log(error);
         });
   }
   newFilter() {
@@ -356,9 +347,12 @@ this.router.navigate(['productDetails',id]);
     this.productService.deleteProductById(id)
     .subscribe(response=>{
       if(response.statusText==='OK'){
-        alert('Delete successfully !');
         this.loadProduct();
+
       }
+    },
+    (error)=>{
+
     });
   }
 
