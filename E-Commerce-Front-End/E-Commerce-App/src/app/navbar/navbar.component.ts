@@ -98,7 +98,12 @@ this.getFb();
 this.getTwitter();
 this.getAllPhones();
 this.getAllEmails();
+//-----------navbar-----------------
 
+$('li.active').removeClass('active');
+  $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+
+//-------------------------------------
 
 
 

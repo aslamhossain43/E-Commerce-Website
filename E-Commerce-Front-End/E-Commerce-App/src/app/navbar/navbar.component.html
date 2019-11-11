@@ -1,11 +1,11 @@
 
 <!-- Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+<nav class="navbar fixed-top navbar-expand-lg  scrolling-navbar">
   <div class="container">
 
     <!-- Brand -->
     <a class="navbar-brand waves-effect" href="" target="_blank">
-      <strong id="paddingListId" class="blue-text">TizaraMart</strong>
+      <img id="logoId" src="assets/tijara.jpg" alt="">
     </a>
 
     <!-- Collapse -->
@@ -32,8 +32,8 @@
           <a class="nav-link waves-effect" href="contactUs" target="_blank">Contact Us</a>
         </li>
 
-        <li data-toggle="modal" (click)="admin.show()" id="paddingListId" *ngIf="photoUrl && (uid===fbUid || uid === emailUid)">
-          <a class="nav-link waves-effect" mdbDropdownToggle>Admin Section</a>
+        <li data-toggle="modal" (click)="admin.show()" id="paddingListId" *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" class="nav-item">
+          <a class="nav-link waves-effect" href="JavaScript:Void(0)">Admin Section</a>
         </li>
 
 
@@ -79,7 +79,7 @@
 
         <li id="paddingListId"  class="nav-item" (click)="cartModal.show()">
             <a href="JavaScript:Void(0);" class="nav-link waves-effect">
-              <span class="badge red z-depth-1 mr-1"> {{cartNumber}} </span>
+              <span class="badge gray z-depth-1 mr-1"> {{cartNumber}} </span>
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
             </a>
@@ -866,7 +866,7 @@
 
 
 
-          <button type="button" class="btn btn-outline-primary"
+          <button type="button" class="btn btn-outline-success"
             data-dismiss="modal" (click)="admin.hide()">Close</button>
 
 
@@ -923,10 +923,10 @@
       <div class="modal-body">
         <div class="row d-flex justify-content-center align-items-center">
 
-          <a type="button" (click)="loginFb()" data-dismiss="modal" class="btn btn-primary">Login with facebook <i class="fab fa-facebook-f"></i></a>
-          <a type="button" (click)="loginGoogle()" data-dismiss="modal" class="btn btn-success">Login with google <i class="fab fa-google"></i></a>
+          <button type="button" (click)="loginFb()" data-dismiss="modal" class="btn btn-primary">Login with facebook <i class="fab fa-facebook-f"></i></button>
+          <button type="button" (click)="loginGoogle()" data-dismiss="modal" class="btn btn-success">Login with google <i class="fab fa-google"></i></button>
 
-          <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">No, thanks</a>
+          <button type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">No, thanks</button>
         </div>
       </div>
     </div>
