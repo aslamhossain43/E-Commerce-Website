@@ -85,12 +85,6 @@ photoUrl: string;
 
 
 
-
-new WOW().init();
-
-
-
-
   }
 
 

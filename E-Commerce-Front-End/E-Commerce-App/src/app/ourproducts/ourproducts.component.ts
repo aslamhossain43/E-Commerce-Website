@@ -81,9 +81,6 @@ photoUrl: string;
     this.getProductsNameNoDuplicate();
 
 
-new WOW().init();
-
-
   }
 
 

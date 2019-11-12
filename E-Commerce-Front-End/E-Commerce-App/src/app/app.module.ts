@@ -23,7 +23,7 @@ import { NgwWowModule } from 'ngx-wow';
 import { ProductService } from './manage/manage.service';
 import { UploadFileService } from './manage/manage.file-service';
 import { NgMaterialModule } from './app.materials';
-import { RouterModule } from '@angular/router';
+import { FacebookModule } from 'ngx-facebook';
 import { ProductFilterPipe } from './home/home.filter.pipe';
 import { ProductServiceForCart } from './app.cart-service';
 import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.component';
@@ -59,7 +59,8 @@ import { SelltousDetailsComponent } from './selltous-details/selltous-details.co
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     NgwWowModule,
-   
+   //for facebook
+   FacebookModule.forRoot(),
   //MATERIAL
   NgMaterialModule,
   //for auth
