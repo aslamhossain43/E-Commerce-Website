@@ -48,9 +48,9 @@ selectedgmFiles: FileList;
 selectedCFiles: FileList;
 carousel=new Carousel();
 fb=new Fb();
-fbLink:Fb;
+fbLink=new Fb();
 twitter=new Twitter();
-twitterLink:Twitter
+twitterLink=new Twitter();
 
 
 phone=new Phone();
@@ -84,7 +84,7 @@ fbUid='7fHZCwUlZyfLPm8ScDVkOkswM932';
   constructor(private ngWowService:NgwWowService,private productService:ProductService,
     private uploadFileService:UploadFileService,private router:Router,private activatedRoute:ActivatedRoute,
     private productServiceForCart:ProductServiceForCart,public af: AngularFireAuth){
-      this.getAllCarousel();
+     // this.getAllCarousel();
       this.loginProperties();
     
   }
@@ -194,9 +194,11 @@ if (this.id) {
 
 //----------------------------------------
 
+// check null to remove browser error
+if(this.id!=null){
 
-
-this.router.navigate(['productDetails',this.id]);
+  this.router.navigate(['productDetails',this.id]);
+}
 
   }
   
@@ -431,6 +433,11 @@ loadCart(): void {
   this.total = 0;
   this.items = [];
   let cart = JSON.parse(localStorage.getItem('cart'));
+// check cart null,,because after removing all cart the local storage cart is null
+if(localStorage.getItem('cart')!=null){
+
+
+ 
   for (var i = 0; i < cart.length; i++) {
     let item = JSON.parse(cart[i]);
     this.items.push({
@@ -443,6 +450,10 @@ loadCart(): void {
       
     this.total += item.product.soldPrice * item.quantity;
   }
+
+}
+
+
   localStorage.setItem('total',JSON.stringify(this.total));
   //---------------------load cart count-------
   this.cartNumber=+localStorage.getItem('cartNumber');
@@ -497,7 +508,7 @@ fbSave(){
 getFb():void{
 
 this.productService.getFb()
-.subscribe(response=>{
+.subscribe((response)=>{
   this.fbLink=response;
 },
 (error)=>{
@@ -530,7 +541,7 @@ twitterSave(){
 getTwitter():void{
 
 this.productService.getTwitter()
-.subscribe(response=>{
+.subscribe((response)=>{
   this.twitterLink=response;
 },
 (error)=>{
@@ -550,7 +561,6 @@ loginProperties() {
       }
       this.photoUrl = auth.photoURL;
       this.uid = auth.uid;
-      console.log('uid: ' + auth.uid);
     }
   });
 }

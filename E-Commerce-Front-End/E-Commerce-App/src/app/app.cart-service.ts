@@ -19,7 +19,7 @@ this.getAllProducts();
 
     
      getAllProductsForCart(): Observable<Product[]> {
-        return this.http.get('/products/getAllProducts')
+        return this.http.get('http://localhost:8080/products/getAllProducts')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);

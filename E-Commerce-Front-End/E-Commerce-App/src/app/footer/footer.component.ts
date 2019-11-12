@@ -12,8 +12,8 @@ import { Email } from '../manage/email';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-fbLink:Fb;
-twitterLink:Twitter;
+fbLink=new Fb();
+twitterLink=new Twitter();
 
 emailSending=new EmailSending();
 

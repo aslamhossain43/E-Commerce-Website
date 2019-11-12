@@ -17,7 +17,7 @@ declare var $ :any;
 })
 export class OurproductsComponent implements OnInit {
 
-
+  deleteId:string;
 
   products: Product[];
   product=new Product;
@@ -343,14 +343,33 @@ this.router.navigate(['productDetails',id]);
     });
   }
   deleteProductById(id:string){
-    this.productService.deleteProductById(id)
-    .subscribe(response=>{
-      if(response.statusText==='OK'){
-        alert('Delete successfully !');
-        this.loadProduct();
-      }
-    });
-  }
+    this.deleteId=id;
+   }
+ 
+   deletetpProductConfirm(){
+     this.productService.deleteProductById(this.deleteId)
+     .subscribe(response=>{
+       if(response.statusText==='OK'){
+         this.loadProduct();
+ 
+       }
+     },
+     (error)=>{
+ 
+     });
+ 
+ 
+   }
+ 
+ removeDeleteId(){
+   this.deleteId=null;
+ }
+   
+
+
+
+
+
 
 
 

@@ -13,6 +13,7 @@ export class AppComponent implements OnInit{
 constructor(private ngWowService:NgwWowService){}
 
 ngOnInit(){
+  // must need to animate the wow js 
   this.ngWowService.init();
 }
 
