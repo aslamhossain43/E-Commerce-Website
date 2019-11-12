@@ -71,7 +71,7 @@
           </a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a href="JavaScript:Void(0)" class="nav-link waves-effect" data-toggle="modal" data-target="#emailModal" target="_blank">
+          <a href="JavaScript:Void(0)" class="nav-link waves-effect" data-toggle="modal" data-target="#emailModal">
             <i class="fas fa-envelope"></i>
           </a>
         </li>
@@ -388,7 +388,7 @@
         </div>
 
         <div class="md-form mb-5">
-          <input mdbInput type="text" id="youraddress" class="form-control validate" [(ngModel)]="thirdPartyProduct.youraddress">
+          <textarea mdbInput type="text" id="youraddress" class="md-textarea form-control" rows="2" [(ngModel)]="thirdPartyProduct.youraddress"></textarea>
           <label for="youraddress">Your address (Within 20 words)</label>
         </div>
 
@@ -549,7 +549,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td><img id="cartImg" src="/getPhotos/{{item.product.frontCode}}" alt=""></td>
+                  <td><img id="cartImg" src="http://localhost:8080/getPhotos/{{item.product.frontCode}}" alt=""></td>
                   <td id="cartText" style="line-height: 120%;"><span>Category : </span>{{item.product.category}}<br>
                     <span>Brand : </span>{{item.product.brand}}<br>
                     <span>Name : </span>{{item.product.name}}<br>

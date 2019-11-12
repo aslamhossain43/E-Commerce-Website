@@ -22,6 +22,9 @@ export class HomeComponent implements OnInit {
   productObj=new Product;
 
 selectedpFiles: FileList;
+
+
+deleteId:string;
 //-----------------------
 emailUid='qCv0iprRpzcdX5eLSaP6WMpV9X73';
 fbUid='7fHZCwUlZyfLPm8ScDVkOkswM932';
@@ -66,6 +69,7 @@ photoUrl: string;
 
 
     this.loginProperties();
+    this.loadProduct();
 
    }
 
@@ -88,6 +92,7 @@ new WOW().init();
 
 
   }
+
 
 
 
@@ -192,7 +197,7 @@ loadProduct(){
         this.activeCarouselPhoto = carousel[0].cCode;
 
         this.carousels = carousel.slice(1);
-        console.log(carousel);
+      
       },
         (error) => {
         });
@@ -203,7 +208,7 @@ loadProduct(){
     this.productService.getAllCategories()
       .subscribe((categories) => {
         this.categories = categories;
-        console.log(categories);
+     
       },
         (error) => {
         });
@@ -338,7 +343,11 @@ this.router.navigate(['productDetails',id]);
     });
   }
   deleteProductById(id:string){
-    this.productService.deleteProductById(id)
+   this.deleteId=id;
+  }
+
+  deletetpProductConfirm(){
+    this.productService.deleteProductById(this.deleteId)
     .subscribe(response=>{
       if(response.statusText==='OK'){
         this.loadProduct();
@@ -348,7 +357,13 @@ this.router.navigate(['productDetails',id]);
     (error)=>{
 
     });
+
+
   }
-//------------------------------------
+
+removeDeleteId(){
+  this.deleteId=null;
+}
+  
 
 }
