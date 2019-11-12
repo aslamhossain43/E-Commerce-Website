@@ -18,13 +18,11 @@ id:string;
   quantity:number=1;
   constructor(private productService:ProductService,private route:ActivatedRoute,private productServiceForCart:ProductServiceForCart) {
 
-    if (!localStorage.getItem('foo')) { 
-      localStorage.setItem('foo', 'no reload') 
-      location.reload() 
-    } else {
-      localStorage.removeItem('foo') 
-    
-    }
+
+
+
+    this.reLoadPage();
+
 this.id=this.route.snapshot.paramMap.get('id');
 
 
@@ -34,8 +32,19 @@ this.id=this.route.snapshot.paramMap.get('id');
     this.getProductById();
     this.getProductsByIdForSameCategoryAndBrand();
 
-  }
 
+  }
+reLoadPage(){
+
+    if (!localStorage.getItem('foo')) { 
+      localStorage.setItem('foo', 'no reload');
+      location.reload(); 
+    } else {
+      localStorage.removeItem('foo'); 
+    
+    }
+
+}
 
 getProductById(){
   this.productService.getProductById(this.id)

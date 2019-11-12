@@ -14,13 +14,7 @@ export class SelltousDetailsComponent implements OnInit {
 product=new ThirdPartyProduct();
 id:string;
   constructor(private route:ActivatedRoute,private productService:ProductService) {
-    if (!localStorage.getItem('foo')) { 
-      localStorage.setItem('foo', 'no reload') 
-      location.reload() 
-    } else {
-      localStorage.removeItem('foo') 
-    
-    }
+    this.reLoadPage();
 this.id=this.route.snapshot.paramMap.get('id');
 
 
@@ -56,5 +50,19 @@ if(response.statusText==='OK'){
 }
 
 
+
+
+
+reLoadPage(){
+
+  if (!localStorage.getItem('foo')) { 
+    localStorage.setItem('foo', 'no reload');
+    location.reload(); 
+  } else {
+    localStorage.removeItem('foo'); 
+  
+  }
+
+}
 
 }

@@ -14,7 +14,6 @@ import { SelltousDetailsComponent } from './selltous-details/selltous-details.co
 
 const routes: Routes = [
 {path:'',component:HomeComponent},
-{path:'home',component:HomeComponent},
 {path:'manage',component:ManageComponent},
 {path:'manageCheckout',component:ManageCheckoutComponent},
 
@@ -34,9 +33,9 @@ const routes: Routes = [
 
 
 ];
-
+// usehash when integrate with spring boot then to reload page it is used
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

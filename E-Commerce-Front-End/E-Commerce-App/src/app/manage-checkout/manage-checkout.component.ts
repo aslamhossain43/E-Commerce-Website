@@ -21,15 +21,7 @@ removeId:string;
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-      //for form
-      $('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea').each(function (element, i) {
-        if ((element.value !== undefined && element.value.length > 0) || $(this).attr('placeholder') !== null) {
-            $(this).siblings('label').addClass('active');
-        }
-        else {
-            $(this).siblings('label').removeClass('active');
-        }
-    });
+      
     this.getAllCheckout();
 
   }
@@ -61,21 +53,14 @@ this.removeId=id;
 removeOrder(){
 this.productService.deleteOrder(this.removeId)
 .subscribe(response=>{
+if(response.statusText==='OK'){
 
- //----------------load------------
- if (!localStorage.getItem('foo')) { 
-  localStorage.setItem('foo', 'no reload') 
-  location.reload() 
-  localStorage.removeItem('foo')
-} else {
-  localStorage.removeItem('foo') 
-
+  this.reLoadPage();
 }
-
 
 },
 (error)=>{
-
+  this.reLoadPage();
 });
 }
 
@@ -83,7 +68,17 @@ this.productService.deleteOrder(this.removeId)
 
 
 
+reLoadPage(){
 
+  if (!localStorage.getItem('foo')) { 
+    localStorage.setItem('foo', 'no reload');
+    location.reload(); 
+  } else {
+    localStorage.removeItem('foo'); 
+  
+  }
+
+}
 
 
 

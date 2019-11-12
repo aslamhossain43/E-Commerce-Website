@@ -7,6 +7,7 @@ import { Category } from '../manage/category';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UploadFileService } from '../manage/manage.file-service';
 import { WOW } from 'wowjs/dist/wow.min';
+import { strict } from 'assert';
 declare var jquery:any;
 declare var $ :any;
 @Component({
@@ -62,6 +63,8 @@ photoUrl: string;
   constructor(private productService: ProductService, private router: Router,public af: AngularFireAuth,
     private uploadFileService:UploadFileService) {
 
+
+
     this.loginProperties();
 
    }
@@ -76,16 +79,6 @@ photoUrl: string;
     this.getProductsColorNoDuplicate();
     this.getProductsNameNoDuplicate();
 
-
-    //for form
-$('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea').each(function (element, i) {
-  if ((element.value !== undefined && element.value.length > 0) || $(this).attr('placeholder') !== null) {
-      $(this).siblings('label').addClass('active');
-  }
-  else {
-      $(this).siblings('label').removeClass('active');
-  }
-});
 
 
 
@@ -335,6 +328,7 @@ loadProduct(){
 
   sendId(id:string){
 this.router.navigate(['productDetails',id]);
+
   }
 
   getProductById(id:string){
@@ -355,5 +349,6 @@ this.router.navigate(['productDetails',id]);
 
     });
   }
+//------------------------------------
 
 }

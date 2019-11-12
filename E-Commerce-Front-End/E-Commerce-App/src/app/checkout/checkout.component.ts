@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ProductServiceForCart } from '../app.cart-service';
 import { Product } from '../cart-entities/product';
 import { Item } from '../cart-entities/item';
@@ -8,6 +8,7 @@ import { PersonAndProductsCombinedForCheckOut } from '../manage/checkout';
 import { ProductsForCheckOut } from '../manage/productsforcheckout';
 import { Router } from '@angular/router';
 
+
 declare var jquery:any;
 declare var $ :any;
 @Component({
@@ -16,6 +17,9 @@ declare var $ :any;
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
+
+
+
 items: Item[]=[];
 personAndProductsCombinedForCheckOut=new PersonAndProductsCombinedForCheckOut();
 productsForCheckOuts:ProductsForCheckOut[]=[];
@@ -32,15 +36,6 @@ total:number=0;
    }
 
   ngOnInit() {
-    //for form
-    $('input[type=text], input[type=password], input[type=email], input[type=url], input[type=tel], input[type=number], input[type=search], input[type=date], input[type=time], textarea').each(function (element, i) {
-      if ((element.value !== undefined && element.value.length > 0) || $(this).attr('placeholder') !== null) {
-          $(this).siblings('label').addClass('active');
-      }
-      else {
-          $(this).siblings('label').removeClass('active');
-      }
-  });
 
 
 //for cart
@@ -119,18 +114,23 @@ this.freshLocalstorage();
     localStorage.setItem('cartNumber',JSON.stringify(cn));
     localStorage.setItem('total',JSON.stringify(tt));
     localStorage.removeItem('cart');
+    
     //----------------load------------
+  this.reLoadPage();
+
+}
+
+reLoadPage(){
+
   if (!localStorage.getItem('foo')) { 
-    localStorage.setItem('foo', 'no reload') 
-    location.reload() 
-    localStorage.removeItem('foo')
+    localStorage.setItem('foo', 'no reload');
+    location.reload(); 
   } else {
-    localStorage.removeItem('foo') 
+    localStorage.removeItem('foo'); 
   
   }
-  }
 
-
+}
 
   getTotal(): void {
     let cart = JSON.parse(localStorage.getItem('cart'));
