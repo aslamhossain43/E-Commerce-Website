@@ -1,6 +1,6 @@
 <!--Main layout-->
 <main class="mt-5 pt-4">
-    <div *ngFor="let personAndProductsCombinedForCheckOut of personAndProductsCombinedForCheckOuts" class="container wow fadeIn">
+    <div *ngFor="let personAndProductsCombinedForCheckOut of personAndProductsCombinedForCheckOuts" class="container wow slideInUp">
   
       <!-- Heading -->
       <h2 class="my-5 h2 text-center">Buyer informations</h2>
@@ -28,7 +28,7 @@
           <ul class="list-group mb-3 z-depth-1">
             <li *ngFor="let product of personAndProductsCombinedForCheckOut.productsForCheckOuts"  class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
-                <img id="cartImg" src="http://localhost:8080/getPhotos/{{product.frontCode}}" alt=""><br>
+                <img id="cartImg" src="/getPhotos/{{product.frontCode}}" alt=""><br>
                 <small class="text-muted"> Category : {{product.category}}<br></small>
   
                 <small class="text-muted"> Brand : {{product.brand}}<br></small>

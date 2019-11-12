@@ -15,8 +15,8 @@
 
               <!--Card image-->
               <div *ngIf="p.frontCode" class="view overlay">
-                <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
-                <a href="JavaScript:Void(0);" [routerLink]="['sellToUs', p.id]"  target="_blank" >
+                <img src="/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+                <a  [routerLink]="['sellToUs', p.id]" >
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>
@@ -32,12 +32,12 @@
                
                 <h5>
                   <strong>
-                    <a href="JavaScript:Void(0);" [routerLink]="['sellToUs', p.id]" class="dark-grey-text" target="_blank">{{p.name}}
+                    <a [routerLink]="['sellToUs', p.id]" class="dark-grey-text">{{p.name}}
                     </a>
                   </strong>
                 </h5>
 
-                <a href="JavaScript:Void(0);" [routerLink]="['sellToUs', p.id]"  target="_blank"  class="grey-text">
+                <a [routerLink]="['sellToUs', p.id]" class="grey-text">
                     <h5>{{p.description}}</h5>
                   </a>
 

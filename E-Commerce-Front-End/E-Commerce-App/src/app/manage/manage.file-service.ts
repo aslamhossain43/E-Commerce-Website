@@ -9,7 +9,7 @@ export class UploadFileService {
       formdata.append("pFiles", photos[x]);
     }
 
-    return this.http.post('http://localhost:8080/products/addFiles', formdata);
+    return this.http.post('/products/addFiles', formdata);
   }
 
   pushCarouselFileToStorage(pictures:FileList) {
@@ -21,7 +21,7 @@ export class UploadFileService {
     }
 
 
-     return this.http.post('http://localhost:8080/carousel/addCFiles', formdata);
+     return this.http.post('/carousel/addCFiles', formdata);
   }
 
   pushThirdPartyFileToStorage(pictures:FileList) {
@@ -33,7 +33,7 @@ export class UploadFileService {
     }
 
 
-     return this.http.post('http://localhost:8080/thirdParty/addtpFiles', formdata);
+     return this.http.post('/thirdParty/addtpFiles', formdata);
   }
 
 
@@ -44,7 +44,7 @@ export class UploadFileService {
       formdata.append("gMFile", picture);
    
 
-     return this.http.post('http://localhost:8080/contacts/addGMFile', formdata);
+     return this.http.post('/contacts/addGMFile', formdata);
   }
 
 

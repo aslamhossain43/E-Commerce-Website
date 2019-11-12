@@ -19,10 +19,7 @@ tpProducts:ThirdPartyProduct[];
     this.productService.getAllThirdPartyProducts()
     .subscribe(tpProducts=>{
       this.tpProducts=tpProducts;
-    },
-    (error)=>{
-
-    })
+    });
   }
 
 }

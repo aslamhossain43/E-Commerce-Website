@@ -4,7 +4,7 @@
   <div class="container">
 
     <!-- Brand -->
-    <a class="navbar-brand waves-effect" href="" target="_blank">
+    <a class="navbar-brand waves-effect" routerLink="">
       <img id="logoId" src="assets/tijara.jpg" alt="">
     </a>
 
@@ -20,16 +20,16 @@
       <!-- Left -->
       <ul class="navbar-nav mr-auto">
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" href="aboutUs" target="_blank">About Us</a>
+          <a class="nav-link waves-effect" routerLink="aboutUs">About Us</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" href="ourProducts" target="_blank">Our Products</a>
+          <a class="nav-link waves-effect" routerLink="ourProducts">Our Products</a>
         </li>
         <li id="paddingListId" class="nav-item">
           <a class="nav-link waves-effect" href="JavaScript:Void(0);" (click)="thirdProductModal.show()">Sell On Tizaramart</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" href="contactUs" target="_blank">Contact Us</a>
+          <a class="nav-link waves-effect" routerLink="contactUs">Contact Us</a>
         </li>
 
         <li data-toggle="modal" (click)="admin.show()" id="paddingListId" *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" class="nav-item">
@@ -255,20 +255,20 @@
 
 
           <div class="md-form mb-5">
-              <input type="text" id="name" class="form-control validate" [(ngModel)]="product.name" required>
-              <label data-error="wrong" data-success="right" for="name">Product name</label>
+              <input mdbInput type="text" id="name" class="form-control validate" [(ngModel)]="product.name">
+              <label for="name">Product name</label>
             </div>
     
     
             <div class="md-form mb-5">
-              <input type="text" id="brand" class="form-control validate" [(ngModel)]="product.brand" required>
-              <label data-error="wrong" data-success="right" for="brand">Brand name</label>
+              <input mdbInput type="text" id="brand" class="form-control validate" [(ngModel)]="product.brand">
+              <label for="brand">Brand name</label>
             </div>
     
     
             <div class="md-form">
-                <textarea type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="product.description" required></textarea>
-                <label data-error="wrong" data-success="right" for="description">Product description (Within 20 words)</label>
+                <textarea type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="product.description"></textarea>
+                <label for="description">Product description (Within 20 words)</label>
               </div>
     
     
@@ -276,42 +276,31 @@
     
     
               <div class="md-form mb-5">
-                <input type="text" id="marketPrice" class="form-control validate" [(ngModel)]="product.marketPrice" required>
-                <label data-error="wrong" data-success="right" for="marketPrice">Market price of product</label>
+                <input mdbInput type="text" id="marketPrice" class="form-control validate" [(ngModel)]="product.marketPrice">
+                <label for="marketPrice">Market price of product</label>
               </div>
 
     
             <div class="md-form mb-5">
-              <input type="text" id="soldPrice" class="form-control validate" [(ngModel)]="product.soldPrice" required>
-              <label data-error="wrong" data-success="right" for="soldPrice">Sold price of product</label>
+              <input mdbInput type="text" id="soldPrice" class="form-control validate" [(ngModel)]="product.soldPrice">
+              <label for="soldPrice">Sold price of product</label>
             </div>
     
            
     
               <div class="md-form mb-5">
-                  <input type="text" id="color" class="form-control validate" [(ngModel)]="product.color" required>
-                  <label data-error="wrong" data-success="right" for="color">Color of product</label>
+                  <input mdbInput type="text" id="color" class="form-control validate" [(ngModel)]="product.color">
+                  <label for="color">Color of product</label>
                 </div>
     
     
                 <div class="md-form mb-5">
-                    <input type="text" id="quantity" class="form-control validate" [(ngModel)]="product.quantity" required>
-                    <label data-error="wrong" data-success="right" for="quantity">Quantity of product</label>
+                    <input mdbInput type="text" id="quantity" class="form-control validate" [(ngModel)]="product.quantity">
+                    <label for="quantity">Quantity of product</label>
                   </div>
       
     
     
-
-
-
-
-
-
-
-
-
-
-
 
 
                     <div *ngIf="!selectedpFiles" class="input-group">
@@ -336,20 +325,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
     
     <br><br>
     <!--Material select-->
     
-        <mat-select matInput placeholder="Select a category" [(ngModel)]="product.category" name="category" required>
+        <mat-select matInput placeholder="Select a category" [(ngModel)]="product.category" name="category">
           <mat-option  [value]="category.category" *ngFor="let category of categories" >{{category.category}}</mat-option>
          
         </mat-select>
@@ -397,19 +377,19 @@
 
 
         <div class="md-form mb-5">
-          <input mdbInput type="text" id="yourname" class="form-control validate" [(ngModel)]="thirdPartyProduct.yourname" required>
-          <label data-error="wrong" data-success="right" for="yourname">Your name</label>
+          <input mdbInput type="text" id="yourname" class="form-control validate" [(ngModel)]="thirdPartyProduct.yourname">
+          <label for="yourname">Your name</label>
         </div>
 
 
         <div class="md-form mb-5">
-          <input mdbInput type="text" id="yourphn" class="form-control validate" [(ngModel)]="thirdPartyProduct.yourphn" required>
-          <label data-error="wrong" data-success="right" for="yourphn">Your phone</label>
+          <input mdbInput type="text" id="yourphn" class="form-control validate" [(ngModel)]="thirdPartyProduct.yourphn">
+          <label for="yourphn">Your phone</label>
         </div>
 
         <div class="md-form mb-5">
-          <input mdbInput type="text" id="youraddress" class="form-control validate" [(ngModel)]="thirdPartyProduct.youraddress" required>
-          <label data-error="wrong" data-success="right" for="youraddress">Your address (Within 20 words)</label>
+          <input mdbInput type="text" id="youraddress" class="form-control validate" [(ngModel)]="thirdPartyProduct.youraddress">
+          <label for="youraddress">Your address (Within 20 words)</label>
         </div>
 
 
@@ -419,20 +399,20 @@
 
 
           <div class="md-form mb-5">
-              <input mdbInput type="text" id="name" class="form-control validate" [(ngModel)]="thirdPartyProduct.name" required>
-              <label data-error="wrong" data-success="right" for="name">Name of product</label>
+              <input mdbInput type="text" id="name" class="form-control validate" [(ngModel)]="thirdPartyProduct.name">
+              <label for="name">Name of product</label>
             </div>
     
     
             <div class="md-form mb-5">
-              <input mdbInput type="text" id="brand" class="form-control validate" [(ngModel)]="thirdPartyProduct.brand" required>
-              <label data-error="wrong" data-success="right" for="brand">Brand name of product</label>
+              <input mdbInput type="text" id="brand" class="form-control validate" [(ngModel)]="thirdPartyProduct.brand">
+              <label for="brand">Brand name of product</label>
             </div>
     
     
             <div class="md-form">
-                <textarea mdbInput type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="thirdPartyProduct.description" required></textarea>
-                <label data-error="wrong" data-success="right" for="description">Description of product (Within 20 words)</label>
+                <textarea mdbInput type="text" id="description" class="md-textarea form-control" rows="2" [(ngModel)]="thirdPartyProduct.description"></textarea>
+                <label for="description">Description of product (Within 20 words)</label>
               </div>
     
     
@@ -443,21 +423,21 @@
 
     
             <div class="md-form mb-5">
-              <input mdbInput type="text" id="soldPrice" class="form-control validate" [(ngModel)]="thirdPartyProduct.soldPrice" required>
-              <label data-error="wrong" data-success="right" for="soldPrice">Sold price of product (single price)</label>
+              <input mdbInput type="text" id="soldPrice" class="form-control validate" [(ngModel)]="thirdPartyProduct.soldPrice">
+              <label for="soldPrice">Sold price of product (single price)</label>
             </div>
     
            
     
               <div class="md-form mb-5">
-                  <input mdbInput type="text" id="color" class="form-control validate" [(ngModel)]="thirdPartyProduct.color" required>
-                  <label data-error="wrong" data-success="right" for="color">Color of product</label>
+                  <input mdbInput type="text" id="color" class="form-control validate" [(ngModel)]="thirdPartyProduct.color">
+                  <label for="color">Color of product</label>
                 </div>
     
     
                 <div class="md-form mb-5">
-                    <input mdbInput type="text" id="quantity" class="form-control validate" [(ngModel)]="thirdPartyProduct.quantity" required>
-                    <label data-error="wrong" data-success="right" for="quantity">Quantity of product</label>
+                    <input mdbInput type="text" id="quantity" class="form-control validate" [(ngModel)]="thirdPartyProduct.quantity">
+                    <label for="quantity">Quantity of product</label>
                   </div>
       
     
@@ -521,8 +501,8 @@
                 
 
         <div class="md-form mb-5">
-          <input type="text" id="productCategory" class="form-control validate" [(ngModel)]="category.category" name="category" required>
-          <label data-error="wrong" data-success="right" for="productCategory">Category name</label>
+          <input mdbInput type="text" id="productCategory" class="form-control validate" [(ngModel)]="category.category" name="category">
+          <label for="productCategory">Category name</label>
         </div>
 
       </div>
@@ -569,7 +549,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td><img id="cartImg" src="http://localhost:8080/getPhotos/{{item.product.frontCode}}" alt=""></td>
+                  <td><img id="cartImg" src="/getPhotos/{{item.product.frontCode}}" alt=""></td>
                   <td id="cartText" style="line-height: 120%;"><span>Category : </span>{{item.product.category}}<br>
                     <span>Brand : </span>{{item.product.brand}}<br>
                     <span>Name : </span>{{item.product.name}}<br>
@@ -632,7 +612,7 @@
           <div class="md-form mb-4">
               <i class="fas fa-user-circle prefix grey-text"></i>
             <input mdbInput type="text" id="user" [(ngModel)]="emailSending.name" class="form-control validate">
-              <label data-error="wrong" data-success="right" for="user">Your name</label>
+              <label for="user">Your name</label>
             </div>
     
 
@@ -641,20 +621,20 @@
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
           <input mdbInput type="email" id="mail" [(ngModel)]="emailSending.from" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="mail">Your email</label>
+          <label for="mail">Your email</label>
         </div>
 
         <div class="md-form mb-4">
             <i class="fas fa-phone prefix grey-text"></i>
           <input mdbInput type="text" id="phn" [(ngModel)]="emailSending.phone" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="phn">Your phone</label>
+          <label for="phn">Your phone</label>
         </div>
 
 
         <div class="md-form mb-4">
             <i class="far fa-comment prefix grey-text"></i>
             <textarea mdbInput type="text" class="md-textarea form-control" rows="2" id="msg" [(ngModel)]="emailSending.message"></textarea>
-            <label data-error="wrong" data-success="right" for="msg">Your message</label>
+            <label for="msg">Your message</label>
           </div>
 
 
@@ -682,7 +662,7 @@
         <div class="md-form mb-5">
           <i class="fab fa-facebook-f prefix grey-text"></i>
           <input mdbInput type="text" [(ngModel)]="fb.fblink" name="fblink" id="fbId" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="fbId">Facebook link</label>
+          <label for="fbId">Facebook link</label>
         </div>
 
 
@@ -713,7 +693,7 @@
         <div class="md-form mb-5">
           <i class="fab fa-twitter prefix grey-text"></i>
           <input mdbInput type="text" [(ngModel)]="twitter.twitter" name="twitterlink" id="twitterId" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="twitterId">Twitter link</label>
+          <label for="twitterId">Twitter link</label>
         </div>
 
 
@@ -743,7 +723,7 @@
         <div class="md-form mb-5">
             <i class="fas fa-phone-alt prefix grey-text"></i>
           <input mdbInput type="text" [(ngModel)]="phone.phone" name="phone" id="phoneId" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="phoneId">Phone number</label>
+          <label for="phoneId">Phone number</label>
         </div>
 
 
@@ -775,7 +755,7 @@
         <div class="md-form mb-5">
             <i class="fas fa-envelope  prefix grey-text"></i>
           <input mdbInput type="text" [(ngModel)]="email.email" name="email" id="emailId" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="phoneId">Email address</label>
+          <label for="phoneId">Email address</label>
         </div>
 
 
@@ -846,10 +826,10 @@
              
 
 
-             <a href="manageCheckout"> <button id="adsBtn" type="button" class="btn btn-outline-primary">Manage checkout</button></a>
+             <a routerLink="manageCheckout" data-dismiss="modal" (click)="admin.hide()"> <button id="adsBtn" type="button" class="btn btn-outline-primary">Manage checkout</button></a>
 
 
-            <a href="sellToUs"><button id="adsBtn" type="button" class="btn btn-outline-primary">Third party product</button> </a>
+            <a routerLink="sellToUs" data-dismiss="modal" (click)="admin.hide()"><button id="adsBtn" type="button" class="btn btn-outline-primary">Third party product</button> </a>
 
 
 
