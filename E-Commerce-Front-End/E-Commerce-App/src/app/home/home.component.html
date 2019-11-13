@@ -11,10 +11,10 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="http://localhost:8080/getPhotos/{{activeCarouselPhoto}}" alt="">
+      <img *ngIf="activeCarouselPhoto" src="/getPhotos/{{activeCarouselPhoto}}" alt="">
     </div>
     <div *ngFor="let cimg of carousels" class="carousel-item">
-      <img src="http://localhost:8080/getPhotos/{{cimg.cCode}}" alt="">
+      <img *ngIf="cimg" src="/getPhotos/{{cimg.cCode}}" alt="">
     </div>
    
   </div>
@@ -174,7 +174,7 @@
 
               <!--Card image-->
               <div *ngIf="p.frontCode" class="view overlay">
-                <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+                <img src="/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
                 <a  href="JavaScript:Void(0);" (click)="sendId(p.id)">
                   <div class="mask rgba-white-slight"></div>
                 </a>
@@ -243,7 +243,7 @@
 
             <!--Card image-->
             <div *ngIf="p.frontCode" class="view overlay">
-              <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+              <img src="/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
               <a href="JavaScript:Void(0);" (click)="sendId(p.id)">
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -306,7 +306,7 @@
 
             <!--Card image-->
             <div *ngIf="p.frontCode" class="view overlay">
-              <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+              <img src="/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
               <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" >
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -369,7 +369,7 @@
 
             <!--Card image-->
             <div *ngIf="p.frontCode" class="view overlay">
-              <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+              <img src="/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
               <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" >
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -434,7 +434,7 @@
 
             <!--Card image-->
             <div *ngIf="p.frontCode" class="view overlay">
-              <img src="http://localhost:8080/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
+              <img src="/getPhotos/{{p.frontCode}}" class="card-img-top" alt="">
               <a href="JavaScript:Void(0);" [routerLink]="['productDetails', p.id]"  target="_blank" >
                 <div class="mask rgba-white-slight"></div>
               </a>

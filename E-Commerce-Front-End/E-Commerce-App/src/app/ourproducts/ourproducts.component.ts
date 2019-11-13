@@ -95,7 +95,6 @@ photoUrl: string;
         }
         this.photoUrl = auth.photoURL;
         this.uid = auth.uid;
-        console.log('uid: ' + auth.uid);
       }
     });
   }
@@ -174,7 +173,6 @@ loadProduct(){
 
       },
         (error) => {
-          console.log(error);
         });
   }
   getAllCarousel(): void {
@@ -185,7 +183,7 @@ loadProduct(){
         this.activeCarouselPhoto = carousel[0].cCode;
 
         this.carousels = carousel.slice(1);
-        console.log(carousel);
+      
       },
         (error) => {
           console.log(error);
@@ -197,7 +195,7 @@ loadProduct(){
     this.productService.getAllCategories()
       .subscribe((categories) => {
         this.categories = categories;
-        console.log(categories);
+       
       },
         (error) => {
           console.log(error);

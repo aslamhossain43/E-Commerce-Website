@@ -15,7 +15,7 @@ declare var $ :any;
   styleUrls: ['./contactus.component.scss']
 })
 export class ContactusComponent implements OnInit {
-googleMap:GoogleMap;
+googleMap=new GoogleMap();
 phones:Phone[];
 emails:Email[];
 
