@@ -23,7 +23,6 @@ import { NgwWowModule } from 'ngx-wow';
 import { ProductService } from './manage/manage.service';
 import { UploadFileService } from './manage/manage.file-service';
 import { NgMaterialModule } from './app.materials';
-import { FacebookModule } from 'ngx-facebook';
 import { ProductFilterPipe } from './home/home.filter.pipe';
 import { ProductServiceForCart } from './app.cart-service';
 import { ManageCheckoutComponent } from './manage-checkout/manage-checkout.component';
@@ -33,6 +32,8 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { FooterComponent } from './footer/footer.component';
 import { SelltousDetailsComponent } from './selltous-details/selltous-details.component';
+//facebook messenger
+import { FacebookModule } from 'ngx-facebook';
 
 @NgModule({
   declarations: [
@@ -59,13 +60,12 @@ import { SelltousDetailsComponent } from './selltous-details/selltous-details.co
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     NgwWowModule,
-   //for facebook
-   FacebookModule.forRoot(),
   //MATERIAL
   NgMaterialModule,
   //for auth
   AngularFireModule.initializeApp(environment.firebase),
-
+// facebook messenger
+FacebookModule.forRoot(),
     FormsModule,
     HttpModule,
     // FOR FILE UPLOAD
