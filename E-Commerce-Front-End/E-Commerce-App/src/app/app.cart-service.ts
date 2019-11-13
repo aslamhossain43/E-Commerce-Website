@@ -45,6 +45,9 @@ allItemsFromLocalStorage(){
  
     this.items = [];
     let cart = JSON.parse(localStorage.getItem('cart'));
+if(localStorage.getItem('cart')!=null){
+
+
     for (var i = 0; i < cart.length; i++) {
       let item = JSON.parse(cart[i]);
       this.items.push({
@@ -55,6 +58,7 @@ allItemsFromLocalStorage(){
   
       });
     }
+  }
     return this.items;
   
 }

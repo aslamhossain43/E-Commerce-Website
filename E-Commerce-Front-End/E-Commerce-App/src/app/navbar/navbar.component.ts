@@ -98,10 +98,12 @@ this.getFb();
 this.getTwitter();
 this.getAllPhones();
 this.getAllEmails();
-//-----------navbar-----------------
+//-----------navbar collapse hide if click link-----------------
+$('.nav-item').on('click', function(){
+  $('.navbar-collapse').collapse('hide');
+});
 
-
-
+//-------NOT CHANGE BELOW CODE SEQUENCE---------------------------------------------------------------
 //----------------for cart---------------
 this.products=this.productServiceForCart.findAll();
 this.id=this.activatedRoute.snapshot.paramMap.get('id');
@@ -117,22 +119,39 @@ let cart: any = JSON.parse(localStorage.getItem('cart'));
     for (var i = 0; i < cart.length; i++) {
       let item: Item = JSON.parse(cart[i]);
       if (item.product.id == this.id) {
-        if(this.quantity==2 && item.quantity>=1){
 
-      alert('You cannot add that amount to the cart — we have 2 in stock for you and you already have 1 in your cart !')
+        // check if already 2
+        if(item.quantity==2){
+          alert('The quantity of this product is already 2. Try other products !')
+          //return is used to prevent next execution
+         return this.router.navigate(['productDetails',this.id]);
+                  }
+
+
+
+        // check if already 1 but try to cart 2 or more
+        if(this.quantity>=2 && item.quantity==1){
+
+      alert('We have 2 in stock for you. Try other products !');
   //return is used to prevent next execution
  return this.router.navigate(['productDetails',this.id]);
         }
-          if(item.quantity==2){
-  alert('The quantity of this product is already 2. Try other products !')
-  //return is used to prevent next execution
- return this.router.navigate(['productDetails',this.id]);
-          }
+
+
+
+
+          
       }
     }
   }
+  
   //-------add cart count------------------
 if(this.id){
+
+if(this.quantity<=2){
+
+
+
   if(+localStorage.getItem('cartNumber')!=0){
 
     this.cartNumber=+localStorage.getItem('cartNumber')+1;
@@ -142,26 +161,75 @@ if(this.id){
 
     localStorage.setItem('cartNumber',JSON.stringify(1));
   }
+
+}else{
+
+  alert('We have 2 in stock for you. Try other products !');
+//return is used to prevent next execution
+return this.router.navigate(['productDetails',this.id]);
+
+
+}
+
+
+
+
+
 }
 //------------------------------------------------
 //initialize item
 if (this.id) {
+
+if(this.quantity<=2){
+
+
+
   var item: Item = {
     product: this.productServiceForCart.find(this.id),
     quantity: this.quantity,
     cart1:1,
     cart2:1
   };
+}else{
+
+  alert('We have 2 in stock for you. Try other products !');
+//return is used to prevent next execution
+return this.router.navigate(['productDetails',this.id]);
+
+
+}
+
+
+
+
   // when first cart
   if (localStorage.getItem('cart') == null) {
+
+
+    if(this.quantity<=2){
+
     let cart: any = [];
     item.cart2=0;
     cart.push(JSON.stringify(item));
     localStorage.setItem('cart', JSON.stringify(cart));
+
+
+    }else{
+
+      alert('We have 2 in stock for you. Try other products !');
+  //return is used to prevent next execution
+ return this.router.navigate(['productDetails',this.id]);
+
+
+    }
   } else {
     // when any number cart exist
     let cart: any = JSON.parse(localStorage.getItem('cart'));
     let index: number = -1;
+
+    if(localStorage.getItem('cart')!=null){
+
+    
     for (var i = 0; i < cart.length; i++) {
       let item: Item = JSON.parse(cart[i]);
       if (item.product.id == this.id) {
@@ -169,6 +237,9 @@ if (this.id) {
         break;
       }
     }
+  }
+
+
     //check cart exist but this id not exist
     if (index == -1) {
       item.cart2=0;
@@ -462,6 +533,10 @@ if(localStorage.getItem('cart')!=null){
 remove(id: string): void {
   let cart: any = JSON.parse(localStorage.getItem('cart'));
   let index: number = -1;
+if(localStorage.getItem('cart')!=null){
+
+
+
   for (var i = 0; i < cart.length; i++) {
     let item: Item = JSON.parse(cart[i]);
     if (item.product.id == id) {
@@ -482,6 +557,11 @@ remove(id: string): void {
       break;
     }
   }
+
+}
+
+
+
   localStorage.setItem("cart", JSON.stringify(cart));
   this.loadCart();
 

@@ -32,8 +32,8 @@
           <a class="nav-link waves-effect" routerLink="contactUs">Contact Us</a>
         </li>
 
-        <li data-toggle="modal" (click)="admin.show()" id="paddingListId" *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" class="nav-item">
-          <a class="nav-link waves-effect" href="JavaScript:Void(0)">Admin Section</a>
+        <li id="paddingListId" class="nav-item">
+          <a class="nav-link waves-effect"  *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" href="JavaScript:Void(0)" data-toggle="modal" (click)="admin.show()">Admin Section</a>
         </li>
 
 
@@ -43,15 +43,15 @@
       <ul class="navbar-nav nav-flex-icons">
 
 
-        <li id="paddingListId" *ngIf="!authenticatedName"  data-toggle="modal" data-target="#loginModal" class="nav-item">
-          <a href="JavaScript:Void(0)" class="nav-link waves-effect">Sign in
+        <li id="paddingListId" class="nav-item">
+          <a href="JavaScript:Void(0)"  *ngIf="!authenticatedName"  data-toggle="modal" data-target="#loginModal"  class="nav-link waves-effect">Sign in
           </a>
         </li>
 
 
-          <li id="ppId" *ngIf="photoUrl" class="btn-group" mdbDropdown data-toggle="modal" data-target="#modalLogoutAvatar">
+          <li id="ppId" class="nav-item">
 
-              <a><img id="navPhoto"  [src]="photoUrl"  mdbDropdownToggle class="rounded-circle img-fluid"></a>
+              <a><img id="navPhoto"  *ngIf="photoUrl" data-toggle="modal" data-target="#modalLogoutAvatar" [src]="photoUrl" class="rounded-circle img-fluid"></a>
              
         
         </li>
@@ -77,8 +77,8 @@
         </li>
        
 
-        <li id="paddingListId"  class="nav-item" (click)="cartModal.show()">
-            <a href="JavaScript:Void(0);" class="nav-link waves-effect">
+        <li id="paddingListId"  class="nav-item">
+            <a href="JavaScript:Void(0);" class="nav-link waves-effect"  (click)="cartModal.show()" >
               <span class="badge gray z-depth-1 mr-1"> {{cartNumber}} </span>
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
@@ -245,7 +245,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close pull-right" (click)="productReset()" aria-label="Close" (click)="addProductModal.hide()">
-          <span aria-hidden="true">×</span>
+          <i class="fas fa-times"></i>
         </button>
         <h4 class="modal-title w-100" id="myModalLabel">Add a new product here !</h4>
       </div>
@@ -366,7 +366,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close pull-right" aria-label="Close" (click)="thirdProductModal.hide()">
-          <span aria-hidden="true">×</span>
+          <i class="fas fa-times"></i>
         </button>
         <h4 class="modal-title w-100" id="myModalLabel">Add your product here !</h4>
       </div>
@@ -493,7 +493,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close pull-right" aria-label="Close" (click)="addCategoryModal.hide()">
-                  <span aria-hidden="true">×</span>
+                  <i class="fas fa-times"></i>
                 </button>
                 <h4 class="modal-title w-100" id="myModalLabel">Add a new category here !</h4>
               </div>
@@ -530,7 +530,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close pull-right" aria-label="Close" (click)="cartModal.hide()">
-          <span aria-hidden="true">×</span>
+          <i class="fas fa-times"></i>
         </button>
         <h4 class="modal-title w-100" id="myModalLabel">Your cart</h4>
       </div>
@@ -602,7 +602,7 @@
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">Send email to us </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="refreshEmail()">
-          <span aria-hidden="true">&times;</span>
+          <i class="fas fa-times"></i>
         </button>
       </div>
 
@@ -655,7 +655,7 @@
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">Add facebook link</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <i class="fas fa-times"></i>
         </button>
       </div>
       <div class="modal-body mx-3">
@@ -686,7 +686,7 @@
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">Add Twitter link</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <i class="fas fa-times"></i>
         </button>
       </div>
       <div class="modal-body mx-3">
@@ -716,7 +716,7 @@
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">Add phone number</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <i class="fas fa-times"></i>
         </button>
       </div>
       <div class="modal-body mx-3">
@@ -748,7 +748,7 @@
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">Add email address</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <i class="fas fa-times"></i>
         </button>
       </div>
       <div class="modal-body mx-3">
@@ -928,7 +928,7 @@
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">All categories</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
+          <i class="fas fa-times"></i>
         </button>
       </div>
       <!--Body-->
@@ -972,7 +972,7 @@
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">All contacts here </h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
+          <i class="fas fa-times"></i>
         </button>
       </div>
       <!--Body-->

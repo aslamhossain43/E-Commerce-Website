@@ -160,7 +160,7 @@
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
-              <input placeholder="1" [(ngModel)]="quantity"  name="quantity" type="number" min="1" max="2"
+              <input mdbInput placeholder="1" [(ngModel)]="quantity"  name="quantity" type="number" min="1" max="2"
               aria-label="Search" class="form-control" style="width: 100px">
               <a [routerLink]="['navbar',product.id,quantity]" ><button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>

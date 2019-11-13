@@ -43,9 +43,8 @@ total:number=0;
   this.getTotal();
   this.cartNumber=JSON.parse(localStorage.getItem('cartNumber'));
 this.promo_code_original='TIZARAMART'+Math.random().toString(36).substring(1,36);
-console.log('promo code : '+this.promo_code_original);
+
 this.promo_code_proxy=Math.random().toString(36).substring(1,36);
-console.log('promo code : '+this.promo_code_proxy);
 
 if(localStorage.getItem('person')!=null){
 this.person=JSON.parse(localStorage.getItem('person'));
