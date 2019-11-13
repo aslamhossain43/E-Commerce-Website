@@ -28,7 +28,7 @@
           <ul class="list-group mb-3 z-depth-1">
             <li *ngFor="let product of personAndProductsCombinedForCheckOut.productsForCheckOuts"  class="list-group-item d-flex justify-content-between lh-condensed">
               <div>
-                <img id="cartImg" src="http://localhost:8080/getPhotos/{{product.frontCode}}" alt=""><br>
+                <img id="cartImg" src="/getPhotos/{{product.frontCode}}" alt=""><br>
                 <small class="text-muted"> Category : {{product.category}}<br></small>
   
                 <small class="text-muted"> Brand : {{product.brand}}<br></small>

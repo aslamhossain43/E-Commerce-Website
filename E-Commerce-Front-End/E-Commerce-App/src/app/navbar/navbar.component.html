@@ -51,7 +51,7 @@
 
           <li id="ppId" *ngIf="photoUrl" class="btn-group" mdbDropdown data-toggle="modal" data-target="#modalLogoutAvatar">
 
-              <a><img id="navPhoto" [src]="photoUrl"  mdbDropdownToggle class="rounded-circle img-fluid"></a>
+              <a><img id="navPhoto"  [src]="photoUrl"  mdbDropdownToggle class="rounded-circle img-fluid"></a>
              
         
         </li>
@@ -549,7 +549,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of items">
-                  <td><img id="cartImg" src="http://localhost:8080/getPhotos/{{item.product.frontCode}}" alt=""></td>
+                  <td><img id="cartImg" src="/getPhotos/{{item.product.frontCode}}" alt=""></td>
                   <td id="cartText" style="line-height: 120%;"><span>Category : </span>{{item.product.category}}<br>
                     <span>Brand : </span>{{item.product.brand}}<br>
                     <span>Name : </span>{{item.product.name}}<br>
@@ -868,7 +868,7 @@
 
       <!--Header-->
       <div class="modal-header">
-        <img [src]="photoUrl" alt="avatar" class="rounded-circle img-responsive">
+        <img *ngIf="photoUrl" [src]="photoUrl" alt="avatar" class="rounded-circle img-responsive">
       </div>
       <!--Body-->
       <div class="modal-body text-center mb-1">

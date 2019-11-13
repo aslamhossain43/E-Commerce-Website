@@ -26,7 +26,7 @@ export class ProductService {
         const body = JSON.stringify(product);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-            return this.http.post('http://localhost:8080/products/addProduct', body, options);
+            return this.http.post('/products/addProduct', body, options);
        
     }
 
@@ -35,12 +35,12 @@ export class ProductService {
         const body = JSON.stringify(tpProduct);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-            return this.http.post('http://localhost:8080/thirdParty/addThirdPartyProduct', body, options);
+            return this.http.post('/thirdParty/addThirdPartyProduct', body, options);
        
     }
 
     getAllProducts(): Observable<Product[]> {
-        return this.http.get('http://localhost:8080/products/getAllProducts')
+        return this.http.get('/products/getAllProducts')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -48,7 +48,7 @@ export class ProductService {
     }
 
     getAllThirdPartyProducts(): Observable<ThirdPartyProduct[]> {
-        return this.http.get('http://localhost:8080/thirdParty/getAllThirdPartyProducts')
+        return this.http.get('/thirdParty/getAllThirdPartyProducts')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -58,7 +58,7 @@ export class ProductService {
 
 
     getAllCarousel(): Observable<Carousel[]> {
-        return this.http.get('http://localhost:8080/carousel/getAllCarousel')
+        return this.http.get('/carousel/getAllCarousel')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -70,7 +70,7 @@ export class ProductService {
         const body = JSON.stringify(category);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-            return this.http.post(`http://localhost:8080/categories/addCategory`, body, options);
+            return this.http.post(`/categories/addCategory`, body, options);
        
     }
 
@@ -80,7 +80,7 @@ export class ProductService {
         const body = JSON.stringify(fb);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`http://localhost:8080/link/addFb`, body, options);
+        return this.http.post(`/link/addFb`, body, options);
         
     }
 
@@ -88,7 +88,7 @@ export class ProductService {
         const body = JSON.stringify(twitter);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`http://localhost:8080/link/addTwitter`, body, options);
+        return this.http.post(`/link/addTwitter`, body, options);
         
     }
 
@@ -101,7 +101,7 @@ export class ProductService {
         const body = JSON.stringify(phone);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`http://localhost:8080/contacts/addPhone`, body, options);
+        return this.http.post(`/contacts/addPhone`, body, options);
         
     }
 
@@ -110,7 +110,7 @@ export class ProductService {
         const body = JSON.stringify(email);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`http://localhost:8080/contacts/addEmail`, body, options);
+        return this.http.post(`/contacts/addEmail`, body, options);
         
     }
 
@@ -128,19 +128,19 @@ export class ProductService {
         const body = JSON.stringify(personAndProductsCombinedForCheckOut);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`http://localhost:8080/checkout/addCheckout`, body, options);
+        return this.http.post(`/checkout/addCheckout`, body, options);
        
     }
 
     deleteOrder(id: string) {
-        return this.http.delete(`http://localhost:8080/checkout/delete/` + id);
+        return this.http.delete(`/checkout/delete/` + id);
         }
         deleteCategory(id:string){
-            return this.http.delete(`http://localhost:8080/categories/delete/`+id);
+            return this.http.delete(`/categories/delete/`+id);
         }
 
     getAllCheckout(): Observable<PersonAndProductsCombinedForCheckOut[]> {
-        return this.http.get('http://localhost:8080/checkout/getAllCheckout')
+        return this.http.get('/checkout/getAllCheckout')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -153,7 +153,7 @@ export class ProductService {
 
 
     getAllPhones(): Observable<Phone[]> {
-        return this.http.get('http://localhost:8080/contacts/getAllPhones')
+        return this.http.get('/contacts/getAllPhones')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -161,7 +161,7 @@ export class ProductService {
     }
 
     getAllEmails(): Observable<Email[]> {
-        return this.http.get('http://localhost:8080/contacts/getAllEmails')
+        return this.http.get('/contacts/getAllEmails')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -178,12 +178,12 @@ export class ProductService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
        
-            return this.http.post(`http://localhost:8080/email/send`, body, options);
+            return this.http.post(`/email/send`, body, options);
        
     }
 
     getAllCategories(): Observable<Category[]> {
-        return this.http.get('http://localhost:8080/categories/getAllCategories')
+        return this.http.get('/categories/getAllCategories')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -192,14 +192,14 @@ export class ProductService {
 
 
     getProductById(id: string): Observable<Product> {
-        return this.http.get('http://localhost:8080/products/getProductById/' + id)
+        return this.http.get('/products/getProductById/' + id)
             .pipe(map((response: Response) => response.json(),
                 catchError(this.handlError)
             ));
     }
 
     getThirdPartyProductById(id: string): Observable<ThirdPartyProduct> {
-        return this.http.get('http://localhost:8080/thirdParty/getThirdPartyProductById/' + id)
+        return this.http.get('/thirdParty/getThirdPartyProductById/' + id)
             .pipe(map((response: Response) => response.json(),
                 catchError(this.handlError)
             ));
@@ -207,7 +207,7 @@ export class ProductService {
 
 
     getGmPhoto(): Observable<GoogleMap> {
-        return this.http.get(`http://localhost:8080/contacts/getGMPhoto`)
+        return this.http.get(`/contacts/getGMPhoto`)
             .pipe(map((response: Response) => response.json(),
                 catchError(this.handlError)
             ));
@@ -216,24 +216,24 @@ export class ProductService {
 
 
     deleteProductById(id: string){
-        return this.http.delete('http://localhost:8080/products/delete/' + id);
+        return this.http.delete('/products/delete/' + id);
           
     }
 
     deleteThirdPartyProductById(id: string){
-        return this.http.delete('http://localhost:8080/thirdParty/delete/' + id);
+        return this.http.delete('/thirdParty/delete/' + id);
           
     }
 
 
     deletePhoneById(id: string){
-        return this.http.delete('http://localhost:8080/contacts/delete/phone/' + id);
+        return this.http.delete('/contacts/delete/phone/' + id);
           
     }
 
 
     deleteEmailById(id: string){
-        return this.http.delete('http://localhost:8080/contacts/delete/email/' + id);
+        return this.http.delete('/contacts/delete/email/' + id);
           
     }
 
@@ -242,14 +242,14 @@ export class ProductService {
 
 
     getFb(): Observable<Fb> {
-        return this.http.get('http://localhost:8080/link/getFb')
+        return this.http.get('/link/getFb')
             .pipe(map((response: Response) => response.json(),
                 catchError(this.handlError)
             ));
     }
 
     getTwitter(): Observable<Twitter> {
-        return this.http.get('http://localhost:8080/link/getTwitter')
+        return this.http.get('/link/getTwitter')
             .pipe(map((response: Response) => response.json(),
                 catchError(this.handlError)
             ));
@@ -258,7 +258,7 @@ export class ProductService {
 
 
     getProductsByIdForSameCategoryAndBrand(id: string): Observable<Product[]> {
-        return this.http.get('http://localhost:8080/products/getProductsByIdForSameCategory/' + id)
+        return this.http.get('/products/getProductsByIdForSameCategory/' + id)
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -267,14 +267,14 @@ export class ProductService {
 
 
     getProductsCategoryNoDuplicate(): Observable<string[]> {
-        return this.http.get('http://localhost:8080/products/getProductsCategoryNoDuplicate')
+        return this.http.get('/products/getProductsCategoryNoDuplicate')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
                 }));
     }
     getProductsBrandNoDuplicate(): Observable<string[]> {
-        return this.http.get('http://localhost:8080/products/getProductsBrandNoDuplicate')
+        return this.http.get('/products/getProductsBrandNoDuplicate')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -282,14 +282,14 @@ export class ProductService {
     }
 
     getProductsColorNoDuplicate(): Observable<string[]> {
-        return this.http.get('http://localhost:8080/products/getProductsColorNoDuplicate')
+        return this.http.get('/products/getProductsColorNoDuplicate')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
                 }));
     }
     getProductsNameNoDuplicate(): Observable<string[]> {
-        return this.http.get('http://localhost:8080/products/getProductsNamesNoDuplicate')
+        return this.http.get('/products/getProductsNamesNoDuplicate')
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -299,7 +299,7 @@ export class ProductService {
 
 
     getProductsByCategory(category:string): Observable<Product[]> {
-        return this.http.get('http://localhost:8080/products/getProductsByCategory/'+category)
+        return this.http.get('/products/getProductsByCategory/'+category)
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
@@ -307,7 +307,7 @@ export class ProductService {
     }
 
     getProductsByBrand(brand:string): Observable<Product[]> {
-        return this.http.get('http://localhost:8080/products/getProductsByBrand/'+brand)
+        return this.http.get('/products/getProductsByBrand/'+brand)
             .pipe(map((response: Response) => response.json(),
                 (error) => {
                     catchError(this.handlError);
