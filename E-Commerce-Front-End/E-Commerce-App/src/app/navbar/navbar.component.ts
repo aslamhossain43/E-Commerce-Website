@@ -131,8 +131,11 @@ let cart: any = JSON.parse(localStorage.getItem('cart'));
 
         // check if already 1 but try to cart 2 or more
         if(this.quantity>=2 && item.quantity==1){
+          
+          
+          
 
-      alert('We have 2 in stock for you. Try other products !');
+   alert('We have 2 in stock for you !');
   //return is used to prevent next execution
  return this.router.navigate(['productDetails',this.id]);
         }
@@ -164,7 +167,7 @@ if(this.quantity<=2){
 
 }else{
 
-  alert('We have 2 in stock for you. Try other products !');
+  alert('We have 2 in stock for you !');
 //return is used to prevent next execution
 return this.router.navigate(['productDetails',this.id]);
 
@@ -192,7 +195,7 @@ if(this.quantity<=2){
   };
 }else{
 
-  alert('We have 2 in stock for you. Try other products !');
+  alert('We have 2 in stock for you !');
 //return is used to prevent next execution
 return this.router.navigate(['productDetails',this.id]);
 
@@ -216,7 +219,7 @@ return this.router.navigate(['productDetails',this.id]);
 
     }else{
 
-      alert('We have 2 in stock for you. Try other products !');
+      alert('We have 2 in stock for you !');
   //return is used to prevent next execution
  return this.router.navigate(['productDetails',this.id]);
 
