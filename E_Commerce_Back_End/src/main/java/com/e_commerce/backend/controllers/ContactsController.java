@@ -20,9 +20,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.e_commerce.backend.files.FileUpload;
 import com.e_commerce.backend.models.Email;
 import com.e_commerce.backend.models.GoogleMap;
+import com.e_commerce.backend.models.PaymentPhoneNumber;
 import com.e_commerce.backend.models.Phone;
 import com.e_commerce.backend.repositories.EmailRepository;
 import com.e_commerce.backend.repositories.GoogleMapRepository;
+import com.e_commerce.backend.repositories.PaymentPhoneNumberRepository;
 import com.e_commerce.backend.repositories.PhoneRepository;
 
 @RequestMapping(value = "/contacts")
@@ -33,6 +35,8 @@ public class ContactsController {
 
 	@Autowired
 	PhoneRepository phoneRepository;
+	@Autowired
+	PaymentPhoneNumberRepository paymentPhoneNumberRepository;
 	@Autowired
 	EmailRepository emailRepository;
 	
@@ -54,6 +58,20 @@ GoogleMapRepository googleMapRepository;
 		this.phoneRepository.save(phone);
 		return ResponseEntity.ok().body("ok");
 	}
+	
+	
+	
+	@RequestMapping(value = "/addPaymentPhoneNumber")
+	public ResponseEntity<?> addPaymentPhoneNumber(@RequestBody PaymentPhoneNumber paymentPhoneNumber) {
+		LOGGER.info("From class ContactsController , method : addPaymentPhoneNumber()");
+		
+		this.paymentPhoneNumberRepository.deleteAll();
+		
+		
+		this.paymentPhoneNumberRepository.save(paymentPhoneNumber);
+		return ResponseEntity.ok().body("ok");
+	}
+	
 
 	@RequestMapping(value = "/addEmail")
 	public ResponseEntity<?> addEmail(@RequestBody Email email) {
@@ -68,6 +86,16 @@ GoogleMapRepository googleMapRepository;
 		List<Phone> phones = this.phoneRepository.getPhonesByDesc();
 		return ResponseEntity.ok().body(phones);
 	}
+	
+	
+	
+	@GetMapping(value = "/getAllPaymentPhoneNumbers")
+	public ResponseEntity<List<PaymentPhoneNumber>> getAllPaymentPhoneNumbers() {
+
+		List<PaymentPhoneNumber> paymentPhoneNumbers = this.paymentPhoneNumberRepository.findAll();
+		return ResponseEntity.ok().body(paymentPhoneNumbers);
+	}
+	
 
 	@GetMapping(value = "/getAllEmails")
 	public ResponseEntity<List<Email>> getAllEmails() {
