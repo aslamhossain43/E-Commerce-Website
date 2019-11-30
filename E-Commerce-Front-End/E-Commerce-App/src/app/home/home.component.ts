@@ -57,6 +57,8 @@ photoUrl: string;
   namesForFilter: string[];
   pricesForFilter: string[];
 
+
+
   //for filtering
   category: string;
   brand: string;
@@ -82,11 +84,10 @@ photoUrl: string;
     this.getProductsBrandNoDuplicate();
     this.getProductsColorNoDuplicate();
     this.getProductsNameNoDuplicate();
-
-
+//jquery
+$('[data-toggle="tooltip"]').tooltip();
 
   }
-
 
 
 

@@ -739,6 +739,47 @@
 
 
 
+<!-- Payment Phone modal-->
+<div class="modal fade" id="paymentPhoneModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add payment phone numbers</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+
+        <div class="md-form mb-5">
+            <i class="fas fa-phone-alt prefix grey-text"></i>
+          <input mdbInput type="text" [(ngModel)]="paymentPhone.bKash" name="bKash" id="bKashId" class="form-control validate">
+          <label for="bKashId"> bKash phone number</label>
+        </div>
+
+
+
+        <div class="md-form mb-5">
+            <i class="fas fa-phone-alt prefix grey-text"></i>
+          <input mdbInput type="text" [(ngModel)]="paymentPhone.rocket" name="rocket" id="rocketId" class="form-control validate">
+          <label for="rocketId">Rocket phone number</label>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-default" [disabled]="!(paymentPhone.bKash || paymentPhone.rocket)" (click)="paymentPhoneSave()" data-dismiss="modal" aria-label="Close">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--//payment phone modal-->
+
+
+
 
 <!--Email modal-->
 <div class="modal fade" id="addEmailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -797,7 +838,10 @@
 
           <button type="button" id="adsBtn" class="btn btn-outline-primary" data-dismiss="modal" (click)="admin.hide()"
           data-toggle="modal" data-target="#phoneModal">Add phone number</button>
-          
+         
+          <button type="button" id="adsBtn" class="btn btn-outline-primary" data-dismiss="modal" (click)="admin.hide()"
+          data-toggle="modal" data-target="#paymentPhoneModal">Add payment phone numbers</button>
+         
 
 
           <button type="button" id="adsBtn" class="btn btn-outline-primary" data-dismiss="modal" (click)="admin.hide()"
@@ -846,7 +890,7 @@
 
 
 
-          <button type="button" class="btn btn-outline-success"
+          <button type="button" id="adsBtn" class="btn btn-outline-success"
             data-dismiss="modal" (click)="admin.hide()">Close</button>
 
 

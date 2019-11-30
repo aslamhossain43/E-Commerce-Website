@@ -246,13 +246,13 @@
 
             <div class="row" *ngIf="paymentForm">
 
-            <b><i>Send money manually to +8801795667374 and fill up below form including payment phone number then use the transaction ID.</i></b>
+            <b><i>Please complete your payment at first, then fill up the form below. Our payment number is : {{ppNumber}} </i></b>
 
 
 
 
               <div class="col-md-6 mb-3">
-                <label for="cc-name">Payment phone number</label>
+                <label for="cc-name">Your payment phone number</label>
                 <input type="text" [(ngModel)]="person.paymentPhone" name="paymentMethodB" class="form-control" id="phn" placeholder="" required>
                 
               </div>

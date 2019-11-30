@@ -7,6 +7,7 @@ import { ProductService } from '../manage/manage.service';
 import { PersonAndProductsCombinedForCheckOut } from '../manage/checkout';
 import { ProductsForCheckOut } from '../manage/productsforcheckout';
 import { Router } from '@angular/router';
+import { PaymentPhoneNumber } from '../manage/payment-number';
 
 
 declare var jquery: any;
@@ -35,8 +36,8 @@ export class CheckoutComponent implements OnInit {
   paymentForm: boolean;
   paymentMethodByCashOnDelivery: boolean;
 
-
-
+paymentPhoneNumber:PaymentPhoneNumber[]
+ppNumber:string;
 
   saveInfo: boolean;
   total: number = 0;
@@ -45,7 +46,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit() {
-
+this.getAllPaymentPhoneNumbers();
 
     //for cart
     this.items = this.productServiceForCart.allItemsFromLocalStorage();
@@ -164,6 +165,11 @@ export class CheckoutComponent implements OnInit {
     this.person.paymentPhone = '';
     this.person.paymentTransactionId = '';
 
+
+
+
+
+
   }
 
 
@@ -176,6 +182,10 @@ export class CheckoutComponent implements OnInit {
     this.person.paymentMethod = 'Cash on bKash';
     this.person.paymentPhone = '';
     this.person.paymentTransactionId = '';
+
+
+    this.ppNumber=this.paymentPhoneNumber[0].bKash;
+
 
 
   }
@@ -191,6 +201,20 @@ export class CheckoutComponent implements OnInit {
     this.person.paymentPhone = '';
     this.person.paymentTransactionId = '';
 
+    this.ppNumber=this.paymentPhoneNumber[0].rocket;
+    
+
   }
+
+
+getAllPaymentPhoneNumbers(){
+  this.productService.getAllPaymentPhoneNumbers()
+  .subscribe((response)=>{
+    this.paymentPhoneNumber=response;
+  });
+}
+
+
+
 
 }

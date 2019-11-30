@@ -133,7 +133,7 @@
           <div *ngFor="let p of products | productFilter:category:brand:color:name" class="col-lg-3 col-md-6 mb-4">
 
             <!--Card-->
-            <div class="card wow rollIn">
+            <div  data-toggle="tooltip" data-placement="top" title="{{p.name}}" class="card wow rollIn">
 
 
 
@@ -202,7 +202,7 @@
       <div *ngFor="let p of lowerToUpperProductsByCategory" class="col-lg-3 col-md-6 mb-4">
 
           <!--Card-->
-          <div class="card wow rotateInDownLeft">
+          <div  data-toggle="tooltip" data-placement="top" title="{{p.name}}" class="card wow rotateInDownLeft">
 
 
 
@@ -265,7 +265,7 @@
       <div *ngFor="let p of upperToLowerProductsByCategory" class="col-lg-3 col-md-6 mb-4">
 
           <!--Card-->
-          <div class="card wow rotateInDownRight">
+          <div  data-toggle="tooltip" data-placement="top" title="{{p.name}}" class="card wow rotateInDownRight">
 
 
 
@@ -328,7 +328,7 @@
       <div *ngFor="let p of lowerToUpperProductsByBrand" class="col-lg-3 col-md-6 mb-4">
 
           <!--Card-->
-          <div class="card wow rotateInUpLeft">
+          <div  data-toggle="tooltip" data-placement="top" title="{{p.name}}" class="card wow rotateInUpLeft">
 
 
 
@@ -393,7 +393,7 @@
       <div *ngFor="let p of upperToLowerProductsByBrand" class="col-lg-3 col-md-6 mb-4">
 
           <!--Card-->
-          <div class="card wow rotateInUpRight">
+          <div  data-toggle="tooltip" data-placement="top" title="{{p.name}}" class="card wow rotateInUpRight">
 
 
 

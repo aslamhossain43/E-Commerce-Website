@@ -79,7 +79,8 @@ photoUrl: string;
     this.getProductsBrandNoDuplicate();
     this.getProductsColorNoDuplicate();
     this.getProductsNameNoDuplicate();
-
+//jquery
+$('[data-toggle="tooltip"]').tooltip();
 
   }
 

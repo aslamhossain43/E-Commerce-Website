@@ -18,6 +18,7 @@ import { ThirdPartyProduct } from '../manage/thirdparty-product';
 import { auth as authen } from 'firebase';
 import { Phone } from '../manage/phone';
 import { Email } from '../manage/email';
+import { PaymentPhoneNumber } from '../manage/payment-number';
 declare var jquery:any;
 declare var $ :any;
 
@@ -55,6 +56,10 @@ twitterLink=new Twitter();
 
 phone=new Phone();
 phones:Phone[];
+
+paymentPhone=new PaymentPhoneNumber();
+
+
 
 email=new Email();
 emails:Email[];
@@ -719,7 +724,19 @@ phoneSave(){
   });
 }
 
+paymentPhoneSave(){
 
+  this.productService.addPaymentPhoneNumber(this.paymentPhone)
+  .subscribe(response => {
+   if(response.statusText==='OK'){
+     this.paymentPhone=new PaymentPhoneNumber();
+     $("#validMsgModal").modal('show');
+   } 
+  },
+  (error)=>{
+    $("#errorMsgModal").modal('show');
+  });
+}
 
 
 

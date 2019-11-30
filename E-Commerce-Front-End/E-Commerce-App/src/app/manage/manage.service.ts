@@ -13,6 +13,7 @@ import { ThirdPartyProduct } from './thirdparty-product';
 import { Phone } from './phone';
 import { Email } from './email';
 import { GoogleMap } from './googlemap';
+import { PaymentPhoneNumber } from './payment-number';
 @Injectable()
 export class ProductService {
     constructor(private http: Http) {
@@ -105,6 +106,14 @@ export class ProductService {
         
     }
 
+    addPaymentPhoneNumber(paymentPhoneNumber:PaymentPhoneNumber) {
+        const body = JSON.stringify(paymentPhoneNumber);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.post(`/contacts/addPaymentPhoneNumber`, body, options);
+        
+    }
+
 
     addEmail(email:Email) {
         const body = JSON.stringify(email);
@@ -159,6 +168,15 @@ export class ProductService {
                     catchError(this.handlError);
                 }));
     }
+
+    getAllPaymentPhoneNumbers(): Observable<PaymentPhoneNumber[]> {
+        return this.http.get('/contacts/getAllPaymentPhoneNumbers')
+            .pipe(map((response: Response) => response.json(),
+                (error) => {
+                    catchError(this.handlError);
+                }));
+    }
+
 
     getAllEmails(): Observable<Email[]> {
         return this.http.get('/contacts/getAllEmails')
