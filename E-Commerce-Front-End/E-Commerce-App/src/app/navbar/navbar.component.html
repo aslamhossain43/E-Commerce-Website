@@ -1,11 +1,11 @@
 
 <!-- Navbar -->
-<nav class="navbar fixed-top navbar-expand-lg  scrolling-navbar">
+<nav class="navbar fixed-top navbar-expand-lg white  scrolling-navbar">
   <div class="container">
 
     <!-- Brand -->
     <a class="navbar-brand waves-effect" routerLink="">
-      <img id="logoId" src="assets/tijara.jpg" alt="">
+      <img id="logoId" src="assets/nav-t-logo.png" alt="">
     </a>
 
     <!-- Collapse -->
@@ -20,16 +20,16 @@
       <!-- Left -->
       <ul class="navbar-nav mr-auto">
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" routerLink="aboutUs">About Us</a>
+          <a id="navText" class="nav-link waves-effect" routerLink="aboutUs">About Us</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" routerLink="ourProducts">Our Products</a>
+          <a id="navText" class="nav-link waves-effect" routerLink="ourProducts">Our Products</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" href="JavaScript:Void(0);" (click)="thirdProductModal.show()">Sell On Tizaramart</a>
+          <a id="navText" class="nav-link waves-effect" href="JavaScript:Void(0);" (click)="thirdProductModal.show()">Sell On Tizaramart</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a class="nav-link waves-effect" routerLink="contactUs">Contact Us</a>
+          <a id="navText" class="nav-link waves-effect" routerLink="contactUs">Contact Us</a>
         </li>
 
         <li id="paddingListId" class="nav-item">
@@ -44,7 +44,7 @@
 
 
         <li id="paddingListId" class="nav-item">
-          <a href="JavaScript:Void(0)"  *ngIf="!authenticatedName"  data-toggle="modal" data-target="#loginModal"  class="nav-link waves-effect">Sign in
+          <a id="navText" href="JavaScript:Void(0)"  *ngIf="!authenticatedName"  data-toggle="modal" data-target="#loginModal"  class="nav-link waves-effect">Sign in
           </a>
         </li>
 

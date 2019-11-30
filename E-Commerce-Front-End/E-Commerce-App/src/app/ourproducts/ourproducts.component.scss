@@ -1,11 +1,18 @@
 
 .container{
 
-    padding-top: 20vh;
+    padding-top: 30vh;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(46,80,144, 0.8)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 mat-label{
-    color: white;
+    color: #7505A9;
+
+  font-weight: bold;
+  font-family: "calibri", Garamond, 'Comic Sans MS';
+  font-size: 16px;
   }
   mat-option{
     text-align: center;
@@ -17,10 +24,23 @@ mat-label{
   #newFilter{
     margin-right: 20px;
   }
+  #nfButton{
+
+    color: #7505A9;
+
+  font-family: "calibri", Garamond, 'Comic Sans MS';
+  font-size: 16px;
+
+  }
   
   #sortByPrice{
     margin-left: 30px;
-    color: white;
+    
+    color: #7505A9;
+
+  font-weight: bold;
+  font-family: "calibri", Garamond, 'Comic Sans MS';
+  font-size: 16px;
     margin-right: 20px;
   }
   
