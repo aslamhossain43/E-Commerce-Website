@@ -23,6 +23,11 @@ private String phone;
 private String email;
 private String presentAddress;
 private String permanentAddress;
+
+private String paymentMethod;
+private String paymentPhone;
+private String paymentTransactionId;
+
 private String promoCode;
 private String cartNumber;
 private String total;
@@ -85,6 +90,32 @@ public String getPermanentAddress() {
 
 public void setPermanentAddress(String permanentAddress) {
 	this.permanentAddress = permanentAddress;
+}
+
+
+
+public String getPaymentMethod() {
+	return paymentMethod;
+}
+
+public void setPaymentMethod(String paymentMethod) {
+	this.paymentMethod = paymentMethod;
+}
+
+public String getPaymentPhone() {
+	return paymentPhone;
+}
+
+public void setPaymentPhone(String paymentPhone) {
+	this.paymentPhone = paymentPhone;
+}
+
+public String getPaymentTransactionId() {
+	return paymentTransactionId;
+}
+
+public void setPaymentTransactionId(String paymentTransactionId) {
+	this.paymentTransactionId = paymentTransactionId;
 }
 
 public String getPromoCode() {

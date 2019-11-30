@@ -67,6 +67,12 @@ public class CheckoutController {
 			person.setEmail(person2.getEmail());
 			person.setPresentAddress(person2.getPresentAddress());
 			person.setPermanentAddress(person2.getPermanentAddress());
+			
+			person.setPaymentMethod(person2.getPaymentMethod());
+            person.setPaymentPhone(person2.getPaymentPhone());
+            person.setPaymentTransactionId(person2.getPaymentTransactionId());
+			
+			
 			person.setPromoCode(person2.getPromoCode());
 			person.setTotal(person2.getTotal());
 			person.setCartNumber(person2.getCartNumber());

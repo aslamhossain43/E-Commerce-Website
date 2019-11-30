@@ -202,18 +202,6 @@
             <!--Grid row-->
             <div class="row">
 
-              <!--Grid column-->
-              <div class="col-md-6 mb-2">
-
-
-                <div class="custom-control custom-checkbox">
-                  <input type="checkbox" [(ngModel)]="cashOnDelivery" name="cashOnDelivery"
-                    [ngModelOptions]="{standalone: true}" class="custom-control-input" id="same-address">
-                  <label class="custom-control-label" for="same-address">Cash on delivery</label>
-                </div>
-
-              </div>
-              <!--Grid column-->
 
               <!--Grid column-->
               <div class="col-md-6 mb-2">
@@ -222,7 +210,7 @@
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" [(ngModel)]="saveInfo" name="saveInfo" [ngModelOptions]="{standalone: true}"
                     class="custom-control-input" id="save-info">
-                  <label class="custom-control-label" for="save-info">Save this information for next time</label>
+                  <label class="custom-control-label" for="save-info">Save above informations for next time</label>
                 </div>
 
 
@@ -234,10 +222,53 @@
 
 
 
+            <hr class="mb-4">
+
+            <div class="d-block my-3">
+             
+              <div class="custom-control custom-radio">
+                <input id="cOnDelivery" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="cOnDelivery"  (click)="payByCashOnDelivery()">Cash on delivery</label>
+              </div>
+
+              <div class="custom-control custom-radio">
+                <input id="bKash" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="bKash"  (click)="payBybKash()">bKash</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="rocket" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="rocket"  (click)="payByRocket()">Rocket</label>
+              </div>
+            </div>
+
+
+
+
+            <div class="row" *ngIf="paymentForm">
+
+            <b><i>Send money manually to +8801795667374 and fill up below form including payment phone number then use the transaction ID.</i></b>
+
+
+
+
+              <div class="col-md-6 mb-3">
+                <label for="cc-name">Payment phone number</label>
+                <input type="text" [(ngModel)]="person.paymentPhone" name="paymentMethodB" class="form-control" id="phn" placeholder="" required>
+                
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="cc-number">Transaction ID</label>
+                <input type="text" [(ngModel)]="person.paymentTransactionId" name="paymentMethodR" class="form-control" id="tid" placeholder="" required>
+              </div>
+            </div>
+
+
+
 
             <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!(cashOnDelivery && person.firstName && person.lastName
-             && person.phone && person.presentAddress && cartNumber)" (click)="continueCheckout()">Continue to checkout</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!(person.firstName && person.lastName
+             && person.phone && person.presentAddress && cartNumber) || !(cashOnDelivery || (person.paymentPhone && person.paymentTransactionId))"
+              (click)="continueCheckout()">Continue to checkout</button>
 
           </form>
 
