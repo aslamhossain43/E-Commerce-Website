@@ -201,6 +201,47 @@
               <!--Grid row-->
   
   
+
+            <!--Grid row-->
+            <div class="row">
+  
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+  
+                  <!--payment -->
+                  <div class="md-form mb-5">
+                    <input mdbInput type="text" value="({{personAndProductsCombinedForCheckOut.person.paymentMethod}})({{personAndProductsCombinedForCheckOut.person.paymentPhone}})" name="paymentMethod" id="pnumber"
+                      class="form-control" placeholder="" readonly>
+                    <label for="pnumber" class="">(Payment method)(Payment number)</label>
+                  </div>
+  
+                </div>
+                <!--Grid column-->
+  
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+  
+  
+  
+  
+  
+                  <!--transaction-->
+                  <div class="md-form mb-5">
+                    <input mdbInput type="text" value="{{personAndProductsCombinedForCheckOut.person.paymentTransactionId}}" name="transactionId" id="ptransaction"
+                      class="form-control" placeholder="" readonly>
+                    <label for="ptransaction" class="">Payment transaction ID</label>
+                  </div>
+  
+  
+                </div>
+                <!--Grid column-->
+  
+              </div>
+              <!--Grid row-->
+  
+
+
+
   
               <hr class="mb-4">
               <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modalConfirmDelete" (click)="sendId(personAndProductsCombinedForCheckOut.person.id)" type="submit">Remove order</button>
