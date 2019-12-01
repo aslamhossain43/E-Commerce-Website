@@ -20,20 +20,22 @@
       <!-- Left -->
       <ul class="navbar-nav mr-auto">
         <li id="paddingListId" class="nav-item">
-          <a id="navText" class="nav-link waves-effect" routerLink="aboutUs">About Us</a>
+          <a id="navText"  data-toggle="tooltip" data-placement="top" title="About Us"  class="nav-link waves-effect" routerLink="aboutUs">About Us</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a id="navText" class="nav-link waves-effect" routerLink="ourProducts">Our Products</a>
+          <a id="navText"  data-toggle="tooltip" data-placement="top" title="Our Products"  class="nav-link waves-effect" routerLink="ourProducts">Our Products</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a id="navText" class="nav-link waves-effect" href="JavaScript:Void(0);" (click)="thirdProductModal.show()">Sell On Tizaramart</a>
+          <a id="navText"  data-toggle="tooltip" data-placement="top" title="Sell On Tizaramart"  class="nav-link waves-effect" href="JavaScript:Void(0);" (click)="thirdProductModal.show()">Sell On Tizaramart</a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a id="navText" class="nav-link waves-effect" routerLink="contactUs">Contact Us</a>
+          <a id="navText"  data-toggle="tooltip" data-placement="top" title="Contact Us"  class="nav-link waves-effect" routerLink="contactUs">Contact Us</a>
         </li>
 
         <li id="paddingListId" class="nav-item">
-          <a id="navText" class="nav-link waves-effect"  *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" href="JavaScript:Void(0)" data-toggle="modal" (click)="admin.show()">Admin Section</a>
+          <a id="navText" href="JavaScript:Void(0)" class="nav-link waves-effect">
+            <a  data-toggle="tooltip" data-placement="top" title="Admin Section" ><span *ngIf="photoUrl && (uid===fbUid || uid === emailUid)" data-toggle="modal" (click)="admin.show()"> Admin Section</span></a>
+            </a>
         </li>
 
 
@@ -44,14 +46,16 @@
 
 
         <li id="paddingListId" class="nav-item">
-          <a id="navText" href="JavaScript:Void(0)"  *ngIf="!authenticatedName"  data-toggle="modal" data-target="#loginModal"  class="nav-link waves-effect">Sign in
+          <a id="navText" data-toggle="modal" data-target="#loginModal"  href="JavaScript:Void(0)" class="nav-link waves-effect">
+            <a data-toggle="tooltip" data-placement="top" title="Sign in"><span  *ngIf="!authenticatedName"> Sign in</span></a>
           </a>
         </li>
 
 
-          <li id="ppId" class="nav-item">
-
-              <a><img id="navPhoto"  *ngIf="photoUrl" data-toggle="modal" data-target="#modalLogoutAvatar" [src]="photoUrl" class="rounded-circle img-fluid"></a>
+          <li class="nav-item">
+              <a data-toggle="tooltip" data-placement="top" title="Authenticated User">
+                <img id="navPhoto"  *ngIf="photoUrl" data-toggle="modal" data-target="#modalLogoutAvatar" [src]="photoUrl" class="rounded-circle img-fluid">
+              </a>
              
         
         </li>
@@ -61,27 +65,26 @@
 
        
         <li id="paddingListId" class="nav-item">
-          <a href="{{fbLink.fblink}}" class="nav-link waves-effect" target="_blank">
+          <a  data-toggle="tooltip" data-placement="top" title="Facebook Link"  href="{{fbLink.fblink}}" class="nav-link waves-effect" target="_blank">
             <i class="fab fa-facebook-f"></i>
           </a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a href="{{twitterLink.twitter}}" class="nav-link waves-effect" target="_blank">
+          <a  data-toggle="tooltip" data-placement="top" title="Twitter Link"  href="{{twitterLink.twitter}}" class="nav-link waves-effect" target="_blank">
             <i class="fab fa-twitter"></i>
           </a>
         </li>
         <li id="paddingListId" class="nav-item">
-          <a href="JavaScript:Void(0)" class="nav-link waves-effect" data-toggle="modal" data-target="#emailModal">
-            <i class="fas fa-envelope"></i>
+          <a  data-toggle="tooltip" data-placement="top" title="Send Email"  href="JavaScript:Void(0)" class="nav-link waves-effect">
+            <i class="fas fa-envelope" data-toggle="modal" data-target="#emailModal"></i>
           </a>
         </li>
        
 
         <li id="paddingListId"  class="nav-item">
-            <a href="JavaScript:Void(0);" class="nav-link waves-effect"  (click)="cartModal.show()" >
-              <span class="badge gray z-depth-1 mr-1"> {{cartNumber}} </span>
-              <i class="fas fa-shopping-cart"></i>
-              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            <a  data-toggle="tooltip" data-placement="top" title="Cart"  href="JavaScript:Void(0)" class="nav-link waves-effect">
+              <span class="badge gray z-depth-1 mr-1"  (click)="cartModal.show()"> {{cartNumber}} </span>
+              <i class="fas fa-shopping-cart"  (click)="cartModal.show()"></i>
             </a>
           </li>
      

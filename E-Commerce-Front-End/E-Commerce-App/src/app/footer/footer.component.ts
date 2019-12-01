@@ -5,6 +5,9 @@ import { Twitter } from '../manage/twitter';
 import { EmailSending } from '../manage/manage.email';
 import { Phone } from '../manage/phone';
 import { Email } from '../manage/email';
+declare var jquery:any;
+declare var $ :any;
+
 
 @Component({
   selector: 'app-footer',
@@ -28,6 +31,9 @@ emails:Email[];
     this.getTwitter();
     this.getAllPhones();
     this.getAllEmails();
+    //jquery
+$('[data-toggle="tooltip"]').tooltip();
+
   }
 
 

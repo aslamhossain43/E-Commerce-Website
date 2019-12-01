@@ -108,6 +108,8 @@ $('.nav-item').on('click', function(){
   $('.navbar-collapse').collapse('hide');
 });
 
+//tool tip
+$('[data-toggle="tooltip"]').tooltip();
 //-------NOT CHANGE BELOW CODE SEQUENCE---------------------------------------------------------------
 //----------------for cart---------------
 this.products=this.productServiceForCart.findAll();

@@ -144,10 +144,16 @@ this.getAllPaymentPhoneNumbers();
 
   getTotal(): void {
     let cart = JSON.parse(localStorage.getItem('cart'));
+
+    if(localStorage.getItem('cart')!=null){
+
     for (var i = 0; i < cart.length; i++) {
       let item = JSON.parse(cart[i]);
       this.total += item.product.soldPrice * item.quantity;
     }
+  }
+
+
   }
 
 

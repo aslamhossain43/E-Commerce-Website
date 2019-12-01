@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ThirdPartyProduct } from '../manage/thirdparty-product';
 import { ProductService } from '../manage/manage.service';
-
+declare var jquery:any;
+declare var $ :any;
 @Component({
   selector: 'app-selltous',
   templateUrl: './selltous.component.html',
@@ -13,6 +14,8 @@ tpProducts:ThirdPartyProduct[];
 
   ngOnInit() {
     this.getAlltpProducts();
+//jquery
+$('[data-toggle="tooltip"]').tooltip();
   }
 
   getAlltpProducts():void{
