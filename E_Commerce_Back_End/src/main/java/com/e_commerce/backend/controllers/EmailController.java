@@ -34,7 +34,7 @@ ResponseEntity<?> rt;
 
 		helper.setTo("tizaramart@gmail.com");
 		helper.setFrom(emailSending.getFrom());
-		helper.setSubject("Customer name : "+emailSending.getName());
+		helper.setSubject("Customer's name : "+emailSending.getName()+", "+"Customer's Phone : "+emailSending.getPhone());
 		helper.setText(emailSending.getMessage());
 		sendMailAsynchronously(message);
 rt=ResponseEntity.ok().body("OK");
