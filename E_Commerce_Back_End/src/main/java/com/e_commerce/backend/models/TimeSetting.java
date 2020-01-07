@@ -1,6 +1,8 @@
 package com.e_commerce.backend.models;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.persistence.MappedSuperclass;
@@ -33,15 +35,15 @@ public abstract class TimeSetting<ID> {
 	@PrePersist
 	public void prepersist() {
 		Date currentDate = new Date();
-		this.createdDate = new SimpleDateFormat("dd/MM/yyyy , hh:mm:ss aa").format(currentDate);
-		this.lastModifiedDate = new SimpleDateFormat("dd/MM/yyyy , hh:mm:ss aa").format(currentDate);
-
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm:ss a");
+		this.createdDate = new SimpleDateFormat("dd/MM/yyyy").format(currentDate)+" , "+LocalTime.now().format(dtf);
+		this.lastModifiedDate = new SimpleDateFormat("dd/MM/yyyy").format(currentDate)+" , "+LocalTime.now().format(dtf);
 	}
 
 	@PreUpdate
 	public void preUpdate() {
 		Date currentDate = new Date();
-		this.lastModifiedDate = new SimpleDateFormat("dd/MM/yyyy , hh:mm:ss aa").format(currentDate);
-
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm:ss a");
+		this.lastModifiedDate = new SimpleDateFormat("dd/MM/yyyy").format(currentDate)+" , "+LocalTime.now().format(dtf);
 }
 }
